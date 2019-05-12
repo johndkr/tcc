@@ -1,5 +1,6 @@
 import unittest
 import wikipediaapi as wiki
+import json
 
 ############## SHOULDNT BE HERE ###################
 
@@ -49,10 +50,86 @@ class Source():
 		self.source_wikipedia_page = new_wikipedia_page
 
 	def update_political_bias(self,new_political_bias):
-		self.political_bias = POLITICAL_BIAS[new_political_bias]
+		if new_political_bias not in (0,1,2,3,4,5,6):
+			new_political_bias = self.political_bias
+		else:
+			self.political_bias = new_political_bias
 
 	def update_factuality(self,new_factuality):
-		self.factuality = FACTUALITY[new_factuality]
+		if new_factuality not in (0,1,2,3):
+			new_factuality = self.factuality
+		else:
+			self.factuality = new_factuality
+
+	def load_source(self):
+		with open('sources.json') as json_file:
+			data = json.load(json_file)
+		source = [item for item in data["items"] if item["source_id"] == self.source_id]
+		
+		self.update_name(source[0]["source_name"])
+		self.update_url(source[0]["source_url"])
+		self.update_twitter_handler(source[0]["source_twitter_handler"])
+		self.update_wikipedia_page(source[0]["source_wikipedia_page"])
+		self.update_political_bias(source[0]["political_bias"])
+		self.update_factuality(source[0]["factuality"])
+
+		return source[0]
+
+	def get_source_id(self, source_name):
+		with open('sources.json') as json_file:
+			data = json.load(json_file)
+		try:
+			source = [item for item in data["items"] if item["source_name"] == source_name]
+			self.source_id = source[0]["source_id"]
+		except:
+			source = []
+			print("Fonte não encontrada")
+
+
+		return self.source_id
+
+	def save_source(self):
+		with open("sources.json", "r") as json_file:
+			data = json.load(json_file)
+
+		tmp = data["items"]
+		data["items"][self.source_id] = {
+				"source_name": self.source_name,
+				"source_id": self.source_id,
+				"source_url": self.source_url,
+				"source_twitter_handler": self.source_twitter_handler,
+				"source_wikipedia_page": self.source_wikipedia_page,
+				"political_bias": self.political_bias,
+				"factuality": self.factuality
+			}
+
+		with open("sources.json", "w") as json_file:
+			json.dump(data, json_file)
+
+	def check_factuality(self):
+		#Fact points, the more, the better
+		fact_points = 0
+
+		#Wikipedia
+		wikipedia = Wikipedia()
+		wikipedia.define_name(self.source_name)
+		if wikipedia.has_page():
+			fact_points = fact_points + 1
+		else:
+			pass
+
+		#Twitter
+
+		#URL checking
+
+		#Factuality test
+		if fact_points > 0:
+			self.update_factuality(3)
+		else:
+			self.update_factuality(0)
+
+		return FACTUALITY[self.factuality]
+
 
 
 ######################## SOURCE #########################
@@ -149,7 +226,7 @@ class URL():
 		return 0
 	
 	def credibility(self):
-		''' Analyze where source is hosted and if uses htpps protocol '''
+		''' Analyze where source is l and if uses htpps protocol '''
 		return 0
 
 ######################## TESTS #########################
@@ -175,8 +252,8 @@ class TestSourceFactuality(unittest.TestCase):
 		self.assertEqual(self.mock_source.source_url, 'https://bbc.co.uk/')
 		self.assertEqual(self.mock_source.source_twitter_handler, 'BBC')
 		self.assertEqual(self.mock_source.source_wikipedia_page, 'BBC')
-		self.assertEqual(self.mock_source.political_bias, 'Center')
-		self.assertEqual(self.mock_source.factuality, 'Low')
+		self.assertEqual(self.mock_source.political_bias, 3)
+		self.assertEqual(self.mock_source.factuality, 0)
 
 	def test_wikipedia_has_page(self):
 
@@ -189,6 +266,13 @@ class TestSourceFactuality(unittest.TestCase):
 		wikipedia = Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertEqual(wikipedia.extract_context(),'BBC')
+
+	def test_source_load_save(self):
+
+		self.mock_source.get_source_id('BBC')
+		self.mock_source.load_source()
+		self.mock_source.save_source()
+		self.assertEqual(self.mock_source.source_name, 'BBC')
 
 if __name__ == '__main__':
 	unittest.main()
