@@ -1,6 +1,12 @@
 import unittest
 import wikipediaapi as wiki
 import json
+import tweepy
+
+CONSUMER_KEY = 'BGlnZtePhg8wAFgjCxzGqGIi8'
+CONSUMER_SECRET = 'Ml2xY6MsLjYsrywAZwObXTXKboSt4W75sef01EdzzuXveXTlyO'
+ACCESS_TOKEN = '755941172875501568-pJahNX54oxUa6GPXPSEYjMhTDM3wJJt'
+ACCESS_TOKEN_SECRET = 'o88gaIlrHqYRvV2REOkd6iO4wp4LPNce1Y6hrB48sadCk'
 
 ############## SHOULDNT BE HERE ###################
 
@@ -26,9 +32,7 @@ class Source():
 	source_id = 0
 	
 	# Web infos
-	source_url = ''
-	source_twitter_handler = ''
-	source_wikipedia_page = ''
+	versions = []
 	
 	# System classification
 	political_bias = POLITICAL_BIAS[3]
@@ -40,14 +44,8 @@ class Source():
 	def update_id(self,new_id):
 		self.source_id = new_id
 
-	def update_url(self,new_url):
-		self.source_url = new_url
-
-	def update_twitter_handler(self,new_twitter_handler):
-		self.source_twitter_handler = new_twitter_handler
-
-	def update_wikipedia_page(self,new_wikipedia_page):
-		self.source_wikipedia_page = new_wikipedia_page
+	def update_versions(self,versions):
+		self.versions = versions
 
 	def update_political_bias(self,new_political_bias):
 		if new_political_bias not in (0,1,2,3,4,5,6):
@@ -67,11 +65,9 @@ class Source():
 		source = [item for item in data["items"] if item["source_id"] == self.source_id]
 		
 		self.update_name(source[0]["source_name"])
-		self.update_url(source[0]["source_url"])
-		self.update_twitter_handler(source[0]["source_twitter_handler"])
-		self.update_wikipedia_page(source[0]["source_wikipedia_page"])
 		self.update_political_bias(source[0]["political_bias"])
 		self.update_factuality(source[0]["factuality"])
+		self.update_versions(source[0]["versions"])
 
 		return source[0]
 
@@ -96,11 +92,9 @@ class Source():
 		data["items"][self.source_id] = {
 				"source_name": self.source_name,
 				"source_id": self.source_id,
-				"source_url": self.source_url,
-				"source_twitter_handler": self.source_twitter_handler,
-				"source_wikipedia_page": self.source_wikipedia_page,
 				"political_bias": self.political_bias,
-				"factuality": self.factuality
+				"factuality": self.factuality,
+				"versions": self.versions
 			}
 
 		with open("sources.json", "w") as json_file:
@@ -176,6 +170,11 @@ class Wikipedia():
 
 class Twitter():
 	
+	''' TWITTER API '''
+	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+	auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+	api = tweepy.API(auth)
+
 	base_url = 'https://twitter.com/'
 	source_name = ''
 	source_id = 0
@@ -183,6 +182,11 @@ class Twitter():
 	is_verified = False
 	creation_date = '1970-01-01'
 	has_location = False
+
+	def test(self):
+		user = self.api.get_user('tyleroakley')
+		print(user.followers_count)
+		return 0
 
 	def define_name(self,source):
 		''' Search and apply official Twitter name of the source '''
@@ -240,20 +244,26 @@ class TestSourceFactuality(unittest.TestCase):
 		#Source mock
 		self.mock_source.update_name('BBC')
 		self.mock_source.update_id(0)
-		self.mock_source.update_url('https://bbc.co.uk/')
-		self.mock_source.update_twitter_handler('BBC')
-		self.mock_source.update_wikipedia_page('BBC')
 		self.mock_source.update_political_bias(3)
 		self.mock_source.update_factuality(0)
+		self.mock_source.update_versions({
+					"language":"PT-BR",
+					"source_url": "https://www.bbc.com/portuguese", 
+					"source_twitter_handler": "bbcbrasil", 
+					"source_wikipedia_page": "BBC"
+				})
 
 		#Tests
 		self.assertEqual(self.mock_source.source_name, 'BBC')
 		self.assertEqual(self.mock_source.source_id, 0)
-		self.assertEqual(self.mock_source.source_url, 'https://bbc.co.uk/')
-		self.assertEqual(self.mock_source.source_twitter_handler, 'BBC')
-		self.assertEqual(self.mock_source.source_wikipedia_page, 'BBC')
 		self.assertEqual(self.mock_source.political_bias, 3)
 		self.assertEqual(self.mock_source.factuality, 0)
+		self.assertEqual(self.mock_source.versions, {
+					"language":"PT-BR",
+					"source_url": "https://www.bbc.com/portuguese", 
+					"source_twitter_handler": "bbcbrasil", 
+					"source_wikipedia_page": "BBC"
+		})
 
 	def test_wikipedia_has_page(self):
 
@@ -271,8 +281,11 @@ class TestSourceFactuality(unittest.TestCase):
 
 		self.mock_source.get_source_id('BBC')
 		self.mock_source.load_source()
-		self.mock_source.save_source()
+		# self.mock_source.save_source()
 		self.assertEqual(self.mock_source.source_name, 'BBC')
 
 if __name__ == '__main__':
 	unittest.main()
+
+# fakenews = Twitter()
+# fakenews.test()

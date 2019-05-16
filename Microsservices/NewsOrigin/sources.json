@@ -1,1 +1,25 @@
-{"group": "sources", "items": [{"source_name": "BBC", "source_id": 0, "source_url": "", "source_twitter_handler": "", "source_wikipedia_page": "", "political_bias": 3, "factuality": 3}, {"source_name": "cde", "source_id": 1, "source_url": "", "source_twitter_handler": "", "source_wikipedia_page": "", "political_bias": 4, "factuality": 1}]}
+{
+	"group": "sources", 
+	"items": [
+		{
+			"source_name": "BBC", 
+			"source_id": 0, 
+			"political_bias": 3, 
+			"factuality": 3,
+			"versions": [
+				{
+					"language":"PT-BR",
+					"source_url": "https://www.bbc.com/portuguese", 
+					"source_twitter_handler": "bbcbrasil", 
+					"source_wikipedia_page": "BBC"
+				},
+				{
+					"language":"EN-US",
+					"source_url": "https://www.bbc.com/", 
+					"source_twitter_handler": "BBCNorthAmerica", 
+					"source_wikipedia_page": "BBC"
+				}
+			]
+		}
+	]
+}
