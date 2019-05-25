@@ -9,39 +9,52 @@ from Microsservices.Linguistic import linguistic as Linguistic
 
 class TestSourceFactuality(unittest.TestCase):
 	
-	mock_source = Source_Checking.Source()
+	mock_source = Source()
 	
 	def test_source_update(self):
 
 		#Source mock
 		self.mock_source.update_name('BBC')
 		self.mock_source.update_id(0)
-		self.mock_source.update_url('https://bbc.co.uk/')
-		self.mock_source.update_twitter_handler('BBC')
-		self.mock_source.update_wikipedia_page('BBC')
 		self.mock_source.update_political_bias(3)
 		self.mock_source.update_factuality(0)
+		self.mock_source.update_versions({
+					"language":"PT-BR",
+					"source_url": "https://www.bbc.com/portuguese", 
+					"source_twitter_handler": "bbcbrasil", 
+					"source_wikipedia_page": "BBC"
+				})
 
 		#Tests
 		self.assertEqual(self.mock_source.source_name, 'BBC')
 		self.assertEqual(self.mock_source.source_id, 0)
-		self.assertEqual(self.mock_source.source_url, 'https://bbc.co.uk/')
-		self.assertEqual(self.mock_source.source_twitter_handler, 'BBC')
-		self.assertEqual(self.mock_source.source_wikipedia_page, 'BBC')
-		self.assertEqual(self.mock_source.political_bias, 'Center')
-		self.assertEqual(self.mock_source.factuality, 'Low')
+		self.assertEqual(self.mock_source.political_bias, 3)
+		self.assertEqual(self.mock_source.factuality, 0)
+		self.assertEqual(self.mock_source.versions, {
+					"language":"PT-BR",
+					"source_url": "https://www.bbc.com/portuguese", 
+					"source_twitter_handler": "bbcbrasil", 
+					"source_wikipedia_page": "BBC"
+		})
 
 	def test_wikipedia_has_page(self):
 
-		wikipedia = Source_Checking.Wikipedia()
+		wikipedia = Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertTrue(wikipedia.has_page())
 
 	def test_wikipedia_extract_context(self):
 		
-		wikipedia = Source_Checking.Wikipedia()
+		wikipedia = Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertEqual(wikipedia.extract_context(),'BBC')
+
+	def test_source_load_save(self):
+
+		self.mock_source.get_source_id('BBC')
+		self.mock_source.load_source()
+		# self.mock_source.save_source()
+		self.assertEqual(self.mock_source.source_name, 'BBC')
 
 class TestLinguisticAnalyses(unittest.TestCase):
 	ling_anal = Linguistic.LinguisticAnalyses()

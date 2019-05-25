@@ -1,5 +1,5 @@
-import unittest
 import wikipediaapi as wiki
+from googlesearch import search
 import json
 import tweepy
 
@@ -81,8 +81,11 @@ class Source():
 			source = []
 			print("Fonte não encontrada")
 
-
 		return self.source_id
+
+	def set_source_id(self,source_id):
+		self.source_id = source_id
+
 
 	def save_source(self):
 		with open("sources.json", "r") as json_file:
@@ -103,6 +106,7 @@ class Source():
 	def check_factuality(self):
 		#Fact points, the more, the better
 		fact_points = 0
+		achievable_points = 4 #should change as the number of checks increases
 
 		#Wikipedia
 		wikipedia = Wikipedia()
@@ -113,11 +117,18 @@ class Source():
 			pass
 
 		#Twitter
-
+		twitter = Twitter()
+		twitter.define_name(self.source_name)
+		if twitter.user_has_account():
+			fact_points = fact_points + 1
+		if twitter.user_is_verified():
+			fact_points = fact_points + 1
+		if twitter.user_has_location():
+			fact_points = fact_points + 1
 		#URL checking
 
 		#Factuality test
-		if fact_points > 0:
+		if (fact_points/achievable_points) > 0.5:
 			self.update_factuality(3)
 		else:
 			self.update_factuality(0)
@@ -150,7 +161,7 @@ class Wikipedia():
 		return self.source_name
 
 	def has_page(self):
-		''' Verify if source has a Wikipedia page '''
+		''' Verify if source a Wikipedia page '''
 		page = self.wiki_pt.page(self.source_name)
 		self.has_page = page.exists()
 		return self.has_page
@@ -182,42 +193,98 @@ class Twitter():
 	is_verified = False
 	creation_date = '1970-01-01'
 	has_location = False
+	user = ''
+	counts = [{
+		"followers_count":0,
+		"friends_count":0,
+		"listed_count":0,
+		"favourites_count":0,
+		"statuses_count":0
+	}]
 
-	def test(self):
-		user = self.api.get_user('tyleroakley')
-		print(user.followers_count)
-		return 0
 
 	def define_name(self,source):
 		''' Search and apply official Twitter name of the source '''
-		return 0
+		self.source_name = source
+		return self.source_name
 	
-	def has_account(self):
+	def get_user(self):
+		try:
+			self.user = self.api.get_user(self.source_name)
+		except:
+			self.user = ''
+		return self.source_name
+
+	def user_has_account(self):
 		''' Verify Twitter account existance '''
-		return 0
+		if self.user is not '':
+			self.has_account = True
+		else:
+			self.has_account = False
 
-	def is_verified(self):
+		return self.has_account
+
+	def user_is_verified(self):
 		''' Verify if source has a verified Twitter profile '''
-		return 0
+		if self.user_has_account():
+			if self.user.verified:
+				self.is_verified = True
+			else:
+				self.is_verified = False
+		else:
+			pass
+		return self.is_verified
 
-	def creation_date(self):
+	def get_creation_date(self):
 		''' Verify Twitter account creation date '''
-		return 0
+		if self.user_has_account():
+			self.creation_date = self.user.created_at
+		else:
+			pass
+		return self.creation_date
 
-	def has_location(self):
+	def user_has_location(self):
 		''' Verify if source's location is explicitly provided in their Twitter profile ''' 
-		return 0
+		if self.user_has_account():
+			if self.user.location is not '':
+				self.has_location = True
+			else:
+				self.has_location = False
+		else:
+			pass
+		return self.has_location
 
 	def url_match(self):
 		''' Verify if given url to source's website match with the real in the databases '''
 		return 0
 
-	def counts(self):
+	def get_counts(self):
 		''' Store statistics about the number of friends, statuses and favorites '''
+		if self.user_has_account():
+			self.counts = [{
+				"followers_count":self.user.followers_count,
+				"friends_count":self.user.friends_count,
+				"listed_count":self.user.listed_count,
+				"favourites_count":self.user.favourites_count,
+				"statuses_count":self.user.statuses_count
+			}]
+		else:
+			pass
 		return 0
 
 	def check_description(self):
 		''' Check description for signs of partisanship, political bias or lack of content '''
+		return 0
+
+	def load_all_info(self,source_name):
+		self.define_name(source_name)
+		self.get_user()
+		self.user_has_account()
+		self.user_is_verified()
+		self.get_creation_date()
+		self.user_has_location()
+		self.get_counts()
+
 		return 0
 
 class URL():
@@ -233,59 +300,6 @@ class URL():
 		''' Analyze where source is l and if uses htpps protocol '''
 		return 0
 
-######################## TESTS #########################
-
-class TestSourceFactuality(unittest.TestCase):
-	
-	mock_source = Source()
-	
-	def test_source_update(self):
-
-		#Source mock
-		self.mock_source.update_name('BBC')
-		self.mock_source.update_id(0)
-		self.mock_source.update_political_bias(3)
-		self.mock_source.update_factuality(0)
-		self.mock_source.update_versions({
-					"language":"PT-BR",
-					"source_url": "https://www.bbc.com/portuguese", 
-					"source_twitter_handler": "bbcbrasil", 
-					"source_wikipedia_page": "BBC"
-				})
-
-		#Tests
-		self.assertEqual(self.mock_source.source_name, 'BBC')
-		self.assertEqual(self.mock_source.source_id, 0)
-		self.assertEqual(self.mock_source.political_bias, 3)
-		self.assertEqual(self.mock_source.factuality, 0)
-		self.assertEqual(self.mock_source.versions, {
-					"language":"PT-BR",
-					"source_url": "https://www.bbc.com/portuguese", 
-					"source_twitter_handler": "bbcbrasil", 
-					"source_wikipedia_page": "BBC"
-		})
-
-	def test_wikipedia_has_page(self):
-
-		wikipedia = Wikipedia()
-		wikipedia.define_name(self.mock_source.source_name)
-		self.assertTrue(wikipedia.has_page())
-
-	def test_wikipedia_extract_context(self):
-		
-		wikipedia = Wikipedia()
-		wikipedia.define_name(self.mock_source.source_name)
-		self.assertEqual(wikipedia.extract_context(),'BBC')
-
-	def test_source_load_save(self):
-
-		self.mock_source.get_source_id('BBC')
-		self.mock_source.load_source()
-		# self.mock_source.save_source()
-		self.assertEqual(self.mock_source.source_name, 'BBC')
-
-if __name__ == '__main__':
-	unittest.main()
-
-# fakenews = Twitter()
-# fakenews.test()
+#Teste
+twitter = Twitter()
+twitter.load_all_info('brunohvlemos')
