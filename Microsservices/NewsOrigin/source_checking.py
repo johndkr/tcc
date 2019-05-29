@@ -60,7 +60,7 @@ class Source():
 			self.factuality = new_factuality
 
 	def load_source(self):
-		with open('sources.json') as json_file:
+		with open('../../Microsservices/NewsOrigin/sources.json') as json_file:
 			data = json.load(json_file)
 		source = [item for item in data["items"] if item["source_id"] == self.source_id]
 		
@@ -72,7 +72,7 @@ class Source():
 		return source[0]
 
 	def get_source_id(self, source_name):
-		with open('sources.json') as json_file:
+		with open('../../Microsservices/NewsOrigin/sources.json') as json_file:
 			data = json.load(json_file)
 		try:
 			source = [item for item in data["items"] if item["source_name"] == source_name]
@@ -134,6 +134,36 @@ class Source():
 			self.update_factuality(0)
 
 		return FACTUALITY[self.factuality]
+
+	def get_stats(self):
+		dict_pol = []
+		dict_fac = []
+
+		with open('../../Microsservices/NewsOrigin/sources.json') as json_file:
+			data = json.load(json_file)
+
+		for item in data["items"]:
+			dict_pol.append(item["political_bias"])
+			dict_fac.append(item["factuality"])
+
+		political_bias = [{
+				'0':dict_pol.count(0),
+				'1':dict_pol.count(1),
+				'2':dict_pol.count(2),
+				'3':dict_pol.count(3),
+				'4':dict_pol.count(4),
+				'5':dict_pol.count(5),
+				'6':dict_pol.count(6)
+		}]
+
+		factuality = [{
+				'0':dict_fac.count(0),
+				'1':dict_fac.count(1),
+				'2':dict_fac.count(2),
+				'3':dict_fac.count(3)
+		}]
+		return political_bias, factuality
+			
 
 
 
