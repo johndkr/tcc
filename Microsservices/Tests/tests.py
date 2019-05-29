@@ -9,7 +9,8 @@ from Microsservices.Linguistic import linguistic as Linguistic
 
 class TestSourceFactuality(unittest.TestCase):
 	
-	mock_source = Source()
+	mock_source = Source_Checking.Source()
+	ling_anal = Linguistic.LinguisticAnalyses()
 	
 	def test_source_update(self):
 
@@ -39,15 +40,20 @@ class TestSourceFactuality(unittest.TestCase):
 
 	def test_wikipedia_has_page(self):
 
-		wikipedia = Wikipedia()
+		wikipedia = Source_Checking.Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertTrue(wikipedia.has_page())
 
 	def test_wikipedia_extract_context(self):
 		
-		wikipedia = Wikipedia()
+		wikipedia = Source_Checking.Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertEqual(wikipedia.extract_context(),'BBC')
+
+	def test_wrong_proporstion_simple_br(self):
+
+		text_sample = 'Joao roubou pao na casa do Jaoo ontem a noite'
+		self.assertEqual(self.ling_anal.wrong_proportion(text_sample), 0.4)
 
 	def test_source_load_save(self):
 
@@ -56,15 +62,7 @@ class TestSourceFactuality(unittest.TestCase):
 		# self.mock_source.save_source()
 		self.assertEqual(self.mock_source.source_name, 'BBC')
 
-class TestLinguisticAnalyses(unittest.TestCase):
-	ling_anal = Linguistic.LinguisticAnalyses()
-
-	def wrong_proporstion_simple_br(self):
-        #Source mock
-		text_sample = 'Joao roubou poa na casa do Jaoo'
-		vec_txt = text_sample.split(' ')
-		#Tests
-		self.assertEqual(self.ling_anal.wrong_proportion(vec_txt), 0.2)
+	
 
 if __name__ == '__main__':
 	unittest.main()
