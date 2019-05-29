@@ -50,18 +50,22 @@ class TestSourceFactuality(unittest.TestCase):
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertEqual(wikipedia.extract_context(),'BBC')
 
-	def test_wrong_proporstion_simple_br(self):
-
-		text_sample = 'Joao roubou pao na casa do Jaoo ontem a noite'
-		self.assertEqual(self.ling_anal.wrong_proportion(text_sample), 0.4)
-
 	def test_source_load_save(self):
 
 		self.mock_source.get_source_id('BBC')
 		self.mock_source.load_source()
 		# self.mock_source.save_source()
 		self.assertEqual(self.mock_source.source_name, 'BBC')
+	
+	def test_wrong_proporstion_simple_br(self):
 
+		text_sample = 'Joao roubou pao na casa do Jaoo ontem a noite'
+		self.assertEqual(self.ling_anal.wrong_proportion(text_sample), 0.4)
+
+	def test_top_n_words(self):
+		text_sample = "John is the son of John second. Second son of John second is William second."
+		response = [('second', 4), ('john', 3), ('is', 2), ('son', 2)]
+		self.assertEqual(self.ling_anal.top_n_words(4, text_sample), response)
 	
 
 if __name__ == '__main__':
