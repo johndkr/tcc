@@ -1,17 +1,20 @@
 ######################## SOURCE TESTS #########################
 import unittest
 import sys
-sys.path.append('../../')
+sys.path.append('..\\..\\')
 
+from Microsservices.CommonUtil.Log import log_util as Log_Util
 from Microsservices.NewsOrigin import source_checking as Source_Checking
 from Microsservices.Linguistic import linguistic as Linguistic
 
 
 class TestSourceFactuality(unittest.TestCase):
 	
+	test_log_util = Log_Util.Log_Util(False)
+
 	mock_source = Source_Checking.Source()
-	ling_anal = Linguistic.LinguisticAnalyses()
-	
+	ling_anal = Linguistic.LinguisticAnalyses(test_log_util)
+
 	def test_source_update(self):
 
 		#Source mock
@@ -70,7 +73,7 @@ class TestSourceFactuality(unittest.TestCase):
 	def test_get_region(self):
 		text_sample = "Os politicos de Sao Paulo sao menos corruptos que os do Rio de Janeiro. O Rio de Janeiro continua lindo"
 		response = [('RJ', 2), ('SP', 1)]
-		self.assertEqual(self.ling_anal.catch_state_mentions(text_sample), response)
+		self.assertEqual(self.ling_anal.catch_state_mentions(text_sample, False), response)
 
 if __name__ == '__main__':
 	unittest.main()
