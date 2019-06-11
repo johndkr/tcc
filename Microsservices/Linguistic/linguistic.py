@@ -26,7 +26,7 @@ class LinguisticAnalyses():
     try:
       path = os.path.join(__file__, STATE_CITIES_DICTIONARY)
       with open(path, 'a') as content_file:
-        states_file_loaded = content_file
+        states_file_loaded = content_file.read()
         self.log_manager.info('Found file at: ' + path)
     except Exception as err:
       self.log_manager.err('Ops... something went wrong while loading states dictionaries! -- {}'.format(err.__context__))
