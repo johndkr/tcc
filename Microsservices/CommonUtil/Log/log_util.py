@@ -1,8 +1,8 @@
-import os
+import os, sys
 import datetime
 
 LOG_FILE_PATH = './logs/log_file_{}'.format(str(datetime.date.today()).replace('-','_'))
-TEMPLATE = '[{}] - {} : {}\n' ## time, type, msg
+TEMPLATE = '[{}] - {} : {}' ## time, type, msg
 
 class Log_Util():
     def __init__(self, make_file):
@@ -24,23 +24,27 @@ class Log_Util():
             print(msg)
             if(self.__make_file):
                 with open(LOG_FILE_PATH, 'a') as log_file:
-                    log_file.write(msg)
+                    log_file.write(msg + '\n')
         except Exception as err:
-            print('Error while loading {}:\n{}'.format(LOG_FILE_PATH, str(err)))
+            print('Error while loading {}:\n{}'.format(LOG_FILE_PATH, err.__doc__))
 
     def __template(self, log_type, msg):
         return TEMPLATE.format(str(datetime.datetime.now()), log_type, msg)
 
     def info(self, msg):
-        # self.__log_file.write(self.__template("INFO", msg))
         self.__write_on_file(self.__template("INFO", msg))
 
     def debbug(self, msg):
-        # self.__log_file.write(self.__template("DEBBUG", msg))
         self.__write_on_file(self.__template("DEBBUG", msg))
 
     def err(self, msg):
-        # self.__log_file.write(self.__template("ERROR", msg))
         self.__write_on_file(self.__template("ERROR", msg))
 
+    def exception(self, err):
+        ## handles Exception types directly. Concentrates the template here
+        if type(err) != type(str):
+            self.err("{} - {}".format(sys.exc_info()[0], err.__doc__))
+        else:
+            self.err(err)
+        
     

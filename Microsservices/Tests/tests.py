@@ -13,7 +13,7 @@ class TestSourceFactuality(unittest.TestCase):
 	test_log_util = Log_Util.Log_Util(False)
 
 	mock_source = Source_Checking.Source()
-	ling_anal = Linguistic.LinguisticAnalyses(test_log_util)
+	ling_anal = Linguistic.LinguisticAnalyses()
 
 	def test_source_update(self):
 
@@ -61,7 +61,6 @@ class TestSourceFactuality(unittest.TestCase):
 		self.assertEqual(self.mock_source.source_name, 'BBC')
 	
 	def test_wrong_proporstion_simple_br(self):
-
 		text_sample = 'Joao roubou pao na casa do Jaoo ontem a noite'
 		self.assertEqual(self.ling_anal.wrong_proportion(text_sample), 0.4)
 
