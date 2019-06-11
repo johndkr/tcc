@@ -8,7 +8,7 @@ from Microsservices.CommonUtil.Log import log_util
 
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
-STATE_CITIES_DICTIONARY = "../data/state_city_dictionary"
+STATE_CITIES_DICTIONARY = "..\\data\\state_city_dictionary"
 
 class LinguisticAnalyses():
   spellchecker = SpellChecker()
@@ -25,9 +25,8 @@ class LinguisticAnalyses():
     states_file_loaded = None
     try:
       path = os.path.join(__file__, STATE_CITIES_DICTIONARY)
-      with open(path, 'a') as content_file:
-        states_file_loaded = content_file.read()
-        self.log_manager.info('Found file at: ' + path)
+      states_file_loaded = eval(open(path).read())
+      self.log_manager.info('Found file at: ' + path)
     except Exception as err:
       self.log_manager.err('Ops... something went wrong while loading states dictionaries! -- {}'.format(err.__context__))
       states_file_loaded = {}
@@ -62,7 +61,7 @@ class LinguisticAnalyses():
 
     for key in self.__states_keys_dictionary:
       for city in self.__states_keys_dictionary[key]:
-        count = text.count(city.lower())
+        count = text.count(city)
         if count != 0:
           found.append((key, city, count))
     

@@ -72,7 +72,7 @@ class TestSourceFactuality(unittest.TestCase):
 	
 	def test_get_region(self):
 		text_sample = "Os politicos de Sao Paulo sao menos corruptos que os do Rio de Janeiro. O Rio de Janeiro continua lindo"
-		response = [('RJ', 2), ('SP', 1)]
+		response = [('RJ', 'Rio de Janeiro', 2), ('SP', 'Sao Paulo', 1)]
 		self.assertEqual(self.ling_anal.catch_state_mentions(text_sample, False), response)
 
 if __name__ == '__main__':
