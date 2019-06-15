@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../../')
+sys.path.append('..\\..\\')
 
 from Microsservices.NewsOrigin import source_checking as Source_Checking
 from Microsservices.Linguistic import linguistic as Linguistic

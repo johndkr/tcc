@@ -1,16 +1,20 @@
 ######################## SOURCE TESTS #########################
 import unittest
 import sys
-sys.path.append('../../')
+sys.path.append('..\\..\\')
 
+from Microsservices.CommonUtil.Log import log_util as Log_Util
 from Microsservices.NewsOrigin import source_checking as Source_Checking
 from Microsservices.Linguistic import linguistic as Linguistic
 
 
 class TestSourceFactuality(unittest.TestCase):
 	
-	mock_source = Source()
-	
+	test_log_util = Log_Util.Log_Util(False)
+
+	mock_source = Source_Checking.Source()
+	ling_anal = Linguistic.LinguisticAnalyses()
+
 	def test_source_update(self):
 
 		#Source mock
@@ -39,13 +43,13 @@ class TestSourceFactuality(unittest.TestCase):
 
 	def test_wikipedia_has_page(self):
 
-		wikipedia = Wikipedia()
+		wikipedia = Source_Checking.Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertTrue(wikipedia.has_page())
 
 	def test_wikipedia_extract_context(self):
 		
-		wikipedia = Wikipedia()
+		wikipedia = Source_Checking.Wikipedia()
 		wikipedia.define_name(self.mock_source.source_name)
 		self.assertEqual(wikipedia.extract_context(),'BBC')
 
@@ -55,16 +59,20 @@ class TestSourceFactuality(unittest.TestCase):
 		self.mock_source.load_source()
 		# self.mock_source.save_source()
 		self.assertEqual(self.mock_source.source_name, 'BBC')
+	
+	def test_wrong_proporstion_simple_br(self):
+		text_sample = 'Joao roubou pao na casa do Jaoo ontem a noite'
+		self.assertEqual(self.ling_anal.wrong_proportion(text_sample), 0.4)
 
-class TestLinguisticAnalyses(unittest.TestCase):
-	ling_anal = Linguistic.LinguisticAnalyses()
-
-	def wrong_proporstion_simple_br(self):
-        #Source mock
-		text_sample = 'Joao roubou poa na casa do Jaoo'
-		vec_txt = text_sample.split(' ')
-		#Tests
-		self.assertEqual(self.ling_anal.wrong_proportion(vec_txt), 0.2)
+	def test_top_n_words(self):
+		text_sample = "John is the son of John second. Second son of John second is William second."
+		response = [('second', 4), ('john', 3), ('is', 2), ('son', 2)]
+		self.assertEqual(self.ling_anal.top_n_words(4, text_sample), response)
+	
+	def test_get_region(self):
+		text_sample = "Os politicos de Sao Paulo sao menos corruptos que os do Rio de Janeiro. O Rio de Janeiro continua lindo"
+		response = [('RJ', 'Rio de Janeiro', 2), ('SP', 'Sao Paulo', 1)]
+		self.assertEqual(self.ling_anal.catch_state_mentions(text_sample, False), response)
 
 if __name__ == '__main__':
 	unittest.main()
