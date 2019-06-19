@@ -1238,6 +1238,20 @@
 			   "source_wikipedia_page":""
 			}
 		 ]
+	  },
+	  {
+		 "source_name":"The Intercept",
+		 "source_id":88,
+		 "political_bias":3,
+		 "factuality":3,
+		 "versions":[
+			{
+			   "language":"PT-BR",
+			   "source_url":"https://theintercept.com/",
+			   "source_twitter_handler":"",
+			   "source_wikipedia_page":""
+			}
+		 ]
 	  }
    ]
 }

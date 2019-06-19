@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Só verdades</title>
+  </head>
+  <body>
+   <div class="container">
+   	<br>
+    <form>
+      <h4>Idioma</h4>
+          <select id="Country">
+            <option></option>
+            <option value="Portuguese" selected>Português</option>
+            <option value="English">Inglês</option>
+        </select>
+
+      <h4>O que você deseja?</h4>
+            <select id="Region">
+                <option></option>
+                <option value="VerificarN" selected>Verificar notícia</option>
+                <option value="VerificarF">Verificar fonte</option>
+                <option value="Stats">Ver estatísticas</option>
+            </select>
+        <br />
+    </form>
+	</div>
+	<div class ="container">
+		<h4>Será que é verdade?</h4>
+		<form action="{{ url_for('my_form_post') }}" method="POST">
+    		<input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia ou tags...">
+    		<input type="submit">
+		</form>
+		<br>
+		<hr style="border: 0.3px solid grey;" />
+  	</div>
+
+    <script type="text/javascript">
+        function removeOptions(objSelect) {
+            while (objSelect.options.length > 0)
+                objSelect.options[0] = null;
+        }
+      
+      // element_ids -- sont les outputs des boutons - ce que je récupère quand on clique sur un boutton //
+      var element_ids = ["Country", "Region"];
+      // getValues est la fonction qui dénombre et donc récupère tous les couples possibles de choix //
+      function getValues() {
+        var values = {};
+        for (var i = 0; i < element_ids.length; i++) {
+          var element = document.getElementById(element_ids[i]);
+          if (element != null) {
+              values[element_ids[i]] = element.value;
+          }
+        }
+        console.log(values);
+        return values;
+      }
+      function run() {
+         // on récupère le choix des valeurs des bouttons //
+        var values = getValues();
+        // AJAX > to check //
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/filter", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            console.log(this.responseText);
+            var objects = JSON.parse(this.responseText);
+            console.log(objects);
+            var table = document.getElementById("result");
+            if (table != null) {
+              table.innerHTML = "";
+              for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                var tr = document.createElement("tr");
+                var td = null;
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['country']));
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['province']));
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['description']));
+                tr.appendChild(td);
+                table.appendChild(tr);
+              }
+            }
+          }
+        }
+        var params = "_="+ Math.floor(Date.now() / 1000);
+        for (var key in values) {
+          params += "&"+ key +"="+ values[key];
+        }
+        xhr.send(params);
+      }
+      var submit = document.getElementById("submit");
+      if (submit != null) {
+        submit.addEventListener("click", run);
+      }
+      run();
+    </script>
+  </body>
+
+  <style>
+	  input[type=text], select {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+
+	input[type=submit] {
+	  width: 100%;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	}
+
+	input[type=submit]:hover {
+	  background-color: #45a049;
+	}
+</style>
+</html>
