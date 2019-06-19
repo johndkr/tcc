@@ -349,7 +349,21 @@ def querySourceByUrl(url):
 		source = [item for item in data["items"] if item["versions"][0]["source_url"] == url]
 		source_id = source[0]["source_id"]
 	except:
-		source = []
+		source = [
+		{
+		 "source_name":"Não encontrado",
+		 "source_id":'',
+		 "political_bias":3,
+		 "factuality":0,
+		 "versions":[
+			{
+			   "language":"PT-BR",
+			   "source_url":"",
+			   "source_twitter_handler":"",
+			   "source_wikipedia_page":""
+			}
+		 ]
+	  }]
 		print("Fonte não encontrada")
 	return source
 
