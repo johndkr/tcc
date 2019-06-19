@@ -1,0 +1,576 @@
+{
+    "totalSubjects": 3,
+    "subjects": [
+        {
+            "id": 1,
+            "keywords": [
+                "STF",
+                "Moro",
+                "Justiça"
+            ],
+            "fake": false,
+            "articles": [
+                {
+                    "source": {
+                        "id": "google-news-br",
+                        "name": "Google News (Brasil)"
+                    },
+                    "author": null,
+                    "title": "Cientista político sugere prisão preventiva para Moro após novo vazamento - GGN",
+                    "description": "\"Ele pode estar destruindo provas\", diz Alberto Almeida, diante da divulgação de novas conversas comprometedoras",
+                    "url": "https://jornalggn.com.br/noticia/cientista-politico-sugere-prisao-preventiva-para-moro-apos-novo-vazamento/",
+                    "urlToImage": "https://jornalggn.com.br/sites/default/files/2019/06/cientista-politico-sugere-prisao-preventiva-para-moro-apos-novo-vazamento-alberto-almeida.jpg",
+                    "publishedAt": "2019-06-15T16:22:45+00:00",
+                    "content": "Do Brasil de Fato\r\nA divulgação de novas conversas envolvendo a Lava Jato, feita pelo site The Intercept Brasil na noite de sexta-feira (14), ampliou as reações indignadas ao conluio entre Sérgio Moro e procuradores Ministério Público Federal (MPF) para conde… [+2443 chars]"
+                },
+                {
+                    "source": {
+                        "id": "google-news-br",
+                        "name": "Google News (Brasil)"
+                    },
+                    "author": null,
+                    "title": "Nova lei trabalhista é questionada em 14 ações no STF",
+                    "description": "Desde agosto de 2017, antes mesmo de a nova lei trabalhista entrar em vigor, o STF recebeu 34 ações diretas de inconstitucionalidade, segundo levantamento feito pelo G1.",
+                    "url": "https://g1.globo.com/economia/concursos-e-emprego/noticia/2019/06/15/nova-lei-trabalhista-e-questionada-em-14-acoes-no-stf.ghtml",
+                    "urlToImage": "https://s2.glbimg.com/9omjBYo075yqcfs3QyQ5uwkYhoY=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/J/Q/HjEMqAT8CxnyTjn7bcZQ/pregnant-3483443-1920.jpg",
+                    "publishedAt": "2019-06-15T15:23:00+00:00",
+                    "content": "Pontos da lei trabalhista estão sendo questionados no Supremo Tribunal Federal (STF) por meio de Ações Diretas de Inconstitucionalidade, as chamadas ADIs. Atualmente, há 14 ações esperando por decisões dos ministros do STF. Até o momento, foram julgados dois … [+9211 chars]"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "keywords": "Lula",
+            "fake": false,
+            "articles": [
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Theintercept.com"
+                    },
+                    "author": "Rafael Moro Martins, Leandro Demori, Glenn Greenwald, Amanda Audi",
+                    "title": "Sergio Moro, enquanto julgava Lula, sugeriu à Lava Jato emitir uma nota oficial contra a defesa. Eles acataram e pautaram a imprensa.",
+                    "description": "Horas depois do primeiro depoimento de Lula, o então juiz procurou o Ministério Público para sugerir nota à imprensa que esclarecesse \"contradições\" do petista. The post Sergio Moro, enquanto julgava Lula, sugeriu à Lava Jato emitir uma nota oficial contra a …",
+                    "url": "https://theintercept.com/2019/06/14/sergio-moro-enquanto-julgava-lula-sugeriu-a-lava-jato-emitir-uma-nota-oficial-contra-a-defesa-eles-acataram-e-pautaram-a-imprensa/",
+                    "urlToImage": "https://theintercept.com/wp-uploads/sites/1/2019/06/moro-2222-redes-1560541987.jpg",
+                    "publishedAt": "2019-06-15T00:38:33Z",
+                    "content": "Um trecho do chat privado entre Sergio Moro e o então procurador da República Carlos Fernando dos Santos Lima mostra que o ex-juiz pediu aos procuradores da Lava Jato uma nota à imprensa para rebater o que chamou de “showzinho” da defesa de Lula após o depoim… [+37125 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Theintercept.com"
+                    },
+                    "author": "Rafael Moro Martins, Amanda Audi",
+                    "title": "Entrevista: ‘Ernesto é ridículo’, diz número dois do Itamaraty no governo Lula",
+                    "description": "Para o embaixador Samuel Pinheiro Guimarães Neto, Bolsonaro cai em julho. E o 'prato alternativo que se pode escolher' é Mourão. The post Entrevista: ‘Ernesto é ridículo’, diz número dois do Itamaraty no governo Lula appeared first on The Intercept.",
+                    "url": "https://theintercept.com/2019/06/02/samuel-pinheiro-entrevista/",
+                    "urlToImage": "https://theintercept.com/wp-uploads/sites/1/2019/05/23-05-19-samuel-redes-1558644708.jpg",
+                    "publishedAt": "2019-06-03T03:03:20Z",
+                    "content": "Guimarães trabalhou no Itamaraty de 1963 a 2009 e depois foi professor de política internacional e política externa do Instituto Rio Branco, a escola de formação dos diplomatas brasileiros, até 2016. Muito ligado ao PT mas respeitado por colegas como Paulo Ro… [+30001 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "OAB e querem soltar Lula",
+                    "description": "Ao atender rapidamente ao presidente da OAB, Santa Cruz, presidente do STF, Dias Toffoli, ambos petistas de carteirinha, arrisca estratégia de soltar petista e sua reputação, que já não é lá grande coisa",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/oab-com-stf-tentam-soltar-lula/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/estadao-verifica/wp-content/uploads/sites/690/2019/06/Lula-2.jpg",
+                    "publishedAt": "2019-06-12T23:45:00Z",
+                    "content": "Velocidade da sequência da denúncia da Intercept com agendamento da segunda instância no STF revela conluio do PT para soltar Lula.Foto: Ricardo Stuckert\r\nRapidez com que presidente do STF, Toffoli, atendeu a pedido do presidente da OAB, Santa Cruz, ambos pet… [+382 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Armação no STF pró Lula",
+                    "description": "Armação do PT, iniciada com publicação de The Intercept Brasil, continua com pedido do petista Santa Cruz, da OAB, prontamente atendido pelo colega Toffoli, que já informou que agendará discussão da segunda instância no plenário do STF",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/armacao-no-stf-pro-lula/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/neumanne/wp-content/uploads/sites/339/2019/06/diascelso.jpg",
+                    "publishedAt": "2019-06-12T20:48:00Z",
+                    "content": "Toffoli, com decano do STF, Celso de Mello, que vota com ele no adiamento do cumprimento de penas de corruptos para o fim dos séculos. Foto: Dida Sampaio/Estadão\r\nA publicação das mensagens de Telegram trocadas entre Moro e Dallaghol reproduzidas por The Inte… [+922 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Papa Francisco envia carta a Lula oferecendo 'proximidade espiritual'; leia na íntegra",
+                    "description": "Líder da igreja católica também manifesta seu pesar pelas \"duras provas\" que Lula viveu recentemente",
+                    "url": "https://politica.estadao.com.br/noticias/geral,papa-francisco-envia-carta-a-lula-oferecendo-proximidade-espiritual-leia-na-integra,70002848013",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/7/1/1557632184317.jpg",
+                    "publishedAt": "2019-05-29T12:35:00Z",
+                    "content": "Opapa Franciscoenviou uma carta ao ex-presidente Lula, preso em Curitiba desde abril do ano passado, na qual manifesta sua \"proximidade espiritual\" e pede ao ex-presidente que não desanime, nem deixe de confiar em Deus. \r\nA carta do papa a Lula é uma resposta… [+1004 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Zé Dirceu tem até quatro da tarde desta sexta para se entregar à Lava Jato",
+                    "description": "Ordem é do juiz federal Luiz Antonio Bonat, que acolheu determinação do Tribunal Regional Federal da 4ª Região após confirmação de condenação do ex-ministro do governo Lula a 8 anos e 10 meses de prisão; petista tem que se apresentar à Polícia Federal no Para…",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/jose-dirceu-tem-ate-quatro-da-tarde-desta-sexta-para-se-entregar-a-lava-jato/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2019/05/TOPO.png",
+                    "publishedAt": "2019-05-16T22:14:00Z",
+                    "content": "Reprodução\r\nO juiz da Lava Jato, Luiz Antonio Bonat (13ª Vara Federal de Curitiba), determinou que o ex-ministro José Dirceu se apresente até às 16h desta sexta-feira, 17, para o cumprimento da pena de 8 anos e 10 meses de prisão. O petista tem que se apresen… [+2646 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Corregedor Nacional arquiva processo contra Moro envolvendo processos de Lula",
+                    "description": "Denúncia anônima suposta agressão institucional do ex-magistrado, que teria inviabilizado a defesa de Lula e o condenado sem provas",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/corregedor-nacional-arquiva-processo-contra-moro-envolvendo-processos-de-lula/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2018/12/lula-e-moro-2018.jpg",
+                    "publishedAt": "2019-06-06T09:43:00Z",
+                    "content": "Fotos: Estadão\r\nO corregedor nacional de Justiça, ministro Humberto Martins, determinou o arquivamento de pedido de providências instaurado contra o ex-juiz federal Sérgio Moro para apuração de supostas irregularidades cometidas na época em que o então minist… [+1630 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'Não quis provocar ninguém', afirma vice-procurador geral Mariz Maia",
+                    "description": "Segundo na hierarquia do MPF, Mariz Maia diz que seus comentários sobre Lula e Bolsonaro não devem afetar Dodge",
+                    "url": "https://politica.estadao.com.br/noticias/geral,nao-quis-provocar-ninguem-afirma-vice-procurador-geral-mariz-maia,70002863262",
+                    "urlToImage": null,
+                    "publishedAt": "2019-06-10T08:05:00Z",
+                    "content": null
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Cabral, Cunha e Dirceu: relembre outros presos pela Lava Jato",
+                    "description": "Além do ex-presidente Lula, a Operação Lava Jato foi responsável pela prisão de outros nomes importantes da política nacional",
+                    "url": "https://politica.estadao.com.br/noticias/geral,cabral-cunha-e-dirceu-relembre-outros-presos-pela-lava-jato,70002866343",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/6/1534515319061.jpg",
+                    "publishedAt": "2019-06-12T13:30:00Z",
+                    "content": "Em vigor desde 2014, a Operação Lava Jato condenou e mandou para a prisão figuras importantes da política nacional, além de empresários, empreiteiros e ex-funcionários de empresas estatais. O maior volume de prisões saiu da 13ª Vara Criminal de Curitiba, onde… [+3913 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Protesto é forma de se expressar, mas houve exploração política, diz Mourão",
+                    "description": "'Se o protesto era contra a educação, por que tinha 'Lula Livre'?', disse o presidente em exercício nesta quinta",
+                    "url": "https://politica.estadao.com.br/noticias/geral,protesto-e-forma-de-se-expressar-mas-houve-exploracao-politica-diz-mourao,70002831505",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/0/6/1556632318660.jpg",
+                    "publishedAt": "2019-05-16T16:21:00Z",
+                    "content": "O presidente da República em exercício, Hamilton Mourão, não considera que as manifestações que ocorreram na quinta, 16, em todo o País contra o bloqueio de recursos da educação desestabilizam o governo. Para Mourão, os protestos foram pontuais e não voltarão… [+1202 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Lula, o sujeito oculto do grampo",
+                    "description": "A esquerda não se envergonha de atacar a Lava Jato fingindo que pretende soltar o petista e festejando a vingança contra o juiz e o promotor que foram os primeiros a processá-lo e condená-lo",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/lula-o-sujeito-oculto-do-grampo/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2018/07/luladidasampaio-525x350.jpg",
+                    "publishedAt": "2019-06-11T03:00:00Z",
+                    "content": "Para ludibriar fiéis e fãs do petista no Brasil e no mundo, esquerda e Centrão fingem atuar para libertá-lo, mas querem mesmo é afastar Moro e Dallagnol do próprio caminho. Foto: Dida Sampaio/Estadão\r\nA semana foi aberta com a divulgação de pretensos diálogos… [+5860 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Processos contra Lula estão corrompidos, diz defesa",
+                    "description": "Nota foi divulgada pelos advogados do ex-presidente neste domingo, 9, após publicação de reportagem que revelou mensagens de texto de membros da Lava Jato; segundo a defesa, o petista é 'vítima de manipulação das leis e dos procedimentos jurídicos para fins d…",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/processos-contra-lula-estao-corrompidos-diz-defesa/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2018/01/lula-helvio-romero-estadao-2.jpg",
+                    "publishedAt": "2019-06-10T12:34:00Z",
+                    "content": "Lula. Foto: Hélvio Romero / Estadão\r\nA defesa do ex-presidente Lula divulgou uma nota neste domingo, 9, indicando que o os processos contra o petista estão corrompidos e que o restabelecimento de sua liberdade é urgente. O posicionamento dos advogados Cristia… [+8071 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Quem envergonha o Brasil é Lula",
+                    "description": "Petista diz que governo Bolsonaro envergonha País no exato instante em que é de novo réu por corrupção ao lado dos companheiros de exportação de roubalheira Palocci, Paulo Bernardo, Gleisi e Odebrecht",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/quem-envergonha-o-brasil-e-lula/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2019/02/LULAHELVIOROMERO.jpg",
+                    "publishedAt": "2019-06-08T15:18:00Z",
+                    "content": "Lula diz em entrevista a sites amigos que “esse governo está destruindo o País”. Mentira” Ao ser levado mais uma vez ao banco dos réus por corrupção, ele é que envergonha o Brasil. Foto: Helvio Romero/Estadão\r\n“Esse governo está destruindo o País, envergonhan… [+596 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Hacker prejudica Moro, mas não liberta Lula",
+                    "description": "A divulgação pelo The Intercept Brasil da comunicação considerada impertinente entre juiz e procuradores os incomoda, mas não liberta petista",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/hacker-prejudica-moro-mas-nao-liberta-lula/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/neumanne/wp-content/uploads/sites/339/2019/06/moro11.jpg",
+                    "publishedAt": "2019-06-11T16:03:00Z",
+                    "content": "Moro em Brasília, na solenidade na Marinha em comemoração à vitória na batalha naval de Riachuelo na guerra do Paraguai, na terça 11 de junho. Foto: Adriano Machado/Reuters\r\nO hacker que invadiu a privacidade da comunicação entre o juiz Sérgio Moro e os procu… [+2767 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Leia por que a Justiça abriu ação contra Mantega e Luciano Coutinho, mas rejeitou contra Joesley",
+                    "description": "A Justiça Federal abriu processo, nesta quinta, 23, contra o ex-ministro dos governos Lula e Dilma, Guido Mantega e o ex-presidente do BNDES Luciano",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/leia-porque-a-justica-abriu-acao-contra-mantega-e-luciano-coutinho-mas-rejeitou-contra-joesley/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2019/05/joesley-601x350.png",
+                    "publishedAt": "2019-05-24T13:44:00Z",
+                    "content": "A Justiça Federal abriu processo, nesta quinta, 23, contra o ex-ministro dos governos Lula e Dilma, Guido Mantega e o ex-presidente do BNDES Luciano Coutinho. Ambos são citados na Operação Bullish, que foi deflagrada em maio de 2017 para investigar as operaçõ… [+3259 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Theintercept.com"
+                    },
+                    "author": "Rafael Moro Martins, Leandro Demori, Glenn Greenwald",
+                    "title": "Exclusivo: Deltan Dallagnol duvidava das provas contra Lula e de propina da Petrobras horas antes da denúncia do triplex",
+                    "description": "Uma reportagem de 2010 trouxe alívio aos procuradores para levar adiante a acusação – e o PowerPoint – contra o ex-presidente. The post Exclusivo: Deltan Dallagnol duvidava das provas contra Lula e de propina da Petrobras horas antes da denúncia do triplex ap…",
+                    "url": "https://theintercept.com/2019/06/09/dallagnol-duvidas-triplex-lula-telegram-petrobras/",
+                    "urlToImage": "https://theintercept.com/wp-uploads/sites/1/2019/06/deltan-redes-1560094387.jpg",
+                    "publishedAt": "2019-06-09T20:57:53Z",
+                    "content": "Faltavam apenas quatro dias para que a denúncia que levaria o ex-presidente Luiz Inácio Lula da Silva à prisão fosse apresentada, mas o coordenador da força-tarefa da Lava Jato em Curitiba tinha dúvidas sobre a solidez da história que contaria ao juiz Sergio … [+14512 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Lula está apaixonado e pretende se casar, afirma ex-ministro",
+                    "description": "Revelação foi feita por Luiz Carlos Bresser-Pereira; ex-presidente cumpre pena em Curitiba, mas pode ir para regime semiaberto neste ano",
+                    "url": "https://politica.estadao.com.br/noticias/geral,lula-esta-apaixonado-e-pretende-se-casar-afirma-ex-ministro,70002835662",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/4/9/1556924185394.jpg",
+                    "publishedAt": "2019-05-20T01:04:00Z",
+                    "content": "Preso desde abril do ano passado em Curitiba, o ex-presidente Luiz Inácio Lula da Silva está apaixonado e pretende se casar. A revelação foi feita pelo ex-ministro da Fazenda Luiz Carlos Bresser-Pereira em um texto publicado em seu perfil no Facebook.  \r\nLula… [+2203 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'Lula Livre e Educação são pautas inseparáveis', afirma Gleisi",
+                    "description": "Presidente do PT participou de ato realizado neste domingo no centro de São Paulo",
+                    "url": "https://politica.estadao.com.br/noticias/geral,lula-livre-e-educacao-sao-pautas-inseparaveis-afirma-gleisi,70002853749",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/6/1559514643161.jpg",
+                    "publishedAt": "2019-06-02T22:49:00Z",
+                    "content": "A presidente nacional do PT, Gleisi Hoffmann, disse neste domingo, 2, não haver uma separação entre a pauta do \"Lula Livre\" e as demais bandeiras da esquerda, como a da defesa da Educação. \"Lula e educação são pautas inseparáveis. Essa moçada está indo às rua… [+1730 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Em São Paulo, manifestação contra cortes na Educação é menor e evita ‘Lula Livre’",
+                    "description": "Organizadores calculam presença de 60 mil pessoas no ato que começou no Largo da Batata",
+                    "url": "https://politica.estadao.com.br/noticias/geral,em-sao-paulo-manifestacao-contra-cortes-na-educacao-e-menor-e-evita-lula-livre,70002850513",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/8/0/1559254067608.jpg",
+                    "publishedAt": "2019-05-30T22:31:00Z",
+                    "content": "A manifestação contra os cortes na Educação realizada no Largo da Batata, em São Paulo, nesta quinta-feira, 30, reuniu um número menor de pessoas em relação ao ato do dia 15. Os protestos não contaram com a participação formal dos partidos de oposição, mas fo… [+3629 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Lula: ‘Agora todo mundo está vendo que não era só discurso’",
+                    "description": "Ex-presidente diz a interlocutores que revelação de diálogos entre Moro e Dallagnol o deixou mais confiante de que o fim do período de prisão está próximo",
+                    "url": "https://politica.estadao.com.br/noticias/geral,lula-agora-todo-mundo-esta-vendo-que-nao-era-so-discurso,70002865777",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/6/1551575849963.jpg",
+                    "publishedAt": "2019-06-11T16:43:00Z",
+                    "content": "“Agora todo mundo está vendo que não era só discurso”, disse o ex-presidente Luiz Inácio Lula da Silva a interlocutores quando foi informado do teor das conversas atribuídas ao ministro da Justiça, Sérgio Moro, e o procurador da República Deltan Dallagnol div… [+1865 chars]"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "keywords": "Trump morreu",
+            "fake": false,
+            "articles": [
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Árvore plantada por Trump e Macron como sinal de amizade morreu na quarentena",
+                    "description": "Carvalho procedente de floresta no norte da França onde soldados americanos morreram na 1ª Guerra não sobreviveu à quarentena obrigatória para organismo vivo importado aos EUA; relação entre os presidentes também enfrenta desgaste",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,arvore-plantada-por-trump-e-macron-como-sinal-de-amizade-morreu-na-quarentena,70002863670",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/4/1560174994143.jpg",
+                    "publishedAt": "2019-06-10T14:25:00Z",
+                    "content": "WASHINGTON - A foto do presidente americano, Donald Trump, e de seu colega francês Emmanuel Macron plantando um carvalho no jardim da Casa Branca no ano passado simbolizava a amizade entre os dois líderes. \r\nMas a relação enfrenta um desgaste desde então, por… [+832 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Publico.pt"
+                    },
+                    "author": "publico@publico.pt",
+                    "title": "Quinta morte na fronteira EUA-México agrava divisões sobre leis de imigração",
+                    "description": "Um adolescente da Guatemala morreu num centro de detenção norte-americano no Texas. Desde Dezembro, morreram nas mesmas condições outras duas crianças e dois adultos.",
+                    "url": "https://www.publico.pt/2019/05/22/mundo/noticia/quinta-morte-fronteira-euamexico-agrava-divisoes-leis-imigracao-1873675",
+                    "urlToImage": "https://imagens.publicocdn.com/imagens.aspx/1360570?tp=UH&db=IMAGENS&type=JPG&share=1&o=BarraFacebook_Publico.png",
+                    "publishedAt": "2019-05-22T10:49:20Z",
+                    "content": "A morte de um adolescente da Guatemala num centro de detenção norte-americano, na fronteira entre o México e os EUA, relançou esta semana a troca de acusações entre o Presidente Donald Trump e o Partido Democrata sobre as leis anti-imigração.\r\nCarlos Gregorio… [+3238 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Morre quinto menor de idade guatemalteco sob custódia da patrulha de fronteira dos EUA",
+                    "description": "Carlos Gregorio Hernández Vasquez, de 16 anos, foi detido no dia 13 de maio; a autoridade migratória americana informou que a causa da morte ainda é desconhecida e que está investigando o caso",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,morre-quinto-guatemalteco-sob-custodia-da-patrulha-de-fronteira-dos-eua,70002837301",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/0/4/1558441194040.jpg",
+                    "publishedAt": "2019-05-21T12:31:00Z",
+                    "content": "LOS ANGELES, EUA - Um adolescente de 16 anos morreu nesta segunda-feira, 20, sob custódia da patrulha de fronteira dos Estados Unidos, o quinto menor de idade guatemaltecoque morre em circunstâncias similares desde dezembro. \r\nO jovem, identificado como Carlo… [+3510 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Crise em Israel ameaça plano de paz de Trump para israelenses e palestinos",
+                    "description": "Convocação de novas eleições no país para setembro vai afetar a elaboração e execução do plano que o genro de Trump, Jared Kushner, planejava apresentar no mês que vem",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,crise-em-israel-ameaca-plano-de-paz-de-trump-para-israelenses-e-palestinos,70002850185",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/7/1/1559243408117.jpg",
+                    "publishedAt": "2019-05-31T08:00:00Z",
+                    "content": "A crise política em Israel e a convocação de novas eleições no país para setembro vai afetar a elaboração e execução do  plano de paz israelense-palestino que o presidente americano Donald Trump e seu genro, Jared Kushner, planejavam apresentar no mês que vem… [+2992 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Homem ateia fogo ao próprio corpo perto da Casa Branca",
+                    "description": "Anúncio foi feito pelo Serviço Secreto em seu perfil no Twitter; estado de saúde e causa do incidente ainda são desconhecidos",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,homem-ateia-fogo-ao-proprio-corpo-perto-da-casa-branca,70002848551",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/0/7/1559158699770.jpg",
+                    "publishedAt": "2019-05-29T20:22:00Z",
+                    "content": "WASHINGTON - Um homem ateou fogo ao próprio corpo dentro da Ellipse, um parque que fica dentro da área da Casa Branca, durante a tarde desta quarta-feira, 29. Segundo o Serviço Secreto americano, o fogo foi contido por agentes e ele foi rapidamente levado ao … [+2365 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Catracalivre.com.br"
+                    },
+                    "author": "Redação",
+                    "title": "Ator de ‘Thor’ e ‘Breaking Bad’ comete suicídio e deixa bilhete",
+                    "description": "Ator Isaac Kappy, de 42 anos, cometeu suicídio ao se jogar de uma ponte no Arizona, nos Estados Unidos, e morreu na hora.",
+                    "url": "https://catracalivre.com.br/mais/ator-de-thor-e-breaking-bad-comete-suicidio-e-deixa-bilhete/",
+                    "urlToImage": "https://catracalivre.com.br/wp-content/uploads/2019/05/isaac-kappy.jpeg",
+                    "publishedAt": "2019-05-15T13:13:46Z",
+                    "content": "O ator Isaac Kappy, de 42 anos, cometeu suicídio na última segunda-feira, 13. O ator já fez participações em grandes produções do cinema e da TV, como “Thor”, “Exterminador do Futuro” e “Breaking Bad”.\r\nSegundo informações do Departamento de Segurança Pública… [+5040 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Abril.com.br"
+                    },
+                    "author": "Julia Braun",
+                    "title": "Árvore plantada por Trump e Macron como sinal de amizade morreu",
+                    "description": "Carvalho foi presente do presidente francês ao líder americano; planta foi enviada para quarentena e não sobreviveu",
+                    "url": "https://veja.abril.com.br/mundo/arvore-plantada-por-trump-e-macron-como-sinal-de-amizade-morreu/",
+                    "urlToImage": "https://abrilveja.files.wordpress.com/2018/04/politica-trump-macron-20180423-0001.jpg?quality=70&strip=info&w=680&h=453&crop=1",
+                    "publishedAt": "2019-06-10T13:22:06Z",
+                    "content": "O carvalho plantado pelo presidente americano Donald Trump e seu colega francês Emmanuel Macron no jardim da Casa Branca no ano passado não sobreviveu, segundo uma fonte diplomática.\r\nA árvore foi dada a Trump por Macron durante uma visita de Estado a Washing… [+1165 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Tornados deixam morto, feridos e milhões sem energia nos EUA",
+                    "description": "Desde o meio do mês, mais de 400 fenômenos desse tipo foram registrados pelo Serviço Nacional de Meteorologia americano; maioria deles atingiu Estados do meio-oeste como Ohio, Kansas, Missouri, Colorado, Nebraska e Illinois",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,tornados-deixam-morto-feridos-e-milhoes-sem-energia-nos-eua,70002848207",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/1/1559045589411.jpg",
+                    "publishedAt": "2019-05-29T16:25:00Z",
+                    "content": "WASHINGTON - Os moradores Ohio ainda inspecionam as casas e ruas afetadas por enormes tornados que varreram este Estado do nordeste dos Estados Unidos, com um saldo de pelo menos uma morte e vários feridos, além de danos e cortes de energia. Na cidade de Dayt… [+2722 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Governo Maduro culpa EUA por morte de crianças doentes",
+                    "description": "Caracas diz que dinheiro que seria usado para transplantes de medula foram bloqueados pelas sanções impostas por Washington",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,governo-maduro-culpa-eua-por-morte-de-criancas-doentes,70002847331",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/5/6/1559086242565.jpg",
+                    "publishedAt": "2019-05-28T23:48:00Z",
+                    "content": "CARACAS - O governo da Venezuelae a oposição trocaram acusações nesta terça-feira, 28, sobre a responsabilidade pela morte de um menino de 11 anos que esperava por um transplante de medula óssea. Foi a quarta morte de criança com idades entre 2 e 11 anos por … [+2688 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Www.jn.pt"
+                    },
+                    "author": "https://www.facebook.com/jornalnoticias/?fref=ts",
+                    "title": "Centro fronteiriço nos EUA em quarentena após quinta morte de menor",
+                    "description": "Um dos maiores centros de detenção da polícia fronteiriça norte-americana foi colocado em quarentena devido ao registo de um grande número de casos de gripe e após a morte de um imigrante menor, a quinta desde dezembro passado.",
+                    "url": "https://www.jn.pt/mundo/interior/centro-fronteirico-nos-eua-em-quarentena-apos-quinta-morte-de-menor-10928950.html",
+                    "urlToImage": "https://static.globalnoticias.pt/jn/image.aspx?brand=JN&type=generate&guid=6c41d09e-533f-4a6f-8722-2adf5bfc4af0&w=800&h=420&watermark=true&t=20190522165800",
+                    "publishedAt": "2019-05-22T16:12:18Z",
+                    "content": "Um dos maiores centros de detenção da polícia fronteiriça norte-americana foi colocado em quarentena devido ao registo de um grande número de casos de gripe e após a morte de um imigrante menor, a quinta desde dezembro passado.\r\nPara evitar a propagação da do… [+3215 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Abril.com.br"
+                    },
+                    "author": "Reuters",
+                    "title": "Após morte de “árvore da amizade”, Macron promete enviar nova muda a Trump",
+                    "description": "\"Nós lhe enviaremos outra, não é uma tragédia\", disse Macron à rede suíça RTS durante reunião da Organização Internacional do Trabalho (OIT) em Genebra",
+                    "url": "https://exame.abril.com.br/mundo/apos-morte-de-arvore-da-amizade-macron-promete-enviar-nova-muda-a-trump/",
+                    "urlToImage": "https://abrilexame.files.wordpress.com/2019/06/gettyimages-950557658.jpg?quality=70&strip=info&w=680&h=453&crop=1",
+                    "publishedAt": "2019-06-11T22:17:15Z",
+                    "content": "Paris O presidente francês, Emmanuel Macron, minimizou nesta terça-feira a morte de um carvalho que ofereceu no ano passado ao presidente dos Estados Unidos, Donald Trump, dizendo que as pessoas não deveriam ver simbolismos em tudo e que enviará uma nova árvo… [+1407 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Transtorno presidencial",
+                    "description": "Estudo que analisa a biografia de 37 presidentes americanos atestou que a metade sofria de algum tipo de transtorno mental, e 27% o adquiriram no cargo",
+                    "url": "https://cultura.estadao.com.br/noticias/geral,transtorno-presidencial,70002851970",
+                    "urlToImage": "https://www.estadao.com.br/estadao/novo/img/estadao.gif",
+                    "publishedAt": "2019-06-01T05:00:00Z",
+                    "content": "Um estudo de Jonathan Davidson, do departamento de psiquiatria da Universidade de Duke (Carolina do Norte), ao analisar a biografia de 37 presidentes americanos, atestou que a metade sofria de algum tipo de transtorno mental, e 27% o adquiriram no cargo. \r\nUm… [+5660 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Abril.com.br"
+                    },
+                    "author": "Vinicius Novelli Goncalves De Lima",
+                    "title": "No Japão, Trump quis navio americano “USS McCain” fora da vista",
+                    "description": "Embarcação leva o nome do senador republicano, morto em 2018, que mais desafiou a candidatura e a gestão do presidente",
+                    "url": "https://veja.abril.com.br/mundo/no-japao-trump-quis-navio-americano-uss-mccain-fora-da-vista/",
+                    "urlToImage": "https://abrilveja.files.wordpress.com/2019/05/mundo-uss-mccain-27112018-001.jpg?quality=70&strip=info&w=680&h=453&crop=1",
+                    "publishedAt": "2019-05-30T16:12:04Z",
+                    "content": "A Casa Branca solicitou que o navio batizado com o nome do senador republicano John McCain, rival de Donald Trump morto em agosto de 2018, permanecesse “fora da vista” do presidente americano durante sua recente visita ao Japão, informou o The Wall Street Jou… [+2243 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Uol.com.br"
+                    },
+                    "author": null,
+                    "title": "Dia de Luto | Gabriel Diniz morre, mortes em Manaus e outras notícias; veja",
+                    "description": "Gabriel Diniz morre, mortes em Manaus e outras notícias; veja",
+                    "url": "https://noticias.uol.com.br/amp-stories/morte-do-autor-de-jenifer-perfil-de-manifestantes-pro-bolsonaro-e-mais/index.htm",
+                    "urlToImage": "httpss://conteudo.imguol.com.br/c/noticias/0d/2019/05/26/manifestacao-a-favor-do-governo-em-belo-horizonte-1558892844187_v2_750x421.jpg",
+                    "publishedAt": "2019-05-28T02:00:25Z",
+                    "content": "Gabriel Diniz, do hit \"Jenifer\", morre em acidente de avião em Sergipe\r\nApós 15 mortes em presídios ontem, mais 40 corpos de presos são achados em Manaus\r\nPesquisa em ato pró-Bolsonaro identifica perfil de apoiador\r\nLava Jato dá aval para venda do sítio de At… [+602 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Publico.pt"
+                    },
+                    "author": "publico@publico.pt",
+                    "title": "Morreu a árvore da amizade plantada por Trump e Macron",
+                    "description": "Prenda do Presidente francês para o homólogo norte-americano acabou por definhar em linha com as relações entre os dois países.",
+                    "url": "https://www.publico.pt/2019/06/10/mundo/noticia/arvore-plantada-trump-macron-sinal-amizade-morreu-1875996",
+                    "urlToImage": "https://imagens.publicocdn.com/imagens.aspx/1366454?tp=UH&db=IMAGENS&type=JPG&share=1&o=BarraFacebook_Publico.png",
+                    "publishedAt": "2019-06-10T20:16:38Z",
+                    "content": "A árvore que o Presidente francês Emmanuel Macron ofereceu em Abril de 2018 ao homólogo norte-americano Donald Trump como demonstração de amizade não resistiu ao período de quarentena e acabou por morrer. \r\nO presente tinha sido oferecido durante uma visita d… [+1987 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "A incômoda verdade de Philip Roth",
+                    "description": "Para o autor de \"Adeus, Columbus\", a literatura representa a verdade que não pode fazer concessões, mesmo quando incômoda e perigosa.",
+                    "url": "https://cultura.estadao.com.br/blogs/estado-da-arte/a-incomoda-verdade-de-philip-roth/",
+                    "urlToImage": "https://cultura.estadao.com.br/blogs/estado-da-arte/wp-content/uploads/sites/426/2019/05/philip-roth-obit-90dfd00e-c2e8-4eb7-a26e-dca0136782de.jpg",
+                    "publishedAt": "2019-05-22T19:00:00Z",
+                    "content": "Philip Roth em 1964. O escritor morreu em 2018 aos 85 anos. (Sam Falk/The New York Times/Redux)\r\npor Isadora Sinay\r\nEm novembro de 2016, logo após o anúncio da eleição de Donald Trump, o telefone começou a tocar sem parar na casa em que Philip Roth morava, is… [+8152 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Cmjornal.pt"
+                    },
+                    "author": "portal@cmjornal.pt (Correio da Manhã)",
+                    "title": "Tim McCormack, o piloto e \"bombeiro dedicado\" que morreu na colisão de helicóptero contra prédio em Nova Iorque",
+                    "description": "Corporação de bombeiros da qual Tim fazia parte, fez uma publicação emotiva no Facebook.",
+                    "url": "https://www.cmjornal.pt/mundo/detalhe/tim-mccormack-o-piloto-e-bombeiro-dedicado-que-morreu-na-colisao-de-helicoptero-contra-predio-em-nova-iorque",
+                    "urlToImage": "https://cdn.cmjornal.pt/images/2019-06/img_771x433$2019_06_11_09_31_22_859822.jpg",
+                    "publishedAt": "2019-06-11T08:48:25Z",
+                    "content": "A entidade do piloto que morreu esta segunda-feira na sequência de um choque de um helicóptero contra um prédio de 54 andares em Manhattan, Nova Iorque, Estados Unidos, originando um incêndio após a colisão, já é conhecida.O jornal The Mirror avança que a vít… [+1009 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Abril.com.br"
+                    },
+                    "author": "Da Redação",
+                    "title": "Homem com faca mata uma menina e deixa ao menos 17 feridos no Japão",
+                    "description": "Ataque ocorreu em Kawasaki; estudantes de escola primária estão entre feridos",
+                    "url": "https://veja.abril.com.br/mundo/homem-com-faca-mata-uma-menina-e-deixa-ao-menos-17-feridos-no-japao/",
+                    "urlToImage": "https://abrilveja.files.wordpress.com/2019/05/2019-05-28t004126z_710849419_rc1c2558c2b0_rtrmadp_3_japan-stabbing.jpg?quality=70&strip=info&w=680&h=453&crop=1",
+                    "publishedAt": "2019-05-28T03:45:39Z",
+                    "content": "Uma menina morreu nesta terça-feira 28 em um ataque com faca próximo à estação de trens de Kawasaki, no Japão, que deixou ainda 17 feridos, incluindo alunos de uma escola primária.\r\n“Um homem os esfaqueou. Recebemos um chamado de emergência (…) afirmando que … [+2128 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Www.jn.pt"
+                    },
+                    "author": "https://www.facebook.com/jornalnoticias/?fref=ts",
+                    "title": "Morte de cinco crianças com cancro intensifica acusações na Venezuela",
+                    "description": "Cinco crianças com cancro morreram num hospital da Venezuela em menos de um mês, intensificando as acusações mútuas entre a oposição e o Governo venezuelano.",
+                    "url": "https://www.jn.pt/mundo/interior/morte-de-cinco-criancas-com-cancro-intensifica-acusacoes-na-venezuela-10952367.html",
+                    "urlToImage": "https://static.globalnoticias.pt/jn/image.aspx?brand=JN&type=generate&guid=6a3417a9-3214-4b5a-bdeb-ff8459006df3&w=800&h=420&watermark=true&t=20190528203500",
+                    "publishedAt": "2019-05-28T19:43:59Z",
+                    "content": "Cinco crianças com cancro morreram num hospital da Venezuela em menos de um mês, intensificando as acusações mútuas entre a oposição e o Governo venezuelano.\r\nA oposição reclama mais atenção do Estado à área da saúde e o Governo atribui a situação às sanções … [+3215 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Uol.com.br"
+                    },
+                    "author": null,
+                    "title": "Hipótese é de pouso forçado | Helicóptero bate no topo de prédio em Nova York e deixa um morto",
+                    "description": "Cerca de 100 bombeiros são deslocados para região; hipótese é de aterrissagem forçada",
+                    "url": "https://www1.folha.uol.com.br/mundo/2019/06/helicoptero-colide-contra-predio-em-nova-york.shtml",
+                    "urlToImage": "https://f.i.uol.com.br/fotografia/2019/06/10/15601916545cfea2a6f13ae_1560191654_3x2_rt.jpg",
+                    "publishedAt": "2019-06-10T18:59:39Z",
+                    "content": "Um helicóptero colidiu contra o topo de um edifício na Sétima Avenida, em Manhattan, nesta segunda-feira (10), afirmou o Departamento de Bombeiros de Nova York.\r\nO departamento informou que uma pessoa morreu o piloto da aeronave. \r\nA colisão ocorreu em meio a… [+622 chars]"
+                }
+            ]
+        }
+    ]
+}

@@ -5,3 +5,4 @@ pip install google
 pip install pyspellchecker
 pip install pyufbr # lista de cidades e estados do brasil
 pip install Flask
+pip install newsapi-python

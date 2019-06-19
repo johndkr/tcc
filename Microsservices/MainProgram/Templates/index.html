@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <title>Filter Dataset</title>
+    <title>Só verdades</title>
   </head>
   <body>
    <div class="container">
@@ -30,38 +30,76 @@
 	<div class ="container">
 		<h4>Será que é verdade?</h4>
 		<form action="{{ url_for('my_form_post') }}" method="POST">
-    		<input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia...">
+    		<input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia ou tags...">
     		<input type="submit">
 		</form>
 		<br>
 		<hr style="border: 0.3px solid grey;" />
-		<h4><b>Acompanhe as notícias mais buscadas</b></h4>
+		{% if not link_mode %}
+    <h4><b>Resultado da sua busca</b></h4>
 	    <table class="table">
 	      <thead>
 	        <tr>
 	          <th>ID</th>
-	          <th>Título</th>
-	          <th>Probabilidade</th>
+	          <th>KeyWords</th>
+	          <th>Fake</th>
+            <th>Número de Artigos</th>
 	        </tr>
 	      </thead>
 	      <tbody id="result">
-	      	<tr>
-	      		<td>1</td>
-	      		<td>Lula é preso</td>
-	      		<td>54%</td>
-	      	</tr>
-	      	<tr>
-	      		<td>2</td>
-	      		<td>Trump é um bbk</td>
-	      		<td>89%</td>
-	      	</tr>
-	      	<tr>
-	      		<td>3</td>
-	      		<td>Nois vai passar no TCC</td>
-	      		<td>120%</td>
-	      	</tr>  	
+          <tr>
+	      		<td>{{id_news}}</td>
+	      		<td>{{keywords}}</td>
+	      		<td>{{fake_status}}</td>
+            <td>{{num_articles}}</td>
+	      	</tr> 
 	      </tbody>
 	    </table>
+
+      <h4><b>Artigos</b></h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fonte</th>
+            <th>Autor</th>
+            <th>Título</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody id="result">
+          {%for i in range(0, length)%} 
+          <tr>
+            <td>{{sources[i]}}</td>
+            <td>{{authors[i]}}</td>
+            <td>{{titles[i]}}</td>
+            <td>{{descriptions[i]}}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h4><b>Resultado da sua busca</b></h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>URL original</th>
+            <th>Fonte</th>
+            <th>Confiança fonte</th>
+            <th>Viés político</th>
+            <th>Probabilidade Fake News</th>
+          </tr>
+        </thead>
+        <tbody id="result">
+          <tr>
+            <td>{{url_original}}</td>
+            <td>{{fonte}}</td>
+            <td>{{sf}}</td>
+            <td>{{pb}}</td>
+            <td>{{prob_fake}}%</td>
+          </tr> 
+        </tbody>
+      </table>  
+      {% endif %}
   	</div>
 
     <script type="text/javascript">

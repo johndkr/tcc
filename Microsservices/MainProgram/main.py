@@ -85,10 +85,77 @@ def main():
 			print('Inválido!')
 
 
-main()
+#main()
 
-def test():
-	jornal = Source_Checking.Source()
-	jornal.get_stats()
 
-#test()
+from newsapi import NewsApiClient
+import json
+
+def getNews(keyWords):
+	# Init
+	newsapi = NewsApiClient(api_key='d9114b1d00194d908cb825529f7beeba')
+
+	# /v2/top-headlines
+	#top_headlines = newsapi.get_top_headlines(q=keyWords,
+	#										language='pt',
+	#										country='br')
+
+	# /v2/everything
+	#all_articles = newsapi.get_everything(q = keyWords,
+	#									language='pt',
+	#									sort_by='relevancy')
+
+	# /v2/sources
+	#sources = len(newsapi.get_sources(language = 'pt')['sources'])
+
+
+	with open('data/news.json', 'r', encoding='utf-8') as json_file:
+		data = json_file.read()
+	data = json.loads(data.encode('utf-8'))
+	try:
+		news = [item for item in data['subjects'] if keyWords in item['keywords']]
+		id_news = news[0]['id']
+	except:
+		print("Noticia não encontrada, mas vamos procurar")
+
+		all_articles = newsapi.get_everything(q = keyWords,
+									language='pt',
+									sort_by='relevancy')
+		id_news = data['totalSubjects'] + 1
+
+		data['subjects'].append(
+		{
+			"id":id_news,
+			"keywords": keyWords,
+			"fake": False,
+			"articles": all_articles['articles']		
+		})
+
+		data['totalSubjects'] = id_news
+		data = json.dumps(data, indent=4, ensure_ascii=False)
+
+		with open("data/news.json", "w", encoding='utf-8') as json_file:
+			json_file.write(data)
+	return id_news
+
+def getNewsInfo(id_news):
+	with open('data/news.json', 'r', encoding='utf-8') as json_file:
+		data = json_file.read()
+	data = json.loads(data.encode('utf-8'))
+	id_news = id_news
+	fake = data['subjects'][id_news - 1]['fake']
+	keyWords = data['subjects'][id_news - 1]['keywords']
+	num_artigos = len(data['subjects'][id_news - 1]['articles'])
+	articles = data['subjects'][id_news - 1]['articles']
+	info = [id_news,fake,keyWords,num_artigos,articles]
+
+	return info
+
+def tweaf(keyWords):
+	newsapi = NewsApiClient(api_key='d9114b1d00194d908cb825529f7beeba')
+	all_articles = newsapi.get_everything(q = keyWords,
+									language='pt',
+									sort_by='relevancy')
+	print (all_articles)
+
+tweaf('https://jornalggn.com.br/noticia/cientista-politico-sugere-prisao-preventiva-para-moro-apos-novo-vazamento/')
