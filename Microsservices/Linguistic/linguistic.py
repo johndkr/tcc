@@ -26,6 +26,7 @@ class LinguisticAnalyses():
 
   def __init__(self):
     self.spellchecker = SpellChecker()
+    self.__load_known_words()
     self.__states_keys_dictionary = self.__load_states_dic_keys()
 
   def __load_states_dic_keys(self):
@@ -51,6 +52,9 @@ class LinguisticAnalyses():
   def __accent_remover(self, txt):
     ### this method removes all accents from a string
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
+
+  def __load_known_words(self):
+    self.spellchecker.word_frequency.load_words(["Lula", "Bolsonaro"])
 
   def top_n_words(self, n, text):
     ## https://www.geeksforgeeks.org/find-k-frequent-words-data-set-python/
