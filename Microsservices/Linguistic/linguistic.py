@@ -3,20 +3,26 @@ import os, sys
 import string
 import json
 
+import spacy
+
 from spellchecker import SpellChecker
 from unicodedata import normalize
 from pyUFbr.baseuf import ufbr
 from collections import Counter 
+from googletrans import Translator
 
+from Microsservices.Linguistic import feeling_evaluator 
 from Microsservices.CommonUtil.Log import log_util
+
 
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
-STATE_CITIES_DICTIONARY = "..\\data\\state_city_dictionary"
+STATE_CITIES_DICTIONARY = ".\\data\\state_city_dictionary"
 
 class LinguisticAnalyses():
   spellchecker = SpellChecker()
-  log_manager = log_util.Log_Util(False)
+  log_manager = log_util.Log_Util(True)
+  nlp = spacy.load('pt')
 
   def __init__(self):
     self.spellchecker = SpellChecker()
@@ -27,7 +33,7 @@ class LinguisticAnalyses():
     self.log_manager.info('Loading states dictionary file...')
     states_file_loaded = None
     try:
-      path = os.path.join(__file__, STATE_CITIES_DICTIONARY)
+      path = os.path.join(os.path.dirname(os.path.abspath(__file__)), STATE_CITIES_DICTIONARY)
       states_file_loaded = eval(open(path).read())
       self.log_manager.info('Found file at: ' + path)
     except Exception as err:
@@ -109,3 +115,90 @@ class LinguisticAnalyses():
 
     self.save_cities_learned()
 
+  def get_words_types(self, txt):
+    self.log_manager.debbug("Getting words types...")
+    
+    doc = self.nlp(txt)
+    return [(token.orth_, token.pos_) for token in doc]
+
+  def count_words_types(self, txt):
+    # this method reveices a text and returns all its words types counted in touples
+    # IT IS SENSITIVE to grammar mistakes in portuguese.
+    self.log_manager.info("Counting words types")
+    types_count = {}
+    types_tag_tuples = self.get_words_types(txt)
+
+    for tutuple in types_tag_tuples:
+      if tutuple[1] not in types_count:
+        types_count[tutuple[1]] = 1
+      else:
+        types_count[tutuple[1]] += 1
+
+    return types_count
+
+  def get_entities(self, txt):
+    # this method gets all entities within a given text.
+    # IT IS SENSITIVE to grammar mistakes
+    self.log_manager.debbug("Getting text entities...")
+
+    doc = self.nlp(txt)
+    return doc.ents
+
+  def count_entities(self, txt):
+    # this method receives a text and counts its entities
+    # IT IS SENSITIVE to grammar mistakes on the text
+
+    self.log_manager.debbug("Counting entities mentioned on text")
+
+    entities = self.get_entities(txt)
+    entities = list(dict.fromkeys([str(ent) for ent in entities]))
+
+    entities_type = [(entitie, txt.upper().count(str(entitie).upper())) for entitie in entities]
+
+    return entities_type
+
+  def translate_pt_to_en(self, txt):
+    """ translates text to english """
+    translator = Translator()
+    result = translator.translate(txt, src='pt')
+    translator = None
+    return str(result.text)
+
+  def get_txt_feeling(self, txt):
+    self.log_manager.debbug("Getting text feeling")
+
+    txt_en = self.translate_pt_to_en(txt)
+    feeling = feeling_evaluator.get_text_feeling(txt_en)
+
+    return int(feeling[1][0])
+
+  def __chances_based_word_type(self, types):
+    verb = types['VERB'] if 'VERB' in types else 0
+    noun = types['NOUN'] if 'NOUN' in types else 0
+    adv = types['ADV'] if 'ADV' in types else 0
+
+    if (verb == 0) or (noun == 0) or (adv == 0):
+      return 1
+    else:
+      chance = (1/verb)*0.33 + (1/noun)*0.34 + (1/adv)*0.33
+    return chance
+
+  def make_linguistic_analyses(self, txt):
+    result = {
+      "Proportion" : self.wrong_proportion(txt),
+      "Locations" : self.catch_state_mentions(txt, True),
+      "WordsTypes" : self.count_words_types(txt),
+      "Entities" : self.count_entities(txt),
+      "Feeling" : self.get_txt_feeling(txt)
+    }
+
+    prop_chance = result["Proportion"]/0.3
+    
+    if prop_chance < 1:
+      fake_new_chance = 0.65*prop_chance + 0.35*self.__chances_based_word_type(result["WordsTypes"])
+    else:
+      fake_new_chance = 1
+
+    result["FakeNewChance"] = fake_new_chance
+
+    return result

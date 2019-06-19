@@ -74,5 +74,47 @@ class TestSourceFactuality(unittest.TestCase):
 		response = [('RJ', 'Rio de Janeiro', 2), ('SP', 'Sao Paulo', 1)]
 		self.assertEqual(self.ling_anal.catch_state_mentions(text_sample, False), response)
 
+	def test_get_words_types(self):
+		result_sample = [('Você', 'PRON'), ('encontrou', 'VERB'), ('o', 'DET'), ('livro', 'NOUN'), ('que', 'PRON'), 
+		('eu', 'PRON'), ('te', 'PRON'), ('falei', 'NOUN'), (',', 'PUNCT'), ('Carla', 'PROPN'), ('?', 'PUNCT')] ## mudar ('falei', 'VERB')
+		text_sample = u'Você encontrou o livro que eu te falei, Carla?'
+
+		self.assertEqual(self.ling_anal.get_words_types(text_sample), result_sample)
+
+	def test_count_words_types(self):
+		result_sample = {'PRON': 2, 'VERB': 3, 'SCONJ': 1, 'DET': 1, 'PROPN': 1, 'PUNCT': 2, 'ADV': 1}
+		text_sample = u'Eu sei onde está o Wally! Ele está aqui!'
+		
+		self.assertEqual(self.ling_anal.count_words_types(text_sample), result_sample)
+
+	def test_get_entities(self):
+		result_sample = ["Machado de Assis", "Bolsonaro", "Lula"]
+		text_sample = "Um sujeito chamado Machado de Assis adorava mangas! Ele não era um grande fã do Bolsonaro. Disse que votaria no Lula"
+		
+		result = self.ling_anal.get_entities(text_sample)
+		result = [str(entitie) for entitie in result]
+
+		self.assertEqual(result, result_sample)
+
+	def test_count_entities(self):
+		result_sample = [('Lula', 2), ('Bolsonaro', 1)]
+		text_sample = "Um sujeito chamado Lula adorava mangas! Ele não era um grande fã do Bolsonaro. Disse que votaria no Lula"
+		
+		result = self.ling_anal.count_entities(text_sample)
+
+		self.assertEqual(result, result_sample)
+
+	def test_translate_pt_to_en(self):
+		text_sample = u"Bom dia! Você sabe se o Bolsonaro será eleito ano que vem?"
+		result_sample = u'Good Morning! Do you know if Bolsonaro will be elected next year?'
+		
+		self.assertEqual(self.ling_anal.translate_pt_to_en(text_sample), result_sample)
+
+	def test_get_txt_feeling(self):
+		text_sample = u'Eu odeio o Bolsonaro! Ele é um mentiroso!'
+		result_sample = 1
+
+		self.assertEqual(self.ling_anal.get_txt_feeling(text_sample), result_sample)
+
 if __name__ == '__main__':
 	unittest.main()

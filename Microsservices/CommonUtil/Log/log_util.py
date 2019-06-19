@@ -1,12 +1,15 @@
 import os, sys
 import datetime
 
-LOG_FILE_PATH = './logs/log_file_{}'.format(str(datetime.date.today()).replace('-','_'))
+LOG_FILE_PATH = '.\\logs\\log_file_{}'.format(str(datetime.date.today()).replace('-','_'))
+LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), LOG_FILE_PATH)
 TEMPLATE = '[{}] - {} : {}' ## time, type, msg
 
 class Log_Util():
     def __init__(self, make_file):
         self.__make_file = make_file
+        if not os.path.exists(LOG_FILE_PATH):
+            with open(LOG_FILE_PATH, 'w'): pass
         # self.__log_file = self.__load_log_file()
 
     def __load_log_file(self):
@@ -23,7 +26,8 @@ class Log_Util():
         try:
             print(msg)
             if(self.__make_file):
-                with open(LOG_FILE_PATH, 'a') as log_file:
+                mode = 'a' if os.path.isfile(LOG_FILE_PATH) else 'w'
+                with open(LOG_FILE_PATH, mode) as log_file:
                     log_file.write(msg + '\n')
         except Exception as err:
             print('Error while loading {}:\n{}'.format(LOG_FILE_PATH, err.__doc__))
