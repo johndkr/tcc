@@ -7,6 +7,9 @@ from Microsservices.NewsOrigin import source_checking as Source_Checking
 from Microsservices.Linguistic import linguistic as Linguistic
 from Microsservices.MainProgram import main as Main
 import Microsservices.MainProgram.data.parameters as Parameters
+from Microsservices.Linguistic import linguistic as Linguistic
+
+ling = Linguistic.LinguisticAnalyses()
 
 def is_url(url):
 	try:
@@ -14,6 +17,7 @@ def is_url(url):
 		return all([result.scheme, result.netloc])
 	except ValueError:
 		return False
+
 
 app = Flask(__name__)
 
@@ -67,7 +71,18 @@ def my_form_post():
 	return render_template("index.html", link_mode = link_mode, length = length, id_news = newsInfo[0], fake_status = newsInfo[1], keywords = keywords, 
 							num_articles = newsInfo[3], sources = sources, authors = authors, titles = titles, descriptions = descriptions,
 							url_original = processed_text, fonte = source[0]["source_name"], prob_fake = round(fact_points*100,2), pb = Source_Checking.POLITICAL_BIAS[political_bias], sf = Source_Checking.FACTUALITY[source_factuality])
-
 	
+@app.route('/get_linguist_prob', methods=['POST'])
+def get_linguist_probability():
+    data = request.json
+
+    if (data['txt']):
+        result = ling.make_linguistic_analyses(data['txt'])
+    else:
+        result = "Ops... there is no text to be analysed!"
+
+    return result
+
+    
 if __name__ == "__main__":
 	app.run(debug=True)
