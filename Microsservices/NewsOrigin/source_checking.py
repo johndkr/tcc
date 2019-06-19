@@ -2,6 +2,7 @@ import wikipediaapi as wiki
 from googlesearch import search
 import json
 import tweepy
+from urllib.parse import urlparse
 
 CONSUMER_KEY = 'BGlnZtePhg8wAFgjCxzGqGIi8'
 CONSUMER_SECRET = 'Ml2xY6MsLjYsrywAZwObXTXKboSt4W75sef01EdzzuXveXTlyO'
@@ -331,5 +332,24 @@ class URL():
 		return 0
 
 #Teste
-twitter = Twitter()
-twitter.load_all_info('brunohvlemos')
+#twitter = Twitter()
+#twitter.load_all_info('brunohvlemos')
+
+def extractWebsite(url):
+	# from urlparse import urlparse  # Python 2
+	parsed_uri = urlparse(url)
+	result = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+	return result
+
+def querySourceByUrl(url):
+	with open('../../Microsservices/NewsOrigin/sources.json') as json_file:
+		data = json.load(json_file)
+	try:
+		print(url)
+		source = [item for item in data["items"] if item["versions"][0]["source_url"] == url]
+		source_id = source[0]["source_id"]
+	except:
+		source = []
+		print("Fonte não encontrada")
+	return source
+

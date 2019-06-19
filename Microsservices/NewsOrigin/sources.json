@@ -24,12 +24,12 @@
 	  {
 		 "source_name":"A Critica",
 		 "source_id":1,
-		 "political_bias":3,
-		 "factuality":3,
+		 "political_bias":4,
+		 "factuality":2,
 		 "versions":[
 			{
 			   "language":"PT-BR",
-			   "source_url":"www.acritica.com",
+			   "source_url":"https://www.acritica.com/",
 			   "source_twitter_handler":"",
 			   "source_wikipedia_page":""
 			}

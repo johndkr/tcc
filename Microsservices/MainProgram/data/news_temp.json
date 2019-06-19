@@ -1,0 +1,39 @@
+{
+   "totalSubjects":1,
+   "subjects": [
+   	{
+		"id":1,
+		"keywords": ["STF","Moro","Justiça"],
+		"fake": false,
+		"articles":[
+	      {
+	         "source":{
+	            "id":"google-news-br",
+	            "name":"Google News (Brasil)"
+	         },
+	         "author":null,
+	         "title":"Cientista político sugere prisão preventiva para Moro após novo vazamento - GGN",
+	         "description":"\"Ele pode estar destruindo provas\", diz Alberto Almeida, diante da divulgação de novas conversas comprometedoras",
+	         "url":"https://jornalggn.com.br/noticia/cientista-politico-sugere-prisao-preventiva-para-moro-apos-novo-vazamento/",
+	         "urlToImage":"https://jornalggn.com.br/sites/default/files/2019/06/cientista-politico-sugere-prisao-preventiva-para-moro-apos-novo-vazamento-alberto-almeida.jpg",
+	         "publishedAt":"2019-06-15T16:22:45+00:00",
+	         "content":"Do Brasil de Fato\r\nA divulgação de novas conversas envolvendo a Lava Jato, feita pelo site The Intercept Brasil na noite de sexta-feira (14), ampliou as reações indignadas ao conluio entre Sérgio Moro e procuradores Ministério Público Federal (MPF) para conde… [+2443 chars]"
+	      },
+	      {
+	         "source":{
+	            "id":"google-news-br",
+	            "name":"Google News (Brasil)"
+	         },
+	         "author":null,
+	         "title":"Nova lei trabalhista é questionada em 14 ações no STF",
+	         "description":"Desde agosto de 2017, antes mesmo de a nova lei trabalhista entrar em vigor, o STF recebeu 34 ações diretas de inconstitucionalidade, segundo levantamento feito pelo G1.",
+	         "url":"https://g1.globo.com/economia/concursos-e-emprego/noticia/2019/06/15/nova-lei-trabalhista-e-questionada-em-14-acoes-no-stf.ghtml",
+	         "urlToImage":"https://s2.glbimg.com/9omjBYo075yqcfs3QyQ5uwkYhoY=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/J/Q/HjEMqAT8CxnyTjn7bcZQ/pregnant-3483443-1920.jpg",
+	         "publishedAt":"2019-06-15T15:23:00+00:00",
+	         "content":"Pontos da lei trabalhista estão sendo questionados no Supremo Tribunal Federal (STF) por meio de Ações Diretas de Inconstitucionalidade, as chamadas ADIs. Atualmente, há 14 ações esperando por decisões dos ministros do STF. Até o momento, foram julgados dois … [+9211 chars]"
+	      }
+   		]			
+	}
+   ]
+   
+}
