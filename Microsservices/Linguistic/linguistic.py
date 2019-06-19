@@ -66,7 +66,8 @@ class LinguisticAnalyses():
     return counter.most_common(n)
 
   def wrong_proportion(self, text):
-    split_it = self.__text_cleanner(text).lower().split()
+    text_cleanned = self.__accent_remover(text)
+    split_it = self.__text_cleanner(text_cleanned).lower().split()
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
   def catch_state_mentions(self, text, also_in_lower):
