@@ -12,3 +12,4 @@ pip install googletrans
 python -m pip install --upgrade pandas
 python -m pip install -U matplotlib
 pip install sklearn
+pip install xlwt

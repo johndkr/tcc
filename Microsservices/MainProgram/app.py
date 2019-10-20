@@ -105,25 +105,25 @@ def home_mock():
 @app.route('/mock', methods=['POST'])
 def my_form_post_mock():
 	''' TWITTER API '''
-	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-	auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-	api = tweepy.API(auth)
-	twitter = Source_Checking.Twitter()
-	twitter.load_all_info('brunohvlemos')
-	user = api.get_user('brunohvlemos')
+	# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+	# auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+	# api = tweepy.API(auth)
+	# twitter = Source_Checking.Twitter()
+	# twitter.load_all_info('brunohvlemos')
+	# user = api.get_user('brunohvlemos')
 	locations = []
 	user = ''
-	try:
-		for user in tweepy.Cursor(api.followers, screen_name="brunohvlemos").items():
-			try:
-				user2 = user.rfind(" ",0,len(user))
-				user3 = api.get_user(user2)
-				locations.append(user3.location)
-			except tweepy.TweepError:
-				time.sleep(60 * 15)
-			continue
-	except:
-		print ("Não rolou")
+	# try:
+	# 	for user in tweepy.Cursor(api.followers, screen_name="brunohvlemos").items():
+	# 		try:
+	# 			user2 = user.rfind(" ",0,len(user))
+	# 			user3 = api.get_user(user2)
+	# 			locations.append(user3.location)
+	# 		except tweepy.TweepError:
+	# 			time.sleep(60 * 15)
+	# 		continue
+	# except:
+	# 	print ("Não rolou")
 
 	print(locations)
 	text = request.form['newsLink']
@@ -157,7 +157,6 @@ def my_form_post_mock():
 		source = Source_Checking.querySourceByUrl(processed_url)
 		political_bias = source[0]["political_bias"]
 		source_factuality = source[0]["factuality"]
-		print(ling_result["FakeNewChance"])
 		if (ling_result == -1):
 			multiplier_factor = 1/2
 		fact_points = multiplier_factor*Parameters.POLITICAL_BIAS_BASE[str(political_bias)] + multiplier_factor*Parameters.FACTUALITY_BASE[str(source_factuality)]

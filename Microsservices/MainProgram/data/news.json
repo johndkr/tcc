@@ -1,5 +1,5 @@
 {
-    "totalSubjects": 3,
+    "totalSubjects": 5,
     "subjects": [
         {
             "id": 1,
@@ -569,6 +569,540 @@
                     "urlToImage": "https://f.i.uol.com.br/fotografia/2019/06/10/15601916545cfea2a6f13ae_1560191654_3x2_rt.jpg",
                     "publishedAt": "2019-06-10T18:59:39Z",
                     "content": "Um helicóptero colidiu contra o topo de um edifício na Sétima Avenida, em Manhattan, nesta segunda-feira (10), afirmou o Departamento de Bombeiros de Nova York.\r\nO departamento informou que uma pessoa morreu o piloto da aeronave. \r\nA colisão ocorreu em meio a… [+622 chars]"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "keywords": "Telegram",
+            "fake": false,
+            "articles": [
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Uol.com.br"
+                    },
+                    "author": "Matt Novak",
+                    "title": "Ataques ao Telegram foram feitos pela China para suprimir protestos em Hong Kong, diz fundador do app",
+                    "description": "Pavel Durov, fundador do Telegram, acredita que instabilidade no app foi causada por ataques chineses, com o objetivo de minar protestos em Hong Kong. The post Ataques ao Telegram foram feitos pela China para suprimir protestos em Hong Kong, diz fundador do a…",
+                    "url": "https://gizmodo.uol.com.br/ataques-telegram-china-hong-kong/",
+                    "urlToImage": "https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2019/06/protestos-hongkong-ap-1000x563.jpg",
+                    "publishedAt": "2019-06-13T13:21:29Z",
+                    "content": "O governo chinês foi o provável autor dos ciberataques contra o app Telegram nesta quarta-feira (12), segundo o CEO do app, Pavel Durov. A motivação para tais atos seria frustrar a semana de protestos que tem ocorrido em Hong Kong.\r\nPavel Durov diz que as bot… [+2384 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Uol.com.br"
+                    },
+                    "author": "Giovanni Santa Rosa",
+                    "title": "Usado por Moro e Dallagnol, Telegram tem recursos de privacidade e segurança desativados por padrão",
+                    "description": "No fim da tarde do domingo (9), o site The Intercept Brasil publicou três matérias com o conteúdo de conversas privadas entre o procurador Deltan Dallagnol, o então juiz federal Sérgio Moro e outros procuradores da força-tarefa da Operação Lava-Jato. As mensa…",
+                    "url": "https://gizmodo.uol.com.br/telegram-privacidade-seguranca-moro-dallagnol/",
+                    "urlToImage": "https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2019/03/telegram-getty-1000x563.jpg",
+                    "publishedAt": "2019-06-10T22:56:13Z",
+                    "content": "No fim da tarde do domingo (9), o site The Intercept Brasilpublicou três matérias com o conteúdo de conversas privadas entre o procurador Deltan Dallagnol, o então juiz federal Sérgio Moro e outros procuradores da força-tarefa da Operação Lava-Jato. As mensag… [+6425 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Aplicativo de mensagens Telegram sofre ataque de negação de serviço",
+                    "description": "Empresa informou instabilidade na manhã desta quarta-feira, 12, mas disse que sistemas já estão operando normalmente",
+                    "url": "https://link.estadao.com.br/noticias/empresas,aplicativo-de-mensagens-telegram-sofre-ataque-de-negacao-de-servico,70002867941",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/7/1472249838271.jpg",
+                    "publishedAt": "2019-06-12T15:51:00Z",
+                    "content": "Aplicativo russo tem mais de 200 milhões de usuários no mundo\r\nO aplicativo de mensagens instantâneas Telegram informou nesta quarta-feira, 12, que foi atingido por um \"poderoso\" ataque distribuído de negação de serviço (DDoS), mas disse que já havia estabili… [+4925 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Telegram em Hong Kong sofreu ataques cibernéticos da China",
+                    "description": "De acordo com a plataforma de mensagens criptografadas, ofensiva foi lançada durante protestos no território",
+                    "url": "https://internacional.estadao.com.br/noticias/geral,telegram-em-hong-kong-sofreu-ataques-ciberneticos-da-china,70002870981",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/4/1560362180743.jpg",
+                    "publishedAt": "2019-06-13T23:29:00Z",
+                    "content": "HONG KONG - O Telegram, plataforma de mensagens criptografadas, relatou um ataque cibernético de grande magnitude, “principalmente da China”, enquanto o aplicativo estava sendo usado por manifestantes em Hong Kong. A empresa disse que foi atingida por um pode… [+2570 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "B9.com.br"
+                    },
+                    "author": "Matheus Fiore",
+                    "title": "Telegram se posiciona sobre #VazaJato: “não há evidência de hack”",
+                    "description": "Por meio do Twitter, aplicativo de mensagens afirma que conversas foram vazadas por malware ou por descuido de segurança dos próprios usuários O post Telegram se posiciona sobre #VazaJato: “não há evidência de hack” apareceu primeiro em B9.",
+                    "url": "https://www.b9.com.br/109566/telegram-sergio-moro-vaza-jato-hack/",
+                    "urlToImage": "https://assets.b9.com.br/wp-content/uploads/2019/06/moro-deltan-telegram.jpg",
+                    "publishedAt": "2019-06-11T16:39:02Z",
+                    "content": "O Telegram sempre prometeu o melhor sistema de segurança de dados possível para seus usuários. O sistema de proteção do app, inclusive, também sempre foi um dos grandes atrativos para tentar puxar parte do público do líder do mercado de aplicativos de convers… [+1446 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Tecnoblog.net"
+                    },
+                    "author": "Felipe Ventura",
+                    "title": "Telegram recebeu ataque DDoS da China contra protestos, diz fundador",
+                    "description": "China tenta suprimir aplicativos usados para organizar protestos em Hong Kong; Telegram ficou instável no Brasil Telegram recebeu ataque DDoS da China contra protestos, diz fundador",
+                    "url": "https://tecnoblog.net/294643/telegram-recebeu-ataque-ddos-da-china-contra-protestos-hong-kong/",
+                    "urlToImage": "https://tecnoblog.net/wp-content/uploads/2017/11/telegram-4-5-mensagens-salvas-700x394.jpg",
+                    "publishedAt": "2019-06-13T15:50:49Z",
+                    "content": "O Telegramsofreu um ataque DDoS na quarta-feira (12) que causou instabilidade no serviço para usuários nas Américas, especialmente no Brasil. Segundo o fundador e CEO Pavel Durov, isso não teve nada a ver com o vazamento de mensagens do ministro Sérgio Moro e… [+1638 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Tecnoblog.net"
+                    },
+                    "author": "Victor Hugo Silva",
+                    "title": "Moro tem linha de celular roubada e perde acesso ao Telegram",
+                    "description": "O ministro cancelou sua linha depois que sua conta no Telegram ficou sob controle de um invasor por seis horas Moro tem linha de celular roubada e perde acesso ao Telegram",
+                    "url": "https://tecnoblog.net/293408/sergio-moro-linha-celular-roubada-perde-acesso-telegram/",
+                    "urlToImage": "https://tecnoblog.net/wp-content/uploads/2019/06/ministro-sergio-moro-700x394.jpg",
+                    "publishedAt": "2019-06-06T16:17:23Z",
+                    "content": "O ministro da Justiça e Segurança Pública, Sergio Moro, teve de trocar sua linha de celular pessoal após ela ter sido roubada na terça-feira (4). Durante seis horas, um invasor teve acesso à conta de Moro no Telegram e conseguiu enviar mensagens para seus con… [+2123 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Tecnoblog.net"
+                    },
+                    "author": "Felipe Ventura",
+                    "title": "Telegram fica instável no Brasil em ataque DDoS; app não foi hackeado",
+                    "description": "Polícia Federal investiga vazamento de mensagens do Telegram entre Deltan Dallagnol, Sérgio Moro e procuradores da Lava Jato Telegram fica instável no Brasil em ataque DDoS; app não foi hackeado",
+                    "url": "https://tecnoblog.net/294384/telegram-fica-instavel-brasil-ataque-ddos/",
+                    "urlToImage": "https://tecnoblog.net/wp-content/uploads/2019/06/telegram-mao-escuro-unsplash-16-9-700x394.jpg",
+                    "publishedAt": "2019-06-12T13:01:06Z",
+                    "content": "O Telegram passou por um ataque DDoS na manhã desta quarta-feira (12), afetando usuários nas Américas e especialmente no Brasil, de acordo com o DownDetector. O aplicativo está no centro de uma controvérsia política no país, devido a um vazamento de mensagens… [+2934 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Tecnoblog.net"
+                    },
+                    "author": "Felipe Ventura",
+                    "title": "Como foram vazadas as conversas no Telegram entre Moro e Dallagnol?",
+                    "description": "Site vaza mensagens trocadas pelo Telegram entre procuradores da força-tarefa da Lava Jato, Deltan Dallagnol e Sérgio Moro Como foram vazadas as conversas no Telegram entre Moro e Dallagnol?",
+                    "url": "https://tecnoblog.net/293880/vazamento-mensagens-telegram-sergio-moro-deltan-dallagnol/",
+                    "urlToImage": "https://tecnoblog.net/wp-content/uploads/2019/06/sergio-moro-1-1060x707.jpg",
+                    "publishedAt": "2019-06-10T14:39:03Z",
+                    "content": "O site The Intercept Brasil divulgou o conteúdo de diversas mensagens trocadas entre procuradores da força-tarefa da operação Lava Jato em Curitiba, e conversas privadas entre o procurador Deltan Dallagnol e o então juiz Sérgio Moro, atual ministro da Justiça… [+7237 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "B9.com.br"
+                    },
+                    "author": "Pedro Strazza",
+                    "title": "Telegram sofre ataque de hackers, mas a explicação do ocorrido é muito mais interessante que o evento em si",
+                    "description": "Nesta manhã de quarta (12), entre as 8 e 9 horas, o Telegram aparentemente sofreu um ataque virtual que desestabilizou seus servidores. Conhecido como Distributed Denial of Service (ou DDoS Attack), a manobra busca quebrar os serviços da plataforma por uma su…",
+                    "url": "https://www.b9.com.br/109644/telegram-sofre-ataque-de-hackers-mas-a-explicacao-do-ocorrido-e-muito-mais-interessante-que-o-evento-em-si/",
+                    "urlToImage": "https://assets.b9.com.br/wp-content/uploads/2019/06/03212418355429.jpg",
+                    "publishedAt": "2019-06-12T15:00:47Z",
+                    "content": "Nesta manhã de quarta (12), entre as 8 e 9 horas, o Telegram aparentemente sofreu um ataque virtual que desestabilizou seus servidores. Conhecido como Distributed Denial of Service (ou DDoS Attack), a manobra busca quebrar os serviços da plataforma por uma su… [+2294 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Será só coincidência?",
+                    "description": "Gilmar pediu vista do recurso de Lula ao STF e só o liberou agora e este disse em entrevista direto da cela que Moro seria \"desmascarado\" sem saberem do vazamento do Telegram de Moro?",
+                    "url": "https://politica.estadao.com.br/blogs/neumanne/e-nao-e-mera-coincidencia/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/neumanne/wp-content/uploads/sites/339/2019/06/morpsenado.jpg",
+                    "publishedAt": "2019-06-19T14:52:00Z",
+                    "content": "Moro interrogado na CCJ do Senado por suspeitos, acusados e processados da Lava Jato sobre mensagens trocadas no celular em aplicativo russo Telegram. Foto: Evaristo Sá/AFP\r\nDe dezembro para cá três fatos produzidos no arraial lulista e no STF comprovam por s… [+2570 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'É um crime em andamento', afirma Moro sobre ação de hackers que o desafiam",
+                    "description": "Ministro da Justiça diz na Comissão de Constituição e Justiça do Senado que não usa mais o aplicativo Telegram desde 2017, mas que invasores estão atacando celulares de 'procuradores, sabe-se quem mais quem, jornalistas, parlamentares'",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/e-um-crime-em-andamento-afirma-moro-sobre-acao-de-hackers-que-o-desafiam/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2019/06/48092903453_26e31fbfa7_o.jpg",
+                    "publishedAt": "2019-06-19T17:01:00Z",
+                    "content": "Sérgio Moro. Foto: Pedro França/Agência Senado\r\nO ministro Sérgio Moro (Justiça e Segurança Pública) afirmou nesta quarta, 19, que a ação de hackers ‘é um crime em andamento’. Em audiência pública na Comissão de Constituição e Justiça do Senado, Moro reafirmo… [+1926 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Lava Jato diz que 'criminoso agressivo, sorrateiro' usou máscaras digitais para clonar celulares dos procuradores",
+                    "description": "Força-tarefa do Ministério Público Federal no Paraná afirma que hacker invadiu suas comunicações pelo aplicativo Telegram, está agindo desde abril e se aproveitou de 'falhas estruturais na rede de operadoras de telefonia móvel'",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/lava-jato-diz-que-criminoso-agressivo-sorrateiro-usou-mascaras-digitais-para-clonar-celulares-dos-procuradores/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2018/06/deltan-THEO-MARQUES-ESTADaO.jpg",
+                    "publishedAt": "2019-06-10T20:31:00Z",
+                    "content": "Deltan Dallagnol. FOTO: THEO MARQUES/ESTADÃO\r\nA força-tarefa do Ministério Público Federal no Paraná, base e origem da Operação Lava Jato, declarou nesta segunda, 10, que seus procuradores foram alvo da ação de ‘criminoso agressivo, sorrateiro’. A Lava Jato d… [+2569 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "É falso que Telegram tenha admitido que conversas vazadas de Moro e Deltan foram adulteradas",
+                    "description": "Montagem no Facebook usou tweet verdadeiro da empresa, que informou não ter sido alvo de ataque hacker",
+                    "url": "https://politica.estadao.com.br/blogs/estadao-verifica/e-falso-que-telegram-tenha-admitido-que-conversas-vazadas-de-moro-e-deltan-foram-adulteradas/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/estadao-verifica/wp-content/uploads/sites/690/2019/06/telegram.jpg",
+                    "publishedAt": "2019-06-15T13:36:00Z",
+                    "content": "É falso que o Telegram tenha comunicado, no Twitter, que a conversa entre Sérgio Moro e Deltan Dallagnolpublicada pelo site The Intercept Brasil foi manipulada. Uma publicação no Facebook faz uma montagem com um tweet em que a empresa informa que não há evidê… [+1240 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Hacker tentou se passar por Moro no Telegram, no dia 4",
+                    "description": "Polícia Federal tem cópia de mensagem enviada a servidor do Ministério da Justiça em 4 de junho de uma conta em nome de 'SFM', abreviação do nome de Sérgio Fernando Moro usada pelo ex-juiz da Lava Jato; conta estaria ainda ativa dois dias depois de publicação…",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/hacker-tentou-se-passar-por-sergio-moro-no-telegram/",
+                    "urlToImage": "https://politica.estadao.com.br/blogs/fausto-macedo/wp-content/uploads/sites/41/2019/06/TELEGRAM-HACKER-MORO.jpeg",
+                    "publishedAt": "2019-06-19T15:30:00Z",
+                    "content": "A Polícia Federal tem elementos de prova de que um hacker tentou se passar pelo ministro da Justiça e Segurança Pública, Sérgio Moro, e mandou mensagens para terceiros em nome do ex-juiz da Operação Lava Jato. Um dos elementos é uma mensagem enviada no dia 4 … [+4283 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Telegram tem fama de seguro, mas é mais vulnerável que rivais",
+                    "description": "Aplicativo não utiliza criptografia de ponta a ponta por padrão. Isso permite que mensagens enviadas possam ser interpretadas corretamente ao serem interceptadas",
+                    "url": "https://politica.estadao.com.br/noticias/geral,telegram-tem-fama-de-seguro-mas-e-mais-vulneravel-que-rivais,70002864704",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/6/8/1523887615586.jpg",
+                    "publishedAt": "2019-06-11T02:24:00Z",
+                    "content": "Usado pelo ministro da Justiça, Sérgio Moro, e os procuradores do Ministério Público Federal da Operação Lava Jato, segundo o site The Intercept Brasil, o aplicativo de mensagens Telegram tem fama de ser mais seguro que rivais como o WhatsApp, mas é mais vuln… [+2196 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Jovemnerd.com.br"
+                    },
+                    "author": "Marina Val",
+                    "title": "Telegram sofre instabilidade temporária devido a ataque DDoS",
+                    "description": "O serviço garantiu que, apesar da lentidão, os dados dos usuários estão seguros The post Telegram sofre instabilidade temporária devido a ataque DDoS appeared first on Jovem Nerd.",
+                    "url": "https://jovemnerd.com.br/nerdbunker/telegram-sofre-instabilidade-temporaria-devido-a-ataque-ddos/",
+                    "urlToImage": "https://jovemnerd.com.br/wp-content/uploads/2019/06/telegram-ataque-ddos.jpg",
+                    "publishedAt": "2019-06-12T12:42:30Z",
+                    "content": "Na manhã desta quarta-feira (12), o Telegram alertou os usuários sobre uma instabilidade temporária causada por um ataque DDoS (ataque de negação de serviço).\r\nApesar disso, o serviço garantiu que os dados dos usuários continuam seguros.\r\nWere currently exper… [+1684 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Bbc.com"
+                    },
+                    "author": "https://www.facebook.com/bbcnews",
+                    "title": "Como deixar WhatsApp e Telegram mais protegidos",
+                    "description": "Verificação em duas etapas com inclusão de senha pode aumentar proteção de dados trocados no Telegram e no WhatsApp; existem, contudo, outras formas de interceptar mensagens.",
+                    "url": "https://www.bbc.com/portuguese/geral-48608843",
+                    "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_portuguese/CF5C/production/_107348035_gettyimages-1044646398.jpg",
+                    "publishedAt": "2019-06-12T17:02:17Z",
+                    "content": "Direito de imagemGetty ImagesImage caption\r\n Verificação em duas etapas com inclusão de senha pode aumentar proteção de dados trocados no Telegram e no WhatsApp, mas existem outras formas de interceptar mensagens\r\nAo ser questionada no Twitter se o Telegram f… [+8109 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Tecmundo.com.br"
+                    },
+                    "author": "Claudio Yuge",
+                    "title": "Telegram sofre ataque DDoS e fica instável na manhã de quarta (12)",
+                    "description": "Tentou usar o Telegram na manhã de hoje (12) para mandar aquela mensagem para o amoreco e não conseguiu? Bem, o problema não é com você, é com a companhia: a plataforma sofreu um ataque de negação de serviço, que é quando há uma sobrecarga nos servidores para…",
+                    "url": "https://www.tecmundo.com.br/software/142452-telegram-sofre-ataque-ddos-instavel-manha-quarta-12.htm",
+                    "urlToImage": "https://img.ibxk.com.br/2019/06/12/12101257030378.jpg?w=600",
+                    "publishedAt": "2019-06-12T13:13:01Z",
+                    "content": "Tentou usar o Telegram na manhã de hoje (12) para mandar aquela mensagem para o amoreco e não conseguiu? Bem, o problema não é com você, é com a companhia: a plataforma sofreu um ataque de negação de serviço, que é quando há uma sobrecarga nos servidores para… [+819 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'Aqui é o hacker', diz mensagem no grupo do Conselho Nacional do Ministério Público",
+                    "description": "Grupo que reúne integrantes do MP recebeu mensagem suspeita vinda do celular de um conselheiro; textos diziam que falas de Moro e Dallagnol eram apenas 'amostra do que vocês vão ver'",
+                    "url": "https://politica.estadao.com.br/noticias/geral,aqui-e-o-hacker-diz-mensagem-no-grupo-do-conselho-nacional-do-ministerio-publico,70002867887",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/8/0/1560352842408.jpg",
+                    "publishedAt": "2019-06-12T15:13:00Z",
+                    "content": "BRASÍLIA - Mensagens enviadas a partir do celular de um conselheiro do Conselho Nacional do Ministério Público (CNMP) no grupo de Telegram do colegiado chamaram a atenção dos colegas para a invasão de hacker no chat de conversas. Um dos torpedos dizia que o c… [+3375 chars]"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "keywords": "Najila Neymar",
+            "fake": false,
+            "articles": [
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Vídeo mostra Najila agredindo Neymar",
+                    "description": "Gravação que circula na internet mostra modelo estapeando o atacante da seleção brasileira e do PSG",
+                    "url": "https://politica.estadao.com.br/blogs/fausto-macedo/video-mostra-najila-agredindo-neymar/",
+                    "urlToImage": "http://www.estadao.com.br/estadao/novo/img/estadao.gif",
+                    "publishedAt": "2019-06-06T04:54:00Z",
+                    "content": "Um vídeo que circula nas redes sociais mostra Najila Trindade Mendes Souza agredindo o atacante da Seleção Brasileira e do PSG Neymar Jr, em um quarto de hotel. Em boletim de ocorrência à Polícia Civil, ela afirmou ter sido estuprada pelo atleta. Nesta terça,… [+1708 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Suposta vítima de Neymar depõe amanhã em SP",
+                    "description": "NAJILA E NEYMAR. FOTO: REPRODUÇÃONajila Trindade Mendes de Souza, a suposta vítima de Neymar, marcou depoimento para amanhã,",
+                    "url": "https://cultura.estadao.com.br/blogs/direto-da-fonte/suposta-vitima-de-neymar-depoe-amanha-em-sp/",
+                    "urlToImage": "https://cultura.estadao.com.br/blogs/direto-da-fonte/wp-content/uploads/sites/290/2019/06/neymar-460x259.jpg",
+                    "publishedAt": "2019-06-05T20:48:00Z",
+                    "content": "NAJILA E NEYMAR. FOTO: REPRODUÇÃO\r\nNajila Trindade Mendes de Souza, a suposta vítima de Neymar, marcou depoimento para amanhã, quinta-feira, às 16 horas, na 6..a DPM, em São Paulo, momento em que também dará coletiva de imprensa. Esta coluna obteve, em primei… [+2539 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Opinião: Integrantes de movimentos feministas analisam 'caso Neymar'",
+                    "description": "Polêmica envolvendo Neymar e a modelo Najila Trindade gerou diversas opiniões nas redes sociais",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,opiniao-integrantes-de-movimentos-feministas-analisam-caso-neymar,70002861372",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/5/8/1559871424285.jpg",
+                    "publishedAt": "2019-06-08T07:30:00Z",
+                    "content": "A polêmica envolvendo o atacante Neymar e a modelo Najila Trindade rendeu diversas opiniões nas redes sociais. Neste cenário, o Estadão ouviu integrantes de movimentos feministas que analisaram a repercussão do episódio. \r\nNajila acusou Neymar de estupro, e o… [+4792 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'Você sabe o que aconteceu', escreveu Najila a Neymar sobre agressões",
+                    "description": "Em trocas de mensagens, modelo se queixa de agressões de jogador durante relação sexual",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,voce-sabe-o-que-aconteceu-escreveu-najila-a-neymar-sobre-agressoes,70002859791",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/5/8/1559871424285.jpg",
+                    "publishedAt": "2019-06-07T01:40:00Z",
+                    "content": "O programa Cidade Alerta, da TV Record, revelou nesta quinta-feira que a modelo Najila Trindade e o atacante Neymar trocaram mensagens um dia depois do primeiro encontro entre eles, em Paris. Em conversas no WhatsApp, os dois conversaram sobre as possíveis ag… [+2916 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Após depor durante seis horas, Najila passa mal e deixa delegacia rumo a hospital",
+                    "description": "Possível vítima de estupro de Neymar presta esclarecimento sobre o caso e tem queda de pressão",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,apos-depor-durante-seis-horas-najila-passa-mal-e-deixa-delegacia-rumo-a-hospital,70002861084",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/3/1559941600833.jpg",
+                    "publishedAt": "2019-06-07T21:26:00Z",
+                    "content": "A modelo Najila Trindade prestou depoimento nesta sexta-feira durante quase seis horas na 6ª Delegacia de Defesa da Mulher, no bairro de Santo Amaro, em São Paulo. A autora de denúncia de estupro e agressão contra o jogador Neymar teve dificuldades para falar… [+1750 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Neymar nega crime de estupro, diz promotora que acompanhou depoimento",
+                    "description": "Atacante presta esclarecimentos em São Paulo sobre a acusação da modelo Najila Trindade",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,neymar-nega-crime-de-estupro-diz-promotora-que-acompanhou-depoimento,70002870972",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/8/1560467572683.jpg",
+                    "publishedAt": "2019-06-13T23:13:00Z",
+                    "content": "O atacante Neymar negou o estupro contra a modelo Najila Trindade no depoimento que está concedendo nesta quinta-feira na 6ª Delegacia de Defesa da Mulher, em Santo Amaro. A afirmação foi feita pelo promotora Flavia Merlini, uma das três especialistas designa… [+1006 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Najila fala em 'polícia comprada' e é repudiada por associações",
+                    "description": "Modelo que acusa Neymar de estupro questionou: 'A polícia está comprada, não é, ou não? Estou louca?'",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,najila-fala-em-policia-comprada-e-e-repudiada-por-associacoes,70002866098",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/3/1559941600833.jpg",
+                    "publishedAt": "2019-06-11T19:33:00Z",
+                    "content": "Após falar em \"polícia comprada\", a modelo Najila Trindade foi repudiada pelo Sindicato dos Delegados de Polícia do Estado de São Paulo (SINDPESP) e pela Associação dos Delegados de Polícia do Estado de São Paulo (ADPESP). \r\nA fala de Najila foi exibida pelo … [+1740 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Neymar deve depor na quinta-feira em São Paulo sobre acusação de estupro",
+                    "description": "Atacante vai comparecer para dar sua versão após depoimento da modelo Najila Trindade",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,neymar-deve-depor-na-quinta-feira-em-sao-paulo-sobre-acusacao-de-estupro,70002866569",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/2/6/1559921213162.jpg",
+                    "publishedAt": "2019-06-11T23:12:00Z",
+                    "content": "O atacante Neymar deve prestar depoimento nesta quinta-feira, às 16 horas, na 6ª Delegacia de Defesa da Mulher, em Santo Amaro, zona sul de São Paulo. O atacante vai dar sua versão sobre a acusação de estupro feita pela modelo Najila Trindade. O crime teria s… [+1019 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Neymar será ouvido nesta semana em São Paulo sobre suposto estupro",
+                    "description": "Atacante vai responder às perguntas na Delegacia de Defesa da Mulher sobre acusação de Najila Trindade",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,neymar-sera-ouvido-nesta-semana-em-sao-paulo-sobre-suposto-estupro,70002863175",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/3/3/1559953490933.jpg",
+                    "publishedAt": "2019-06-10T07:30:00Z",
+                    "content": "A Polícia Civil pretende ouvir o depoimento de Neymar nesta semana, em São Paulo, no inquérito policial que investiga acusação de estupro registrada pela modelo Najila Trindade. O crime teria acontecido no dia 15 de maio em Paris.\r\nA data do comparecimento do… [+1208 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Grupo de fãs de Neymar realiza manifestação de apoio em delegacia",
+                    "description": "Com uma faixa com a inscrição “Verdade seja dita” e gritos contra a modelo Najila Trindade, pessoas acompanham depoimento do atacante",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,grupo-de-fas-de-neymar-realiza-manifestacao-de-apoio-em-delegacia,70002870544",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/9/2/1560452950729.jpg",
+                    "publishedAt": "2019-06-13T19:33:00Z",
+                    "content": "Um grupo de fãs de Neymar realizou uma manifestação de apoio ao jogador na tarde desta quinta-feira durante o depoimento prestado à 6ª Delegacia de Defesa da Mulher, em Santo Amaro. Com uma faixa com a inscrição “Verdade seja dita” e gritos contra a modelo Na… [+1694 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Notícias do dia: Reforma, Guedes x Maia, greve, Copa América, Clóvis Rossi e lançamento de Madonna",
+                    "description": "Demissão do presidente dos Correios, naufrágio em Recife e o caso Neymar-Najila também foram assuntos desta sexta-feira, 14 de junho de 2019",
+                    "url": "https://brasil.estadao.com.br/noticias/geral,noticias-do-dia-reforma-guedes-x-maia-greve-copa-america-clovis-rossi-e-lancamento-de-madonna,70002873398",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/4/1560291858241.jpg",
+                    "publishedAt": "2019-06-15T00:15:00Z",
+                    "content": null
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Filho da modelo que acusa Neymar de estupro passa por acompanhamento psicológico",
+                    "description": "Revelação foi feita pelo pai, que mostra preocupação com o estado do filho diante do caso Neymar",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,filho-da-modelo-que-acusa-neymar-de-estupro-passa-por-acompanhamento-psicologico,70002869095",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/0/1559936706401.jpg",
+                    "publishedAt": "2019-06-13T07:30:00Z",
+                    "content": "O consultor Estivens Alves, ex-marido de Najila Trindade, modelo que acusa Neymar de estupro, afirmou que filho do casal está sendo acompanhado por um psicólogo depois do escândalo vivido pela mãe. Ele tem seis anos e está morando temporariamente fora de São … [+1569 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Najila Trindade, modelo que acusa Neymar de estupro, depõe pela segunda vez",
+                    "description": "Depoimento ocorre depois de a Justiça ter expedido um mandado de busca e apreensão do celular dela",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,najila-trindade-modelo-que-acusa-neymar-de-estupro-depoe-pela-segunda-vez,70002878896",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/0/1559936706401.jpg",
+                    "publishedAt": "2019-06-18T18:32:00Z",
+                    "content": "A modelo Najila Trindade, que acusa Neymar de estupro e agressão, depõe nesta terça-feira na 6ª Delegacia de Defesa da Mulher, em Santo Amaro, na zona sul de São Paulo. Ela chegou por volta das 11h40 acompanhada de seu novo advogado, Cosme Araújo. O jogador n… [+1091 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Advogado da modelo que acusa Neymar de estupro entrega novas provas",
+                    "description": "Representante de Najila Trindade também explicou que não viu a íntegra do vídeo vazado nas redes",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,advogado-da-modelo-que-acusa-neymar-de-estupro-entrega-novas-provas,70002860125",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/8/6/1559903347168.jpg",
+                    "publishedAt": "2019-06-07T10:23:00Z",
+                    "content": "O advogado Danilo Garcia de Andrade, representante da modelo Najila Trindade Mendes de Souza, que acusa Neymar de estupro, apresentou novas provas do crime alegado por sua cliente à 6ª Delegacia de Defesa da Mulher nesta quinta-feira. \"(Trouxe) as fotos das l… [+2366 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Najila perdeu o celular após primeiro depoimento, afirma advogado",
+                    "description": "A afirmação foi de Cosme Araújo, que se apresentou nesta terça-feira como novo defensor da modelo, o quarto no caso",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,najila-perdeu-o-celular-apos-primeiro-depoimento-afirma-advogado,70002879213",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/9/3/1560897219139.jpg",
+                    "publishedAt": "2019-06-18T22:34:00Z",
+                    "content": "A modelo Najila Trindade, que acusa Neymar de estupro, perdeu o celular após o primeiro depoimento na 6ª Delegacia de Defesa da Mulher na zona sul de São Paulo, na semana passada. A afirmação foi feita pelo advogado Cosme Araújo, que se apresentou nesta terça… [+2141 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Exame em modelo que acusa Neymar de estupro aponta apenas lesão no dedo",
+                    "description": "Análise da Polícia Civil não mostra lesões graves em Najila Trindade após incidente com jogador da seleção",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,exame-em-modelo-que-acusa-neymar-de-estupro-aponta-apenas-lesao-no-dedo,70002860338",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/9/8/1559916678589.jpg",
+                    "publishedAt": "2019-06-07T14:08:00Z",
+                    "content": "O exame de corpo de delito feito pela modelo Najila Trindade ao registrar boletim de ocorrência por estupro do atacante Neymar, protocolado no dia 31 de maio, detectou apenas um ferimento em um dedo da mão de Najila. De acordo com o documento, não existem les… [+1803 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Em depoimento, Neymar afirma que usou preservativo, diz TV",
+                    "description": "Falta de camisinha foi o ponto central da discussão que teria originado o estupro, segundo modelo que o acusa",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,em-depoimento-neymar-afirma-que-usou-preservativo-diz-tv,70002871893",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/7/5/1560508949857.jpg",
+                    "publishedAt": "2019-06-14T10:51:00Z",
+                    "content": "O atacante Neymar afirmou que usou preservativo no encontro com a modelo Najila Trindade, em Paris, de acordo com o Jornal Nacional, da Rede Globo. A declaração contraria a informação da modelo, que afirma que a falta de camisinha foi o ponto central da discu… [+1524 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Polícia cogita acareação entre Neymar e modelo que o acusa de estupro",
+                    "description": "Najila Trindade, que acusa o atacante, prestou depoimento nesta sexta-feira, em São Paulo",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,policia-cogita-acareacao-entre-neymar-e-modelo-que-o-acusa-de-estupro,70002860912",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/1/0/1559936706401.jpg",
+                    "publishedAt": "2019-06-07T19:47:00Z",
+                    "content": "A Polícia Civil de São Paulo considera a possibilidade de uma acareação entre Neymar e a modelo Najila Trindade, que acusa o atacante de estupro. O objetivo é eliminar incongruências que existem nos depoimentos dos dois sobre o vazamento de diálogos e fotos í… [+1637 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "Ex-advogado de Najila diz ter sido ameçado pelo pai de Neymar",
+                    "description": "Declaração foi feita em conversa com a modelo por WhatsApp e revelada na integra pela TV Record",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,ex-advogado-de-najila-diz-ter-sido-amecado-pelo-pai-de-neymar,70002861997",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/2/5/1454679607052.jpg",
+                    "publishedAt": "2019-06-08T19:30:00Z",
+                    "content": "O ex-advogado de Najila Trindade, José Edgard Bueno, disse em conversa com a modelo por WhatsApp que estava sendo ameaçado pelo pai de Neymar. A TV Record revelou a longa troca de mensagens entre os dois.  \r\nA conversa começa com o momento em que a modelo rev… [+2015 chars]"
+                },
+                {
+                    "source": {
+                        "id": null,
+                        "name": "Estadao.com.br"
+                    },
+                    "author": null,
+                    "title": "'Fui vítima de estupro', diz Najila, mulher que acusa Neymar, à TV",
+                    "description": "Em entrevista ao SBT, modelo confirma que foi vítima de estupro de Neymar",
+                    "url": "https://esportes.estadao.com.br/noticias/futebol,fui-vitima-de-estupro-diz-najila-mulher-que-acusa-neymar-a-tv,70002858137",
+                    "urlToImage": "https://img.estadao.com.br/resources/jpg/5/8/1559695346085.jpg",
+                    "publishedAt": "2019-06-05T23:41:00Z",
+                    "content": "A modelo Najila Trindade Mendes Souza, suposta vítima de estupro de Neymar, confirmou sua versão em entrevista ao SBT na noite desta quarta-feira. Diante da pergunta se havia sofrido estupro ou se a relação tinha sido consentida, a modelo de 26 anos confirma … [+5269 chars]"
                 }
             ]
         }
