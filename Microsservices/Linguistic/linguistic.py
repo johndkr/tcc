@@ -1,15 +1,22 @@
 #linguistic
 import os, sys
+sys.path.append('..\\..\\')
+
 import string
 import json
 
 import spacy
+import re
 
 from spellchecker import SpellChecker
 from unicodedata import normalize
 from pyUFbr.baseuf import ufbr
 from collections import Counter 
 from googletrans import Translator
+
+import nltk
+nltk.download('punkt')
+from nltk.tokenize import sent_tokenize
 
 from Microsservices.Linguistic import feeling_evaluator 
 from Microsservices.CommonUtil.Log import log_util
@@ -53,6 +60,13 @@ class LinguisticAnalyses():
     ### this method removes all accents from a string
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
+  def __remove_them_all(self, txt):
+    # This method returns a string only containg numbers, letters and space
+    nfkd = unicodedata.normalize('NFKD', txt)
+    palavraSemAcento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
+
+    return re.sub('[^a-zA-Z0-9 \\\]', '', palavraSemAcento)
+
   def __load_known_words(self):
     self.spellchecker.word_frequency.load_words(["Lula", "Bolsonaro"])
 
@@ -74,37 +88,37 @@ class LinguisticAnalyses():
     split_it = self.__text_cleanner(text_cleanned).lower().split()
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
-  def catch_state_mentions(self, text, also_in_lower):
-    self.log_manager.info("Catching states for text {}".format(text[0:10]))
+  # def catch_state_mentions(self, text, also_in_lower):
+  #   self.log_manager.info("Catching states for text {}".format(text[0:10]))
     
-    found =[]
-    # text = self.__text_cleanner(text).upper()
+  #   found =[]
+  #   # text = self.__text_cleanner(text).upper()
 
-    for key in self.__states_keys_dictionary:
-      for city in self.__states_keys_dictionary[key]:
-        count = text.count(city)
-        if count != 0:
-          found.append((key, city, count))
+  #   for key in self.__states_keys_dictionary:
+  #     for city in self.__states_keys_dictionary[key]:
+  #       count = text.count(city)
+  #       if count != 0:
+  #         found.append((key, city, count))
     
-    if(also_in_lower):
-      for key in self.__states_keys_dictionary:
-        for city in self.__states_keys_dictionary[key]:
-          count = text.count(city.lower())
-          if count != 0:
-            found.append((key, city, count))
+  #   if(also_in_lower):
+  #     for key in self.__states_keys_dictionary:
+  #       for city in self.__states_keys_dictionary[key]:
+  #         count = text.count(city.lower())
+  #         if count != 0:
+  #           found.append((key, city, count))
 
-    return found
+  #   return found
 
-  def save_cities_learned(self):
-    ### updates saved dictionary with the current one loaded on memory
-    try:
-      path = os.path.join(__file__, STATE_CITIES_DICTIONARY)
-      with open(path, 'w') as file:
-        file.write(json.dumps(self.__states_keys_dictionary))
-    except Exception as err:
-      self.log_manager.exception(err)
+  # def save_cities_learned(self):
+  #   ### updates saved dictionary with the current one loaded on memory
+  #   try:
+  #     path = os.path.join(__file__, STATE_CITIES_DICTIONARY)
+  #     with open(path, 'w') as file:
+  #       file.write(json.dumps(self.__states_keys_dictionary))
+  #   except Exception as err:
+  #     self.log_manager.exception(err)
 
-  def learn_new_cities(self, txt):
+  # def learn_new_cities(self, txt):
     ## To learn new cities mentioned we search for it comparing in upper case
     
     text_cleanned = self.__accent_remover(self.__text_cleanner(txt)).upper()
@@ -141,6 +155,10 @@ class LinguisticAnalyses():
 
     return types_count
 
+  def count_words(self, txt):
+    txt_sem_pontuacao = self.__remove_them_all(txt)
+    return len(txt_sem_pontuacao.split())
+
   def get_entities(self, txt):
     # this method gets all entities within a given text.
     # IT IS SENSITIVE to grammar mistakes
@@ -149,7 +167,7 @@ class LinguisticAnalyses():
     doc = self.nlp(txt)
     return doc.ents
 
-  def count_entities(self, txt):
+  def get_all_entities(self, txt):
     # this method receives a text and counts its entities
     # IT IS SENSITIVE to grammar mistakes on the text
 
@@ -161,6 +179,57 @@ class LinguisticAnalyses():
     entities_type = [(entitie, txt.upper().count(str(entitie).upper())) for entitie in entities]
 
     return entities_type
+
+  def count_entities(self, txt):
+    # this method gets all entities within a given text.
+    # IT IS SENSITIVE to grammar mistakes
+    self.log_manager.debbug("Counting text entities...")
+    return len(self.nlp(txt).ents)
+
+  def count_upper_case_words(self, txt):
+    clean_text = self.__remove_them_all(txt)
+    return sum(map(str.isupper, clean_text.split()))
+
+  def count_pronome_pessoal_eu_tu_voce(self, txt):
+    clean_text = self.__remove_them_all(txt)
+
+    count_pronomes = 0
+    count_pronomes += clean_text.lower().split().count("eu")
+    count_pronomes += clean_text.lower().split().count("tu")
+    count_pronomes += clean_text.lower().split().count("voce")
+
+    return count_pronomes
+
+  def count_pronome_pessoal_nos(self, txt):
+    clean_text = self.__remove_them_all(txt)
+
+    count_pronomes = 0
+    count_pronomes += clean_text.lower().split().count("nos")
+
+    return count_pronomes
+
+  def count_pronome_pessoal_elxs(self, txt):
+    clean_text = self.__remove_them_all(txt)
+
+    count_pronomes = 0
+    count_pronomes += clean_text.lower().split().count("ele")
+    count_pronomes += clean_text.lower().split().count("eles")
+    count_pronomes += clean_text.lower().split().count("ela")
+    count_pronomes += clean_text.lower().split().count("elas")
+
+    return count_pronomes
+
+  def count_caracteres(self, txt):
+    return len(txt)
+
+  def count_sentence_average_size(self, txt):
+    sentences_set = sent_tokenize(txt)
+    return sum(len(sentence.split()) for sentence in sentences_set) / len(sentences_set)
+
+  def count_word_average_size(self, txt):
+    clean_text = self.__remove_them_all(txt)
+    words = clean_text.split()
+    return sum(len(word) for word in words) / len(words)
 
   def translate_pt_to_en(self, txt):
     """ translates text to english """
@@ -207,3 +276,10 @@ class LinguisticAnalyses():
     result["FakeNewChance"] = fake_new_chance
 
     return result
+
+if __name__ == "__main__":
+    txt = "O Lula e o Machao de Assis foi solto ontem"
+
+    analisator = LinguisticAnalyses()
+    print(analisator.count_words_types(txt))
+    print(analisator.count_entities(txt))
