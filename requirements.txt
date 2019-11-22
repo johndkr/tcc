@@ -14,3 +14,7 @@ python -m pip install -U matplotlib
 pip install sklearn
 pip install xlwt
 pip install --user -U nltk
+pip install tldextract
+pip install lxml
+pip install seaborn
+pip install xlrd

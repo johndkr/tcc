@@ -55,15 +55,19 @@ def show_cm(df):
 def classify():
 	#Train and test separation
 	df = get_df('db/database.xls')
-	X_train, X_test, y_train, y_test = train_test_split(df.loc[:, df.columns != 'fake_or_true'], df['fake_or_true'], test_size=0.30)
+	X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, 2:26], df['fake_or_true'], test_size=0.30)
 
-	#Classification
-	#pred = KNeighborsRegressor(n_neighbors=10)
-	#model = pred.fit(X_train, y_train)
+	# KNN
+	pred = KNeighborsRegressor(n_neighbors=77)
+	model = pred.fit(X_train, y_train)
 	
 	#Neural Network
-	pred = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
-	model = pred.fit(X_train, y_train.values.ravel())
+	#pred = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
+	#model = pred.fit(X_train, y_train.values.ravel())
+
+	# Polinomial
+	#pred = linear_model.LinearRegression()
+	#model = pred.fit(X_train, y_train)
 
 	#Prediction of train set
 	y_train_pred = pred.predict(X_train)
