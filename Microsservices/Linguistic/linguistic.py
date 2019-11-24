@@ -7,9 +7,9 @@ import json
 
 import spacy
 import re
+import unicodedata
 
 from spellchecker import SpellChecker
-from unicodedata import normalize as unicodedata
 from collections import Counter 
 from googletrans import Translator
 
@@ -17,16 +17,16 @@ import nltk
 nltk.download('punkt')
 from nltk.tokenize import sent_tokenize
 
-from Microsservices.Linguistic import feeling_evaluator 
 from Microsservices.CommonUtil.Log import log_util
 
+KNOWN_WORDS = ".\\data\\known_words.txt"
 
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
 class LinguisticAnalyses():
-  spellchecker = SpellChecker()
+  spellchecker = SpellChecker(language='pt')
   log_manager = log_util.Log_Util(True)
-  nlp = spacy.load('pt')
+  nlp = spacy.load('pt_core_news_sm')
 
   def __init__(self):
     self.spellchecker = SpellChecker()
@@ -34,21 +34,35 @@ class LinguisticAnalyses():
   
   def __accent_remover(self, txt):
     ### this method removes all accents from a string
-    return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
+    # return unicodedata.normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
+    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','')
+    return text_cleanned.translate(str.maketrans('', '', string.punctuation))
 
   def __remove_them_all(self, txt):
     # This method returns a string only containg numbers, letters and space
-    nfkd = unicodedata.normalize('NFKD', txt)
+    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','')
+    nfkd = unicodedata.normalize('NFKD', text_cleanned)
     palavraSemAcento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
 
     return re.sub('[^a-zA-Z0-9 \\\]', '', palavraSemAcento)
 
   def __load_known_words(self):
-    self.spellchecker.word_frequency.load_words(["Lula", "Bolsonaro"])
+    known_words = None
+    try:
+      path = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
+      known_words = open(path).read().split()
+      print("\nKnown words for spellchecker: ", known_words)
+      self.log_manager.info('Found file at: ' + path)
+    except Exception as err:
+      self.log_manager.exception(err)
+      known_words = []
+    finally:
+      self.spellchecker.word_frequency.load_words(known_words)
 
   def wrong_proportion(self, text):
     text_cleanned = self.__accent_remover(text)
-    split_it = self.__remove_them_all(text_cleanned).lower().split()
+    split_it = text_cleanned.split()
+    print(self.spellchecker.unknown(split_it))
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
   def get_words_types(self, txt):
@@ -72,20 +86,42 @@ class LinguisticAnalyses():
 
     return types_count
 
+  def count_interjeicao(self, txt):
+    interjeicao_list = ['Cuidado!', 'Olhe!', 'Atenção!', 'Fogo!', 'Olha lá!', 'Alto lá!', 'Calma!', 'Devagar!', 'Sentido!', 'Alerta!', 'Vê bem!', 'Volta aqui!',
+                        'Fora!', 'Toca!', 'Xô!', 'Xô pra lá!', 'Passa!', 'Sai!', 'Roda!', 'Arreda!', 'Rua!', 'Cai fora!', 'Vaza!', 'Graças a Deus!', 'Obrigado!', 
+                        'Agradecido!', 'Muito obrigada!', 'Valeu!', 'Valeu a pena!', 'Ah!', 'Eh!', 'Oh!', 'Oba!', 'Eba!', 'Viva!', 'Olá!', 'Olé!', 'Eta!', 'Eita!', 
+                        'Eia!', 'Uhu!', 'Que bom!', 'Ufa!', 'Uf!', 'Arre!', 'Ah!', 'Eh!', 'Puxa!', 'Ainda bem!', 'Nossa senhora!', 'Coragem!', 'Força!', 'Ânimo!', 
+                        'Avante!', 'Eia!', 'Vamos!', 'Firme!', 'Inteirinho!', 'Bora!', 'Socorro!', 'Ei!', 'Ô!', 'Oh!', 'Alô!', 'Psiu!', 'Olá!', 'Eh!', 'Psit!', 'Misericórdia!', 
+                        'Muito bem!', 'Bem!', 'Bravo!', 'Bis!', 'É isso aí!', 'Isso!', 'Parabéns!', 'Boa!', 'Apoiado!', 'Ótimo!', 'Viva!', 'Fiufiu!', 'Hup!', 'Hurra!', 
+                        'Alô!', 'Olá!', 'Hei!', 'Psiu!', 'Ô!', 'Oi!', 'Psiu!', 'Psit!', 'Ó!', 'Claro!', 'Certo!', 'Sem dúvida!', 'Ótimo!', 'Então!', 'Sim!', 'Pois não!', 
+                        'Tá!', 'Hã-hã!', 'Droga!', 'Porcaria!', 'Credo!', 'Perdão!', 'Opa!', 'Desculpa!', 'Desculpe!', 'Foi mal!', 'Oxalá!', 'Tomara!', 'Quisera!', 'Queira', 
+                        'Deus!', 'Quem me dera!', 'Adeus!', 'Até logo!', 'Tchau!', 'Até amanhã!', 'Ai!', 'Ui!', 'Ah!', 'Oh!', 'Meu', 'Deus!', 'Ai de mim!', 'Hum?', 
+                        'Hem?', 'Hã?', 'Ué!', 'Epa!', 'Oh!', 'Puxa!', 'Quê!', 'Nossa!', 'Nossa mãe!', 'Virgem!', 'Caramba!', 'Xi!', 'Meu Deus!', 'Senhor Jesus!', 'Ui!', 
+                        'Crê em Deus pai!', 'Ânimo!', 'Coragem!', 'Adiante!', 'Avante!', 'Vamos!', 'Eia!', 'Firme!', 'Força!', 'Toca!', 'Upa!', 'Vai nessa!', 'Oh!', 'Credo!', 
+                        'Cruzes!', 'Ui!', 'Ai!', 'Uh!', 'Barbaridade!', 'Socorro!', 'Francamente!', 'Que medo!', 'Jesus!', 'Jesus', 'Maria e José!', 'Viva!', 'Oba!', 'Boa!', 
+                        'Bem!', 'Bom!', 'Upa!', 'Ah!', 'Alô!', 'Oi!', 'Olá!', 'Adeus!', 'Tchau!', 'Salve!', 'Ave!', 'Viva!', 'Psiu!', 'Shh!', 'Silêncio!', 'Basta!', 'Chega!', 'Calado!', 
+                        'Quieto!', 'Bico fechado!']
+
+    interjeicao_list_lower = [w.lower() for w in interjeicao_list]
+    text_clean = [word.lower() for word in self.__accent_remover(txt).split()]
+
+    return sum(1 for word in text_clean if word in interjeicao_list_lower)
+
   def get_defined_word_types(self, txt):
     word_types = self.get_words_types(txt)
 
     result_json = {
       "verbos": sum('VERB' in type_tuple for type_tuple in word_types),
-      "substantivos": sum('NOUN' or 'PROPN' in type_tuple for type_tuple in word_types),
+      "substantivos": sum('NOUN' in type_tuple for type_tuple in word_types) + sum('PROPN' in type_tuple for type_tuple in word_types),
       "adverbios": sum('ADV' in type_tuple for type_tuple in word_types),
       "pronomes": sum('PRON' in type_tuple for type_tuple in word_types),
       "artigos": sum('DET' in type_tuple for type_tuple in word_types),
       "adjetivo": sum('ADJ' in type_tuple for type_tuple in word_types),
       "numerais": sum('NUM' in type_tuple for type_tuple in word_types),
       "preposicoes": sum('ADP' in type_tuple for type_tuple in word_types),
-      "conjuncoes": sum('CCONJ' or 'SCONJ' in type_tuple for type_tuple in word_types),
-      "interjeicoes": 0
+      "conjuncoes": sum('CCONJ' in type_tuple for type_tuple in word_types) + sum ('SCONJ' in type_tuple for type_tuple in word_types),
+      "interjeicoes": self.count_interjeicao(txt),
+      "verbos_modais": self.count_modal_verbs(txt)
     }
 
     return result_json
@@ -154,6 +190,13 @@ class LinguisticAnalyses():
 
     return count_pronomes
 
+  def count_modal_verbs(self, word_types):
+    doc = self.nlp(txt)
+    verbs = [token.lemma_ for token in doc if token.pos_ == 'VERB']
+    result = verbs.count('dever') + verbs.count('ter') + verbs.count('poder')
+
+    return result
+
   def count_caracteres(self, txt):
     return len(txt)
 
@@ -198,12 +241,29 @@ class LinguisticAnalyses():
   def make_linguistic_analyses(self, txt):
     """ this method run all analysis for this module and return them within a json """
 
-    return {}
+    word_types = self.get_defined_word_types(txt)
+
+    other_tags = {
+      "n_palvaras": self.count_words(txt),
+      "prop_palavras_erradas": self.wrong_proportion(txt),
+      "n_camel_case": self.count_entities(txt),
+      "n_upper_case": self.count_upper_case_words(txt),
+      "n_pronome_1": self.count_pronome_pessoal_eu_tu_voce(txt),
+      "n_pronome_1_plural": self.count_pronome_pessoal_nos(txt),
+      "n_pronome_2": self.count_pronome_pessoal_elxs(txt),
+      "n_characteres": self.count_caracteres(txt),
+      "avg_sentence": self.count_sentence_average_size(txt),
+      "avg_word_length": self.count_word_average_size(txt)
+    }
+
+    result = dict(word_types.items(), **other_tags)
+
+    return result
 
 
 if __name__ == "__main__":
-    txt = "O Lula e o Machao de Assis foi solto ontem"
+    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(1) + '.txt', encoding='utf-8').read()
 
     analisator = LinguisticAnalyses()
-    print(analisator.count_words_types(txt))
-    print(analisator.count_entities(txt))
+    print(analisator.get_defined_word_types(txt))
+    print(analisator.make_linguistic_analyses(txt))

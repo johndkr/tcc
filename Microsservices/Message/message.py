@@ -3,7 +3,6 @@ import os, sys
 sys.path.append('..\\..\\')
 
 from googletrans import Translator
-from unicodedata import normalize as unicodedata
 from collections import Counter 
 from pyUFbr.baseuf import ufbr
 
@@ -13,6 +12,7 @@ from Microsservices.CommonUtil.Log import log_util
 import re
 import nltk
 import json
+import unicodedata
 
 nltk.download('punkt')
 from nltk.tokenize import sent_tokenize

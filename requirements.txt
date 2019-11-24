@@ -3,7 +3,7 @@ pip install tweepy
 pip install beautifulsoup4
 pip install google
 pip install pyspellchecker
-pip install pyufbr # lista de cidades e estados do brasil
+pip install pyufbr
 pip install Flask
 pip install newsapi-python
 pip install spacy
