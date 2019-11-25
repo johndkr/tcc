@@ -1,4 +1,5 @@
 #linguistic
+# -*- coding: utf-8 -*-
 import os, sys
 sys.path.append('..\\..\\')
 
@@ -24,23 +25,22 @@ KNOWN_WORDS = ".\\data\\known_words.txt"
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
 class LinguisticAnalyses():
-  spellchecker = SpellChecker(language='pt')
   log_manager = log_util.Log_Util(True)
   nlp = spacy.load('pt_core_news_sm')
 
   def __init__(self):
-    self.spellchecker = SpellChecker()
+    self.spellchecker = SpellChecker(language='pt')
     self.__load_known_words()
   
   def __accent_remover(self, txt):
     ### this method removes all accents from a string
     # return unicodedata.normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
-    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','')
+    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
     return text_cleanned.translate(str.maketrans('', '', string.punctuation))
 
   def __remove_them_all(self, txt):
     # This method returns a string only containg numbers, letters and space
-    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','')
+    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
     nfkd = unicodedata.normalize('NFKD', text_cleanned)
     palavraSemAcento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
 
@@ -50,7 +50,7 @@ class LinguisticAnalyses():
     known_words = None
     try:
       path = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
-      known_words = open(path).read().split()
+      known_words = open(path, encoding='utf-8').read().split()
       print("\nKnown words for spellchecker: ", known_words)
       self.log_manager.info('Found file at: ' + path)
     except Exception as err:
@@ -62,7 +62,10 @@ class LinguisticAnalyses():
   def wrong_proportion(self, text):
     text_cleanned = self.__accent_remover(text)
     split_it = text_cleanned.split()
+
+    print("Wrong words: \n")
     print(self.spellchecker.unknown(split_it))
+
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
   def get_words_types(self, txt):
@@ -262,8 +265,7 @@ class LinguisticAnalyses():
 
 
 if __name__ == "__main__":
-    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(1) + '.txt', encoding='utf-8').read()
+    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(10) + '.txt', encoding='utf-8').read()
 
     analisator = LinguisticAnalyses()
-    print(analisator.get_defined_word_types(txt))
     print(analisator.make_linguistic_analyses(txt))
