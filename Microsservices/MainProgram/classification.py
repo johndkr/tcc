@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn import datasets, linear_model
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import Ridge, LogisticRegression
@@ -119,6 +120,26 @@ def class_simple_split(pred, x1,y1):
 	print("\n")
 	print("------------- END SIMPLE SPLIT --------------\n")
 
+#from sklearn.tree import export_graphviz
+#from subprocess import call
+#from IPython.display import Image
+#from graphviz import Source
+
+def test_tree(x1,y1):
+	pred = RandomForestClassifier(n_estimators=10)
+	X_train, X_test, y_train, y_test = train_test_split(x1, y1, test_size=0.30)
+	model = pred.fit(X_train, y_train)
+	# Extract single tree
+	estimator = model.estimators_[5]
+
+	graph = Source(export_graphviz(estimator, out_file='tree.dot', 
+                feature_names = x1.columns.ravel(),
+                class_names = ['index','fake_or_true'],
+                rounded = True, proportion = False, 
+                precision = 2, filled = True))
+	call(['dot', '-Tpng', 'tree.dot', '-o', 'tree.png', '-Gdpi=600'])
+	Image(filename = 'tree.png')
+
 def classify():
 	#Train and test separation
 	df = get_df('db/database.xls')
@@ -144,6 +165,7 @@ def classify():
 		print("2) Neural Network (10 layers, 1000 max iterations)")
 		print("3) Lasso")
 		print("4) Random Forest (100 estimators)")
+		print("5) Naive Bayes")
 		i = input()
 		if i == "1":
 			# KNN
@@ -161,6 +183,10 @@ def classify():
 			#Random Forest Classifier
 			pred = RandomForestClassifier(n_estimators=100)
 			nom_pred = "RANDOM FOREST"
+		elif i == "5":
+			#Naive Bayes Classifier
+			pred = GaussianNB()
+			nom_pred = "NAIVE BAYES"
 		elif i == "0":
 			break
 		else:
@@ -170,4 +196,7 @@ def classify():
 		class_kfold(pred,df.iloc[:, 2:26],df['fake_or_true'])
 		class_simple_split(pred,df.iloc[:, 2:26],df['fake_or_true'])
 
+		#test_tree(df.iloc[:, 2:26],df['fake_or_true'])
+
 classify()
+
