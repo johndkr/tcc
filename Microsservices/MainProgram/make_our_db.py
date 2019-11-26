@@ -79,13 +79,11 @@ def get_analysis():
         txt = kill_gremlins(open(f, 'r', encoding='utf-8', newline='').read())
 
         ling = ling_analysator.make_linguistic_analyses(txt)
-        # source= source_analysator.
-        ##mes = mes_analysator.get_txt_feeling(txt)
-        print(f.split('\\'))
+        
         res1 = {
             'index': os.path.basename(f).split('.')[0],
             'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
-            # 'feeling': mes_analysator.get_txt_feeling(txt),
+            'feeling': mes_analysator.get_txt_feeling(txt),
             'nr_links': source_analysator.count_links(txt)
         }
         result.append(dict(res1.items(), **ling))

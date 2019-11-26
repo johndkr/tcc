@@ -13,7 +13,7 @@ import re
 import nltk
 import json
 import unicodedata
-import sklearn
+import time
 
 STATE_CITIES_DICTIONARY = ".\\data\\state_city_dictionary"
 
@@ -96,6 +96,7 @@ class MessageAnalyses():
 
     def get_txt_feeling(self, txt):
         self.log_manager.debbug("Getting text feeling")
+        time.sleep(1)
         txt = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
         txt_en = self.translate_pt_to_en(txt)
         feeling = feeling_evaluator.get_text_feeling(txt_en)

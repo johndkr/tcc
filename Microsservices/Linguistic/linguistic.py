@@ -12,7 +12,6 @@ import unicodedata
 
 from spellchecker import SpellChecker
 from collections import Counter 
-from googletrans import Translator
 
 import nltk
 nltk.download('punkt')
