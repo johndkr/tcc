@@ -21,12 +21,12 @@ class SourceAnalyses():
 		self.log_manager.info("Counting number of links")
 		urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
 		nr_urls = len(urls)
-		print(nr_urls)
+		# print(nr_urls)
 		return nr_urls
 
 	def get_domain(self, url):
 		ext = tldextract.extract(url)
-		print(ext.domain)
+		# print(ext.domain)
 		return ext.domain
 
 	def define_category(self, category):
@@ -38,6 +38,6 @@ class SourceAnalyses():
 		tree = html.fromstring(page.content)
 		res = tree.xpath('//div[contains(@class, "permalink-tweet-container")]//p[contains(@class, "tweet-text")]//text()')
 		print(res)
-
+	
 sa = SourceAnalyses()
 sa.get_text_from_tweet('s')

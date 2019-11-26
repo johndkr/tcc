@@ -25,7 +25,7 @@ KNOWN_WORDS = ".\\data\\known_words.txt"
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
 class LinguisticAnalyses():
-  log_manager = log_util.Log_Util(True)
+  log_manager = log_util.Log_Util(False)
   nlp = spacy.load('pt_core_news_sm')
 
   def __init__(self):
@@ -51,7 +51,6 @@ class LinguisticAnalyses():
     try:
       path = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
       known_words = open(path, encoding='utf-8').read().split()
-      print("\nKnown words for spellchecker: ", known_words)
       self.log_manager.info('Found file at: ' + path)
     except Exception as err:
       self.log_manager.exception(err)
@@ -59,15 +58,59 @@ class LinguisticAnalyses():
     finally:
       self.spellchecker.word_frequency.load_words(known_words)
 
+  def __kill_gremlins(self, text):
+    cp1252 = {
+      # from http://www.microsoft.com/typography/unicode/1252.htm
+      u"\x80": u"\u20AC", # EURO SIGN
+      u"\x82": u"\u201A", # SINGLE LOW-9 QUOTATION MARK
+      u"\x83": u"\u0192", # LATIN SMALL LETTER F WITH HOOK
+      u"\x84": u"\u201E", # DOUBLE LOW-9 QUOTATION MARK
+      u"\x85": u"\u2026", # HORIZONTAL ELLIPSIS
+      u"\x86": u"\u2020", # DAGGER
+      u"\x87": u"\u2021", # DOUBLE DAGGER
+      u"\x88": u"\u02C6", # MODIFIER LETTER CIRCUMFLEX ACCENT
+      u"\x89": u"\u2030", # PER MILLE SIGN
+      u"\x8A": u"\u0160", # LATIN CAPITAL LETTER S WITH CARON
+      u"\x8B": u"\u2039", # SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+      u"\x8C": u"\u0152", # LATIN CAPITAL LIGATURE OE
+      u"\x8E": u"\u017D", # LATIN CAPITAL LETTER Z WITH CARON
+      u"\x91": u"\u2018", # LEFT SINGLE QUOTATION MARK
+      u"\x92": u"\u2019", # RIGHT SINGLE QUOTATION MARK
+      u"\x93": u"\u201C", # LEFT DOUBLE QUOTATION MARK
+      u"\x94": u"\u201D", # RIGHT DOUBLE QUOTATION MARK
+      u"\x95": u"\u2022", # BULLET
+      u"\x96": u"\u2013", # EN DASH
+      u"\x97": u"\u2014", # EM DASH
+      u"\x98": u"\u02DC", # SMALL TILDE
+      u"\x99": u"\u2122", # TRADE MARK SIGN
+      u"\x9A": u"\u0161", # LATIN SMALL LETTER S WITH CARON
+      u"\x9B": u"\u203A", # SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+      u"\x9C": u"\u0153", # LATIN SMALL LIGATURE OE
+      u"\x9E": u"\u017E", # LATIN SMALL LETTER Z WITH CARON
+      u"\x9F": u"\u0178", # LATIN CAPITAL LETTER Y WITH DIAERESIS
+    }
+    # map cp1252 gremlins to real unicode characters
+    if re.search(u"[\x80-\x9f]", text):
+      def fixup(m):
+        s = m.group(0)
+        return cp1252.get(s, s)
+      
+      if isinstance(text, str):
+        # make sure we have a unicode string
+        text = text
+        text = re.sub(u"[\x80-\x9f]", fixup, text)
+    return text
+
   def wrong_proportion(self, text):
     text_cleanned = self.__accent_remover(text)
     split_it = text_cleanned.split()
-
-    print("Wrong words: \n")
-    print(self.spellchecker.unknown(split_it))
-
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
+  def get_wrong_words(self, text):
+    text_cleanned = self.__accent_remover(text)
+    split_it = text_cleanned.split()
+    return self.spellchecker.unknown(split_it)
+
   def get_words_types(self, txt):
     self.log_manager.debbug("Getting words types...")
     
@@ -136,7 +179,7 @@ class LinguisticAnalyses():
   def get_entities(self, txt):
     # this method gets all entities within a given text.
     # IT IS SENSITIVE to grammar mistakes
-    self.log_manager.debbug("Getting text entities...")
+    #self.log_manager.debbug("Getting text entities...")
 
     doc = self.nlp(txt)
     return doc.ents
@@ -145,7 +188,7 @@ class LinguisticAnalyses():
     # this method receives a text and counts its entities
     # IT IS SENSITIVE to grammar mistakes on the text
 
-    self.log_manager.debbug("Counting entities mentioned on text")
+    #self.log_manager.debbug("Counting entities mentioned on text")
 
     entities = self.get_entities(txt)
     entities = list(dict.fromkeys([str(ent) for ent in entities]))
@@ -193,7 +236,7 @@ class LinguisticAnalyses():
 
     return count_pronomes
 
-  def count_modal_verbs(self, word_types):
+  def count_modal_verbs(self, txt):
     doc = self.nlp(txt)
     verbs = [token.lemma_ for token in doc if token.pos_ == 'VERB']
     result = verbs.count('dever') + verbs.count('ter') + verbs.count('poder')
@@ -211,38 +254,11 @@ class LinguisticAnalyses():
     clean_text = self.__remove_them_all(txt)
     words = clean_text.split()
     return sum(len(word) for word in words) / len(words)
-
-  def __chances_based_word_type(self, types):
-    verb = types['VERB'] if 'VERB' in types else 0
-    noun = types['NOUN'] if 'NOUN' in types else 0
-    adv = types['ADV'] if 'ADV' in types else 0
-
-    if (verb == 0) or (noun == 0) or (adv == 0):
-      return 1
-    else:
-      chance = (1/verb)*0.33 + (1/noun)*0.34 + (1/adv)*0.33
-    return chance
-
-  def make_linguistic_analyses_old(self, txt):
-    result = {
-      "Proportion" : self.wrong_proportion(txt),
-      "WordsTypes" : self.count_words_types(txt),
-      "Entities" : self.count_entities(txt),
-    }
-
-    prop_chance = result["Proportion"]/0.3
-    
-    if prop_chance < 1:
-      fake_new_chance = 0.65*prop_chance + 0.35*self.__chances_based_word_type(result["WordsTypes"])
-    else:
-      fake_new_chance = 1
-
-    result["FakeNewChance"] = fake_new_chance 
-
-    return result
-
+  
   def make_linguistic_analyses(self, txt):
     """ this method run all analysis for this module and return them within a json """
+
+    txt = self.__kill_gremlins(txt)
 
     word_types = self.get_defined_word_types(txt)
 
@@ -263,9 +279,9 @@ class LinguisticAnalyses():
 
     return result
 
-
 if __name__ == "__main__":
-    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(10) + '.txt', encoding='utf-8').read()
+    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(2) + '.txt', encoding='utf-8').read()
+    print(txt)
 
     analisator = LinguisticAnalyses()
     print(analisator.make_linguistic_analyses(txt))
