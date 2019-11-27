@@ -12,6 +12,7 @@ import unicodedata
 
 from spellchecker import SpellChecker
 from collections import Counter 
+from pyUFbr.baseuf import ufbr
 
 import nltk
 nltk.download('punkt')
@@ -31,30 +32,43 @@ class LinguisticAnalyses():
     self.spellchecker = SpellChecker(language='pt')
     self.__load_known_words()
   
-  def __accent_remover(self, txt):
+  def __ponctuation_remover(self, txt):
     ### this method removes all accents from a string
     # return unicodedata.normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
-    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
+    text_cleanned = txt.replace('\t','').replace('\r\n', ' ').replace('  ', ' ')
+    text_cleanned = text_cleanned.replace(u"\u201C", '').replace(u"\u201D",'').replace('"','').replace(u"\u2018",'').replace(u"\u2019",'').replace('…','')
+
     return text_cleanned.translate(str.maketrans('', '', string.punctuation))
 
   def __remove_them_all(self, txt):
     # This method returns a string only containg numbers, letters and space
-    text_cleanned = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
+    text_cleanned = txt.replace('  ', ' ').replace('\t','').replace('\r\n\r\n', ' ')
     nfkd = unicodedata.normalize('NFKD', text_cleanned)
     palavraSemAcento = u"".join([c for c in nfkd if not unicodedata.combining(c)])
 
     return re.sub('[^a-zA-Z0-9 \\\]', '', palavraSemAcento)
 
   def __load_known_words(self):
-    known_words = None
+    known_words = []
+    siglas_partidarias = ['MDB', 'PT', 'PSDB', 'PP', 'PDT', 'PTB', 'DEM', 'PL', 'PSB', 'PSC', 'PCdoB', 'PV', 'PSD',
+                          'PSL', 'PMN', 'PTC', 'DC', 'PODE', 'Avante', 'Solidariedade', 'PSOL', 'PRTB', 'PROS', 'Patriota'
+                          'PMB', 'NOVO', 'REDE', 'PSTU', 'PCB', 'PCO', 'PMDB']
     try:
       path = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
       known_words = open(path, encoding='utf-8').read().split()
-      self.log_manager.info('Found file at: ' + path)
+      self.log_manager.info('Found file for known words at: ' + path)
     except Exception as err:
       self.log_manager.exception(err)
       known_words = []
     finally:
+      
+      known_words += ufbr.list_uf #learn BR UFs
+      known_words += siglas_partidarias
+      known_words += [partido + regiao for partido in siglas_partidarias for regiao in ufbr.list_uf] # learn partido regiao PT-SP = PTSP after removing ponctuation
+      
+      for uf in ufbr.list_uf: #Learn BR cities with name titled and without "-"
+        known_words += [self.__ponctuation_remover(city.title()) for city in ufbr.list_cidades(uf)]
+
       self.spellchecker.word_frequency.load_words(known_words)
 
   def __kill_gremlins(self, text):
@@ -101,12 +115,14 @@ class LinguisticAnalyses():
     return text
 
   def wrong_proportion(self, text):
-    text_cleanned = self.__accent_remover(text)
+    text_cleanned = self.__ponctuation_remover(text)
+    #removing double and single quotes
     split_it = text_cleanned.split()
     return len(self.spellchecker.unknown(split_it))/(len(split_it))
   
   def get_wrong_words(self, text):
-    text_cleanned = self.__accent_remover(text)
+    text_cleanned = self.__ponctuation_remover(text)
+
     split_it = text_cleanned.split()
     return self.spellchecker.unknown(split_it)
 
@@ -132,23 +148,22 @@ class LinguisticAnalyses():
     return types_count
 
   def count_interjeicao(self, txt):
-    interjeicao_list = ['Cuidado!', 'Olhe!', 'Atenção!', 'Fogo!', 'Olha lá!', 'Alto lá!', 'Calma!', 'Devagar!', 'Sentido!', 'Alerta!', 'Vê bem!', 'Volta aqui!',
-                        'Fora!', 'Toca!', 'Xô!', 'Xô pra lá!', 'Passa!', 'Sai!', 'Roda!', 'Arreda!', 'Rua!', 'Cai fora!', 'Vaza!', 'Graças a Deus!', 'Obrigado!', 
-                        'Agradecido!', 'Muito obrigada!', 'Valeu!', 'Valeu a pena!', 'Ah!', 'Eh!', 'Oh!', 'Oba!', 'Eba!', 'Viva!', 'Olá!', 'Olé!', 'Eta!', 'Eita!', 
-                        'Eia!', 'Uhu!', 'Que bom!', 'Ufa!', 'Uf!', 'Arre!', 'Ah!', 'Eh!', 'Puxa!', 'Ainda bem!', 'Nossa senhora!', 'Coragem!', 'Força!', 'Ânimo!', 
-                        'Avante!', 'Eia!', 'Vamos!', 'Firme!', 'Inteirinho!', 'Bora!', 'Socorro!', 'Ei!', 'Ô!', 'Oh!', 'Alô!', 'Psiu!', 'Olá!', 'Eh!', 'Psit!', 'Misericórdia!', 
-                        'Muito bem!', 'Bem!', 'Bravo!', 'Bis!', 'É isso aí!', 'Isso!', 'Parabéns!', 'Boa!', 'Apoiado!', 'Ótimo!', 'Viva!', 'Fiufiu!', 'Hup!', 'Hurra!', 
-                        'Alô!', 'Olá!', 'Hei!', 'Psiu!', 'Ô!', 'Oi!', 'Psiu!', 'Psit!', 'Ó!', 'Claro!', 'Certo!', 'Sem dúvida!', 'Ótimo!', 'Então!', 'Sim!', 'Pois não!', 
-                        'Tá!', 'Hã-hã!', 'Droga!', 'Porcaria!', 'Credo!', 'Perdão!', 'Opa!', 'Desculpa!', 'Desculpe!', 'Foi mal!', 'Oxalá!', 'Tomara!', 'Quisera!', 'Queira', 
-                        'Deus!', 'Quem me dera!', 'Adeus!', 'Até logo!', 'Tchau!', 'Até amanhã!', 'Ai!', 'Ui!', 'Ah!', 'Oh!', 'Meu', 'Deus!', 'Ai de mim!', 'Hum?', 
-                        'Hem?', 'Hã?', 'Ué!', 'Epa!', 'Oh!', 'Puxa!', 'Quê!', 'Nossa!', 'Nossa mãe!', 'Virgem!', 'Caramba!', 'Xi!', 'Meu Deus!', 'Senhor Jesus!', 'Ui!', 
-                        'Crê em Deus pai!', 'Ânimo!', 'Coragem!', 'Adiante!', 'Avante!', 'Vamos!', 'Eia!', 'Firme!', 'Força!', 'Toca!', 'Upa!', 'Vai nessa!', 'Oh!', 'Credo!', 
-                        'Cruzes!', 'Ui!', 'Ai!', 'Uh!', 'Barbaridade!', 'Socorro!', 'Francamente!', 'Que medo!', 'Jesus!', 'Jesus', 'Maria e José!', 'Viva!', 'Oba!', 'Boa!', 
-                        'Bem!', 'Bom!', 'Upa!', 'Ah!', 'Alô!', 'Oi!', 'Olá!', 'Adeus!', 'Tchau!', 'Salve!', 'Ave!', 'Viva!', 'Psiu!', 'Shh!', 'Silêncio!', 'Basta!', 'Chega!', 'Calado!', 
-                        'Quieto!', 'Bico fechado!']
+    interjeicao_list = ['Cuidado!', 'Olhe!', 'Atenção!', 'Fogo!', 'Olha lá!', 'Alto lá!', 'Calma!', 'Devagar!', 'Sentido!', 'Alerta!', 'Vê bem!', 
+                        'Volta aqui!', 'Fora!', 'Toca!', 'Xô!', 'Xô pra lá!', 'Passa!', 'Sai!', 'Roda!', 'Arreda!', 'Rua!', 'Cai fora!', 'Vaza!', 
+                        'Graças a Deus!', 'Obrigado!', 'Agradecido!', 'Muito obrigada!', 'Valeu!', 'Valeu a pena!', 'Ah!', 'Ah,' 'Eh!', 'Oh!', 'Oba!', 
+                        'Eba!', 'Viva!', 'Olá!', 'Olé!', 'Eta!', 'Eita!', 'Eia!', 'Uhu!', 'Que bom!', 'Ufa!', 'Uf!', 'Arre!', 'Puxa!', 'Ainda bem!', 
+                        'Nossa senhora!', 'Coragem!', 'Força!', 'Ânimo!', 'Avante!', 'Vamos!', 'Firme!', 'Inteirinho!', 'Bora!', 'Socorro!', 'Ei!', 
+                        'Ô!', 'Alô!', 'Psiu!', 'Psit!', 'Misericórdia!', 'Muito bem!', 'Bem!', 'Bravo!', 'Bis!', 'É isso aí!', 'Isso!', 'Parabéns!', 
+                        'Boa!', 'Apoiado!', 'Ótimo!', 'Fiufiu!', 'Hup!', 'Hurra!', 'Hei!', 'Oi!', 'Ó!', 'Claro!', 'Certo!', 'Sem dúvida!', 'Então!', 
+                        'Sim!', 'Pois não!', 'Tá!', 'Hã-hã!', 'Droga!', 'Porcaria!', 'Credo!', 'Perdão!', 'Opa!', 'Desculpa!', 'Desculpe!', 'Foi mal!', 
+                        'Oxalá!', 'Tomara!', 'Quisera!', 'Queira', 'Deus!', 'Quem me dera!', 'Adeus!', 'Até logo!', 'Tchau!', 'Até amanhã!', 'Ai!', 
+                        'Ui!', 'Meu', 'Ai de mim!', 'Hum?', 'Hem?', 'Hã?', 'Ué!', 'Epa!', 'Quê!', 'Nossa!', 'Nossa mãe!', 'Virgem!', 'Caramba!', 'Xi!',
+                        'Meu Deus!', 'Senhor Jesus!', 'Crê em Deus pai!', 'Adiante!', 'Upa!', 'Vai nessa!', 'Cruzes!', 'Uh!', 'Barbaridade!',
+                        'Francamente!', 'Que medo!', 'Jesus!', 'Jesus', 'Maria e José!', 'Bom!', 'Salve!', 'Ave!', 'Shh!', 'Silêncio!', 'Basta!',
+                        'Chega!', 'Calado!', 'Quieto!', 'Bico fechado!']
 
     interjeicao_list_lower = [w.lower() for w in interjeicao_list]
-    text_clean = [word.lower() for word in self.__accent_remover(txt).split()]
+    text_clean = [word.lower() for word in self.__ponctuation_remover(txt).split()]
 
     return sum(1 for word in text_clean if word in interjeicao_list_lower)
 
@@ -165,6 +180,7 @@ class LinguisticAnalyses():
       "numerais": sum('NUM' in type_tuple for type_tuple in word_types),
       "preposicoes": sum('ADP' in type_tuple for type_tuple in word_types),
       "conjuncoes": sum('CCONJ' in type_tuple for type_tuple in word_types) + sum ('SCONJ' in type_tuple for type_tuple in word_types),
+      "pontuacao": sum('PUNCT' in type_tuple for type_tuple in word_types),
       "interjeicoes": self.count_interjeicao(txt),
       "verbos_modais": self.count_modal_verbs(txt)
     }

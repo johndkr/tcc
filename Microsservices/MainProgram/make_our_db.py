@@ -84,7 +84,8 @@ def get_analysis():
             'index': os.path.basename(f).split('.')[0],
             'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
             'feeling': mes_analysator.get_txt_feeling(txt),
-            'nr_links': source_analysator.count_links(txt)
+            'nr_links': source_analysator.count_links(txt),
+            'nr_locations': mes_analysator.count_location_mentions(txt)
         }
         result.append(dict(res1.items(), **ling))
         counter += 1
@@ -102,7 +103,7 @@ def get_wrong_words_list():
     for f in files:
         txt = open(f, 'r', encoding='utf-8', newline='').read()
         txt = kill_gremlins(txt)
-
+        
         result.append(ling_analysator.get_wrong_words(txt))
         counter += 1
         print("{0:.2f}% Completed".format(100*counter/len(files)))
@@ -126,4 +127,5 @@ def create_csv_file(list_of_analysis):
     print("Prontinho :)\n")
 
 if __name__ == "__main__":
-    get_analysis()
+    #get_analysis()
+    get_wrong_words_list()

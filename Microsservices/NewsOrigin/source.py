@@ -39,5 +39,5 @@ class SourceAnalyses():
 		res = tree.xpath('//div[contains(@class, "permalink-tweet-container")]//p[contains(@class, "tweet-text")]//text()')
 		print(res)
 	
-sa = SourceAnalyses()
-sa.get_text_from_tweet('s')
+# sa = SourceAnalyses()
+# sa.get_text_from_tweet('s')

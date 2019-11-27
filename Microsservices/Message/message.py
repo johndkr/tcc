@@ -162,6 +162,22 @@ class MessageAnalyses():
 
         self.save_cities_learned()
 
+    def count_location_mentions(self, txt):
+        result = 0
+        try:
+            #counts locations mentions in text
+            txt = self.__remove_them_all(txt)
+            txt = txt.lower() # assuring we will get the location mention even if is poorly writen
+
+            for state in ufbr.list_uf:
+                result += sum(txt.count(self.__remove_them_all(city.lower())) for city in ufbr.list_cidades(state))
+        except Exception as err:
+            result = 0
+            print(err)
+        finally:
+            return result
+
+
 if __name__ == "__main__":
     txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(2) + '.txt', encoding='utf-8').read()
 
