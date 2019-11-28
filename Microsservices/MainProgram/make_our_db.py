@@ -73,42 +73,53 @@ def get_analysis():
     files = get_files()
     result = []
 
-    counter = 0
+    chunk_size = 500
+    control = 500
 
-    for f in files:
-        txt = kill_gremlins(open(f, 'r', encoding='utf-8', newline='').read())
+    while control < (len(files) + 1):
+        counter = 0
+        for f in files[control:control+chunk_size-1]:
+            txt = kill_gremlins(open(f, 'r', encoding='utf-8', newline='').read())
 
-        ling = ling_analysator.make_linguistic_analyses(txt)
-        
-        res1 = {
-            'index': os.path.basename(f).split('.')[0],
-            'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
-            'feeling': mes_analysator.get_txt_feeling(txt),
-            'nr_links': source_analysator.count_links(txt),
-            'nr_locations': mes_analysator.count_location_mentions(txt)
-        }
-        result.append(dict(res1.items(), **ling))
-        counter += 1
-        print("{0:.2f}% Completed".format(100*counter/len(files)))
+            ling = ling_analysator.make_linguistic_analyses(txt)
+            
+            res1 = {
+                'file_name': str(f),
+                'index': os.path.basename(f).split('.')[0],
+                'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
+                # 'feeling': mes_analysator.get_txt_feeling(txt),
+                'feeling': -1,
+                'nr_links': source_analysator.count_links(txt),
+                'nr_locations': mes_analysator.count_location_mentions(txt)
+            }
+            result.append(dict(res1.items(), **ling))
+            counter += 1
+            print("{0:.2f}% Completed".format(100*counter/len(files[control:control+chunk_size-1])))
 
-    print("A analise terminou, com {} resultados".format(len(result)))
-    create_csv_file(result)
+        print("A analise terminou, com {} resultados para chunk {}-{}".format(len(result), control, control+chunk_size-1))
+        print("\nA meta é atingir {} arquivos".format(len(files)))
+        create_csv_file(result, control, control+chunk_size-1)
+        control = control+chunk_size
 
 def get_wrong_words_list():
     ling_analysator = linguistic.LinguisticAnalyses()
     files = get_files()
     result = []
     counter = 0
+    sum_words = 0
 
     for f in files:
         txt = open(f, 'r', encoding='utf-8', newline='').read()
         txt = kill_gremlins(txt)
-        
-        result.append(ling_analysator.get_wrong_words(txt))
+
+        wrong_words = ling_analysator.get_wrong_words(txt)
+        result.append(wrong_words)
+        sum_words += len(wrong_words)
+
         counter += 1
         print("{0:.2f}% Completed".format(100*counter/len(files)))
 
-    print("Lista de palavras erradas pegas com sucesso! {} conjuntos encontrados\n".format(len(result)))
+    print("Lista de palavras erradas pegas com sucesso! {} conjuntos encontrados\nCom {} palavras erradas".format(len(result), sum_words))
 
     with open("wrong_words_found.csv","w",newline='',encoding='utf-8') as f:
         print("Escrevendo resultado num csv..\n")
@@ -117,9 +128,9 @@ def get_wrong_words_list():
 
     print("Prontinho :)\n")
 
-def create_csv_file(list_of_analysis):
+def create_csv_file(list_of_analysis, inicio, fim):
     print("Colocando resultados em CSV...\n")
-    with open("our_db.csv","w",newline="") as f:
+    with open("our_db_chunk_{}-{}.csv".format(str(inicio), str(fim)),"w",newline="") as f:
         header = list_of_analysis[0].keys()
         cw = csv.DictWriter(f,header,delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         cw.writeheader()
@@ -127,5 +138,5 @@ def create_csv_file(list_of_analysis):
     print("Prontinho :)\n")
 
 if __name__ == "__main__":
-    #get_analysis()
-    get_wrong_words_list()
+    get_analysis()
+    # get_wrong_words_list()

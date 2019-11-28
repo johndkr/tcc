@@ -21,6 +21,7 @@ from nltk.tokenize import sent_tokenize
 from Microsservices.CommonUtil.Log import log_util
 
 KNOWN_WORDS = ".\\data\\known_words.txt"
+PT_BR_DICTIONARY = ".\\data\\palavras.txt"
 
 ## consult this before defining which word split will be used: https://machinelearningmastery.com/clean-text-machine-learning-python/
 
@@ -54,9 +55,14 @@ class LinguisticAnalyses():
                           'PSL', 'PMN', 'PTC', 'DC', 'PODE', 'Avante', 'Solidariedade', 'PSOL', 'PRTB', 'PROS', 'Patriota'
                           'PMB', 'NOVO', 'REDE', 'PSTU', 'PCB', 'PCO', 'PMDB']
     try:
-      path = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
-      known_words = open(path, encoding='utf-8').read().split()
-      self.log_manager.info('Found file for known words at: ' + path)
+      path_known_words = os.path.join(os.path.dirname(os.path.abspath(__file__)), KNOWN_WORDS)
+      path_pt_br_dic = os.path.join(os.path.dirname(os.path.abspath(__file__)), PT_BR_DICTIONARY)
+
+      known_words = open(path_known_words, encoding='utf-8').read().split()
+      known_words += open(path_pt_br_dic, encoding='utf-8').read().split()
+
+      self.log_manager.info('Found file for known words at: ' + path_known_words)
+
     except Exception as err:
       self.log_manager.exception(err)
       known_words = []
@@ -117,20 +123,24 @@ class LinguisticAnalyses():
   def wrong_proportion(self, text):
     text_cleanned = self.__ponctuation_remover(text)
     #removing double and single quotes
-    split_it = text_cleanned.split()
-    return len(self.spellchecker.unknown(split_it))/(len(split_it))
+    words_rooted = self.get_words_verb_roots(text_cleanned)
+    return len(self.spellchecker.unknown(words_rooted))/(len(words_rooted))
   
   def get_wrong_words(self, text):
     text_cleanned = self.__ponctuation_remover(text)
 
-    split_it = text_cleanned.split()
-    return self.spellchecker.unknown(split_it)
+    words_rooted = self.get_words_verb_roots(text_cleanned) #getting words roots -> it
+    return self.spellchecker.unknown(words_rooted)
 
   def get_words_types(self, txt):
     self.log_manager.debbug("Getting words types...")
     
     doc = self.nlp(txt)
     return [(token.orth_, token.pos_) for token in doc]
+
+  def get_words_verb_roots(self, txt):
+    doc = self.nlp(txt)
+    return [token.lemma_ for token in doc if token.pos_ != "PROPN"]
 
   def count_words_types(self, txt):
     # this method reveices a text and returns all its words types counted in touples

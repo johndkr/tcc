@@ -89,19 +89,25 @@ class MessageAnalyses():
 
     def translate_pt_to_en(self, txt):
         """ translates text to english """
+        # time.sleep(1)
         translator = Translator()
         result = translator.translate(txt, src='pt')
         translator = None
         return str(result.text)
 
     def get_txt_feeling(self, txt):
-        self.log_manager.debbug("Getting text feeling")
-        time.sleep(1)
-        txt = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', ' ')
-        txt_en = self.translate_pt_to_en(txt)
-        feeling = feeling_evaluator.get_text_feeling(txt_en)
-
-        return int(feeling[1][0])
+        result = -1
+        try:
+            self.log_manager.debbug("Getting text feeling")
+            txt = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', '').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ')
+            txt_en = self.translate_pt_to_en(txt)
+            feeling = feeling_evaluator.get_text_feeling(txt_en)
+            result = int(feeling[1][0])
+        except Exception as err:
+            self.log_manager.err(err)
+            result = -1
+        finally:
+            return result
 
     def top_n_words(self, n, text):
         ## https://www.geeksforgeeks.org/find-k-frequent-words-data-set-python/
