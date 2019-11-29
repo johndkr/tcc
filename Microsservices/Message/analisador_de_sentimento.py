@@ -126,4 +126,7 @@ if __name__ == "__main__":
     # eval.model_1_test()
     # eval.model_2_test()
     # eval.model_3_test()
-    print(eval.get_txt_feeling("Lula é ladrão e roubou milhões de brasileiros!"))
+    txt1 = "O Lula é um ladrão que roubou meu coração"
+    print(txt1, "\n", eval.get_txt_feeling(txt1))
+    txt2 = "O Bolsonaro é um canalha e deveria ser impeachado!"
+    print(txt2, "\n", eval.get_txt_feeling(txt2))
