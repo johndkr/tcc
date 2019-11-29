@@ -28,8 +28,7 @@ def get_df(path):
 	df['link'] = labelencoder.fit_transform(df['link'])
 	df['category'] = labelencoder.fit_transform(df['category'])
 	df['publication_date'] = labelencoder.fit_transform(df['publication_date'])
-	df['nr_links'] = labelencoder.fit_transform(df['nr_links'])
-
+	#df['nr_links'] = labelencoder.fit_transform(df['nr_links'])
 	return df
 
 
@@ -82,6 +81,10 @@ def class_kfold(pred, x1,y1):
 	print("\n")
 	print("------------- END KFOLD SPLIT --------------\n")
 
+	#Acc test, TP, TN, FP, FN
+	res_kfold = [acc_score, cm_formatted[0][0],cm_formatted[0][1],cm_formatted[1][0],cm_formatted[1][1]]
+	return res_kfold
+
 def class_simple_split(pred, x1,y1):
 	X_train, X_test, y_train, y_test = train_test_split(x1, y1, test_size=0.30)
 	model = pred.fit(X_train, y_train)
@@ -120,6 +123,10 @@ def class_simple_split(pred, x1,y1):
 	print("\n")
 	print("------------- END SIMPLE SPLIT --------------\n")
 
+	#Acc test, TP, TN, FP, FN
+	res_simple = [acc_score_test, cm_test[0][0],cm_test[0][1],cm_test[1][0],cm_test[1][1]]
+	return res_simple
+
 #from sklearn.tree import export_graphviz
 #from subprocess import call
 #from IPython.display import Image
@@ -142,7 +149,7 @@ def test_tree(x1,y1):
 
 def classify():
 	#Train and test separation
-	df = get_df('db/database.xls')
+	df = get_df('db/our_db_v2.xls')
 
 	# KNN
 	#pred = KNeighborsRegressor(n_neighbors=77)
@@ -193,10 +200,71 @@ def classify():
 			print("Entrada errada")
 
 		print("\n *********************** " + nom_pred + " ***********************")
-		class_kfold(pred,df.iloc[:, 2:26],df['fake_or_true'])
-		class_simple_split(pred,df.iloc[:, 2:26],df['fake_or_true'])
+		class_kfold(pred,df.iloc[:, 3:27],df['fake_or_true'])
+		class_simple_split(pred,df.iloc[:, 3:27],df['fake_or_true'])
 
 		#test_tree(df.iloc[:, 2:26],df['fake_or_true'])
 
-classify()
+def classify_export():
+	#Train and test separation
+	df = get_df('db/database.xls')
+	res_vector = []
+
+	pred = KNeighborsRegressor(n_neighbors=33)
+	nom_pred = "KNN"
+	print("\n *********************** " + nom_pred + " ***********************")
+	res_kfold = class_kfold(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_simple = class_simple_split(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_kfold.append(nom_pred)
+	res_kfold.append("KFold")
+	res_simple.append(nom_pred)
+	res_simple.append("Simple Split")
+	res_vector.append(res_simple)
+	res_vector.append(res_kfold)
+
+	pred = GaussianNB()
+	nom_pred = "NAIVE BAYES"
+	print("\n *********************** " + nom_pred + " ***********************")
+	res_kfold = class_kfold(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_simple = class_simple_split(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_kfold.append(nom_pred)
+	res_kfold.append("KFold")
+	res_simple.append(nom_pred)
+	res_simple.append("Simple Split")
+	res_vector.append(res_simple)
+	res_vector.append(res_kfold)
+
+	pred = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
+	nom_pred = "NEURAL NETWORK"
+	print("\n *********************** " + nom_pred + " ***********************")
+	res_kfold = class_kfold(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_simple = class_simple_split(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_kfold.append(nom_pred)
+	res_kfold.append("KFold")
+	res_simple.append(nom_pred)
+	res_simple.append("Simple Split")
+	res_vector.append(res_simple)
+	res_vector.append(res_kfold)
+
+	pred = RandomForestClassifier(n_estimators=100)
+	nom_pred = "RANDOM FOREST"
+	print("\n *********************** " + nom_pred + " ***********************")
+	res_kfold = class_kfold(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_simple = class_simple_split(pred,df.iloc[:, 6:26],df['fake_or_true'])
+	res_kfold.append(nom_pred)
+	res_kfold.append("KFold")
+	res_simple.append(nom_pred)
+	res_simple.append("Simple Split")
+	res_vector.append(res_simple)
+	res_vector.append(res_kfold)
+
+	df = pd.DataFrame(res_vector, columns=['Accuracy','TN','FN','FP','TP','Algorithm','Method'])
+	print(df)
+
+	i = 0
+	while os.path.exists(str(os.getcwd()) + '/db/results_'+str(i)+'.xls'):
+		i += 1
+	df.to_excel(str(os.getcwd()) + '/db/results_'+str(i)+'.xls')
+
+classify_export()
 
