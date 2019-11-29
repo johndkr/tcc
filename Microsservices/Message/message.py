@@ -7,6 +7,7 @@ from collections import Counter
 from pyUFbr.baseuf import ufbr
 
 from Microsservices.Message import feeling_evaluator 
+from Microsservices.Message import analisador_de_sentimento
 from Microsservices.CommonUtil.Log import log_util
 
 import re
@@ -19,6 +20,8 @@ STATE_CITIES_DICTIONARY = ".\\data\\state_city_dictionary"
 
 class MessageAnalyses():
     log_manager = log_util.Log_Util(True)
+    translator = Translator()
+    feelinator = analisador_de_sentimento.Feeling_Evaluator()
 
     def __init__(self):
         self.__states_keys_dictionary = self.__load_states_dic_keys()
@@ -89,10 +92,8 @@ class MessageAnalyses():
 
     def translate_pt_to_en(self, txt):
         """ translates text to english """
-        # time.sleep(1)
-        translator = Translator()
-        result = translator.translate(txt, src='pt')
-        translator = None
+        time.sleep(1)
+        result = self.translator.translate(txt, src='pt')
         return str(result.text)
 
     def get_txt_feeling(self, txt):
@@ -100,9 +101,8 @@ class MessageAnalyses():
         try:
             self.log_manager.debbug("Getting text feeling")
             txt = txt.replace('\n\n', ' ').replace('\n', ' ').replace('\t','').replace('\r', '').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ')
-            txt_en = self.translate_pt_to_en(txt)
-            feeling = feeling_evaluator.get_text_feeling(txt_en)
-            result = int(feeling[1][0])
+            # txt_en = self.translate_pt_to_en(txt)
+            result = self.feelinator.get_txt_feeling(txt)
         except Exception as err:
             self.log_manager.err(err)
             result = -1

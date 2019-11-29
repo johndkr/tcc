@@ -87,7 +87,7 @@ def get_analysis():
                 'file_name': str(f),
                 'index': os.path.basename(f).split('.')[0],
                 'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
-                # 'feeling': mes_analysator.get_txt_feeling(txt),
+                'feeling': mes_analysator.get_txt_feeling(txt),
                 'feeling': -1,
                 'nr_links': source_analysator.count_links(txt),
                 'nr_locations': mes_analysator.count_location_mentions(txt)
@@ -98,7 +98,37 @@ def get_analysis():
 
         print("A analise terminou, com {} resultados para chunk {}-{}".format(len(result), control, control+chunk_size-1))
         print("\nA meta é atingir {} arquivos".format(len(files)))
-        create_csv_file(result, control, control+chunk_size-1)
+        create_csv_file(result, "our_db", control, control+chunk_size-1)
+        control = control+chunk_size
+
+def get_only_feeling_analysis():
+    mes_analysator = message.MessageAnalyses()
+
+    files = get_files()
+    result = []
+
+    chunk_size = 500
+    control = 0
+
+    while control < (len(files) + 1):
+        counter = 0
+        for f in files[control:control+chunk_size-1]:
+            txt = kill_gremlins(open(f, 'r', encoding='utf-8', newline='').read())
+
+            res1 = {
+                'file_name': str(f),
+                'index': os.path.basename(f).split('.')[0],
+                'fake_or_true': 'Fake' if 'fake' in f.split('\\') else 'True',
+                'feeling': mes_analysator.get_txt_feeling(txt),
+            }
+
+            result.append(res1)
+            counter += 1
+            print("{0:.2f}% Completed".format(100*counter/len(files[control:control+chunk_size-1])))
+
+        print("A analise terminou, com {} resultados para chunk {}-{}".format(len(result), control, control+chunk_size-1))
+        print("\nA meta é atingir {} arquivos".format(len(files)))
+        create_csv_file(result,"feeling_only", 0, 7200)
         control = control+chunk_size
 
 def get_wrong_words_list():
@@ -128,9 +158,9 @@ def get_wrong_words_list():
 
     print("Prontinho :)\n")
 
-def create_csv_file(list_of_analysis, inicio, fim):
+def create_csv_file(list_of_analysis, file_name, inicio, fim):
     print("Colocando resultados em CSV...\n")
-    with open("our_db_chunk_{}-{}.csv".format(str(inicio), str(fim)),"w",newline="") as f:
+    with open(file_name + "_{}-{}.csv".format(str(inicio), str(fim)),"w",newline="") as f:
         header = list_of_analysis[0].keys()
         cw = csv.DictWriter(f,header,delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         cw.writeheader()
@@ -138,5 +168,6 @@ def create_csv_file(list_of_analysis, inicio, fim):
     print("Prontinho :)\n")
 
 if __name__ == "__main__":
-    get_analysis()
+    # get_analysis()
     # get_wrong_words_list()
+    get_only_feeling_analysis()
