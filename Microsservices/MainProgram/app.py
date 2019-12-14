@@ -1,14 +1,21 @@
 from flask import Flask, render_template, request
-import sys
+import os, sys
+import platform
 from urllib.parse import urlparse
-sys.path.append('..\\..\\')
+
+if platform.system() == 'Windows':
+	sys.path.append('..\\..\\')
+else:
+	sys.path.append('../../')
 
 from Microsservices.NewsOrigin import source_checking as Source_Checking
+from Microsservices.NewsOrigin import source as Source
 from Microsservices.Linguistic import linguistic as Linguistic
 from Microsservices.MainProgram import main as Main
+from Microsservices.MainProgram import classification as Classification
+from Microsservices.MainProgram import crawler as Crawler
 import Microsservices.MainProgram.data.parameters as Parameters
 import Microsservices.MainProgram.data.news_mock as Mock
-from Microsservices.Linguistic import linguistic as Linguistic
 
 import tweepy
 import time
@@ -38,14 +45,14 @@ def home():
 @app.route('/', methods=['POST'])
 def my_form_post():
 	text = request.form['newsLink']
-	processed_text = text
+	processed_text = Source_Checking.extractWebsite(text)
 
 	id_news = 0
 	newsInfo = ['','','','','']
 	keywords = 0
 	articles = 0
 	length = 0
-	sources = ['']
+	domain = ''
 	authors = ['']
 	titles = ['']
 	descriptions = ['']
@@ -56,30 +63,17 @@ def my_form_post():
 
 	link_mode = False
 	if is_url(processed_text):
-		processed_url = Source_Checking.extractWebsite(processed_text)
-		source = Source_Checking.querySourceByUrl(processed_url)
-		political_bias = source[0]["political_bias"]
-		source_factuality = source[0]["factuality"]
-
-		fact_points = 0.5*Parameters.POLITICAL_BIAS_BASE[str(political_bias)] + 0.5*Parameters.FACTUALITY_BASE[str(source_factuality)]
-		newsInfo[1] = fact_points
-		sources[0] = processed_url
-
+		obj_source = Source.SourceAnalyses()
+		domain =obj_source.get_domain(processed_text)
+		source = Source_Checking.querySourceByUrl(processed_text)
+		article = Crawler.get_news_attributes(text)
+		fake = Classification.classify_news(article.text)
 		link_mode = True
 	else:
-		id_news = Main.getNews(processed_text)
-		newsInfo = Main.getNewsInfo(id_news)
-		keywords = ",".join(str(x) for x in newsInfo[2])
-		articles = newsInfo[4]
-		length = len(articles)
-		sources = [item['source']['name'] for item in articles]
-		authors = [item['author'] for item in articles]
-		titles = [item['title'] for item in articles]
-		descriptions = [item['description'] for item in articles]
+		print("Não é um link")
 
-	return render_template("index.html", link_mode = link_mode, length = length, id_news = newsInfo[0], fake_status = newsInfo[1], keywords = keywords, 
-							num_articles = newsInfo[3], sources = sources, authors = authors, titles = titles, descriptions = descriptions,
-							url_original = processed_text, fonte = source[0]["source_name"], prob_fake = round(fact_points*100,2), pb = Source_Checking.POLITICAL_BIAS[political_bias], sf = Source_Checking.FACTUALITY[source_factuality])
+	return render_template("index.html", link_mode = link_mode, url_original = processed_text, fonte = source[0]['source_name'], 
+										fake_true = fake)
 	
 @app.route('/get_linguist_prob')
 def linguistic_page():
@@ -180,4 +174,4 @@ def my_form_post_mock():
 							url_original = processed_text, fonte = source[0]["source_name"], prob_fake = round(fact_points*100,2), pb = Source_Checking.POLITICAL_BIAS[political_bias], sf = Source_Checking.FACTUALITY[source_factuality], locations = locations, num_cidades = num_cidades)
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=True,host='0.0.0.0', port=80)

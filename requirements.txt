@@ -18,3 +18,4 @@ pip install tldextract
 pip install lxml
 pip install seaborn
 pip install xlrd
+pip install news-please

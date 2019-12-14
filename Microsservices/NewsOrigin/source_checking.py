@@ -1,5 +1,5 @@
 import wikipediaapi as wiki
-from googlesearch import search
+#from googlesearch import search
 import json
 import tweepy
 from urllib.parse import urlparse

@@ -1023,21 +1023,21 @@
 		 "versions":[
 			{
 			   "language":"PT-BR",
-			   "source_url":"oglobo.globo.com",
+			   "source_url":"https://oglobo.globo.com/",
 			   "source_twitter_handler":"",
 			   "source_wikipedia_page":""
 			}
 		 ]
 	  },
 	  {
-		 "source_name":"Globo News",
+		 "source_name":"G1",
 		 "source_id":73,
 		 "political_bias":3,
 		 "factuality":3,
 		 "versions":[
 			{
 			   "language":"PT-BR",
-			   "source_url":"g1.globo.com",
+			   "source_url":"https://g1.globo.com/",
 			   "source_twitter_handler":"",
 			   "source_wikipedia_page":""
 			}

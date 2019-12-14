@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <title>Só verdades</title>
   </head>
   <body>
+  <div id="loading" style="visibility: hidden;">Classificando notícia, aguarde...</div>
+  <div id="content">
    <div class="container">
    	<br>
     <form>
@@ -14,15 +16,15 @@
           <select id="Country">
             <option></option>
             <option value="Portuguese" selected>Português</option>
-            <option value="English">Inglês</option>
+            <!-- <option value="English">Inglês</option> -->
         </select>
 
       <h4>O que você deseja?</h4>
             <select id="Region">
                 <option></option>
                 <option value="VerificarN" selected>Verificar notícia</option>
-                <option value="VerificarF">Verificar fonte</option>
-                <option value="Stats">Ver estatísticas</option>
+                <!-- <option value="VerificarF">Verificar fonte</option>
+                <option value="Stats">Ver estatísticas</option> -->
             </select>
         <br />
     </form>
@@ -30,14 +32,19 @@
 	<div class ="container">
 		<h4>Será que é verdade?</h4>
 		<form action="{{ url_for('my_form_post') }}" method="POST">
-    		<input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia ou tags...">
-    		<input type="submit">
+    		<input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia...">
+    		<input type="submit" onclick="loading();">
 		</form>
 		<br>
 		<hr style="border: 0.3px solid grey;" />
   	</div>
-
+  </div>
     <script type="text/javascript">
+        function loading(){
+            document.querySelector('#content').style.visibility = "hidden";       
+            document.querySelector('#loading').style.visibility = "visible";
+        }
+
         function removeOptions(objSelect) {
             while (objSelect.options.length > 0)
                 objSelect.options[0] = null;
@@ -129,5 +136,19 @@
 	input[type=submit]:hover {
 	  background-color: #45a049;
 	}
+
+  div#loading {
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -35px;
+    margin-left: -35px;
+    display: block;
+    background: url(https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif);
+    cursor: wait;
+  }
+
 </style>
 </html>
