@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import platform
+import pickle
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
@@ -13,21 +15,35 @@ from sklearn.naive_bayes import BernoulliNB
 
 from datetime import datetime
 
-root = "..\\data\\"
-path_to_source = os.path.join(__file__, root, "imdb-reviews-pt-br.csv")
+if platform.system() == 'Windows':
+    root = "\\data\\"
+else:
+    root = "/Message/data/"
+
+path_to_source = os.path.abspath('..') + root + "imdb-reviews-pt-br.csv"
 
 class Feeling_Evaluator(): 
 
     def __init__(self):
-        self.df = pd.read_csv(path_to_source).sample(40000, random_state=42)
-        self.df.sentiment = self.df['sentiment'].map({'pos': 1, 'neg': 0})
-        self.vect = self.__set_vectorizer()
-        self.classifier = self.__set_classifier()
+        filename = 'modelo_sentimmento.sav'
+        if os.path.exists(filename):
+            # load the model from disk
+            self.vect = self.__set_vectorizer()
+            self.vect.fit(pd.read_csv('text_vect_fit.csv'))
+            self.classifier = pickle.load(open(filename, 'rb'))
+        else:
+            # save the model to disk
+            self.df = pd.read_csv(path_to_source).sample(40000, random_state=42)
+            self.df.sentiment = self.df['sentiment'].map({'pos': 1, 'neg': 0})
+            self.vect = self.__set_vectorizer()
+            self.classifier = self.__set_classifier()
+            pickle.dump(self.classifier, open(filename, 'wb'))
+
 
     def __set_classifier(self):
         self.vect.fit(self.df.text_pt)
         text_vect = self.vect.transform(self.df.text_pt)
-
+        self.df.text_pt.to_csv('text_vect_fit.csv', index=False)
         X_train,X_test,y_train,y_test = train_test_split(
             text_vect, 
             self.df.sentiment,

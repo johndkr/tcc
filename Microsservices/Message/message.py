@@ -1,6 +1,10 @@
 #message
 import os, sys
-sys.path.append('..\\..\\')
+import platform
+if platform.system() == 'Windows':
+    sys.path.append('..\\..\\')
+else:
+    sys.path.append('../../')
 
 from googletrans import Translator
 from collections import Counter 
@@ -185,7 +189,7 @@ class MessageAnalyses():
 
 
 if __name__ == "__main__":
-    txt = open('E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\' + str(2) + '.txt', encoding='utf-8').read()
+    txt = open(os.path.abspath('..') + '/MainProgram/db/fake/' + str(2) + '.txt', encoding='utf-8').read() # 'E:\\Documentos Local\\GitHub\\tcc\\Microsservices\\MainProgram\\db\\fake\\'
 
     analisator = MessageAnalyses()
     print(analisator.get_txt_feeling(txt))

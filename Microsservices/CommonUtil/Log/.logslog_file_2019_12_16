@@ -1,0 +1,35 @@
+[2019-12-16 00:10:19.508070] - INFO : Counting number of links
+[2019-12-16 00:10:19.514360] - INFO : Loading states dictionary file...
+[2019-12-16 00:10:19.519952] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 00:10:19.564794] - DEBBUG : Getting text feeling
+[2019-12-16 00:10:19.647666] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:37:12.647050] - INFO : Counting number of links
+[2019-12-16 01:37:12.690490] - INFO : Loading states dictionary file...
+[2019-12-16 01:37:12.696121] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:37:12.734241] - DEBBUG : Getting text feeling
+[2019-12-16 01:37:12.761920] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:38:55.980194] - INFO : Counting number of links
+[2019-12-16 01:38:55.986468] - INFO : Loading states dictionary file...
+[2019-12-16 01:38:55.991612] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:38:56.037307] - DEBBUG : Getting text feeling
+[2019-12-16 01:38:56.066943] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:39:42.158465] - INFO : Counting number of links
+[2019-12-16 01:39:42.164634] - INFO : Loading states dictionary file...
+[2019-12-16 01:39:42.169912] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:39:42.209043] - DEBBUG : Getting text feeling
+[2019-12-16 01:39:42.215799] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:40:52.772815] - INFO : Counting number of links
+[2019-12-16 01:40:52.779944] - INFO : Loading states dictionary file...
+[2019-12-16 01:40:52.785331] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:40:52.816283] - DEBBUG : Getting text feeling
+[2019-12-16 01:40:52.825576] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:40:55.367498] - INFO : Counting number of links
+[2019-12-16 01:40:55.393689] - INFO : Loading states dictionary file...
+[2019-12-16 01:40:55.406102] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:40:55.466811] - DEBBUG : Getting text feeling
+[2019-12-16 01:40:55.472942] - ERROR : X has 142 features per sample; expecting 118676
+[2019-12-16 01:47:09.906073] - INFO : Counting number of links
+[2019-12-16 01:47:09.912471] - INFO : Loading states dictionary file...
+[2019-12-16 01:47:09.918569] - ERROR : <class 'FileNotFoundError'> - File not found.
+[2019-12-16 01:47:09.962870] - DEBBUG : Getting text feeling
+[2019-12-16 01:47:09.969740] - ERROR : X has 142 features per sample; expecting 118676

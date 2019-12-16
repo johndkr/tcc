@@ -34,10 +34,11 @@ class SourceAnalyses():
 		return category
 
 	def get_text_from_tweet(self, url):
-		page = requests.get('https://twitter.com/pseudobia_/status/1196879870095233025')
+		page = requests.get(url) # https://twitter.com/pseudobia_/status/1196879870095233025
 		tree = html.fromstring(page.content)
 		res = tree.xpath('//div[contains(@class, "permalink-tweet-container")]//p[contains(@class, "tweet-text")]//text()')
-		print(res)
+		print(str(res[0]))
+		return str(res[0])
 	
-# sa = SourceAnalyses()
-# sa.get_text_from_tweet('s')
+#sa = SourceAnalyses()
+#sa.get_text_from_tweet('https://twitter.com/pseudobia_/status/1196879870095233025')

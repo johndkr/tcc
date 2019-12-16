@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Classificador de Fake News</title>
+  </head>
+  <body>
+  <div id="loading" style="visibility: hidden;"><b>Classificando notícia, aguarde...</b></div>
+  <div id="content">
+   <div id="container" class="container">
+   	<br>
+    <form>
+      <h4>Idioma</h4>
+          <select id="Country">
+            <option></option>
+            <option value="Portuguese" selected>Português</option>
+            <!-- <option value="English">Inglês</option> -->
+        </select>
+
+      <h4>O que você deseja?</h4>
+            <select id="Region">
+                <option></option>
+                <option value="VerificarN" selected>Verificar notícia</option>
+                <!-- <option value="VerificarF">Verificar fonte</option>
+                <option value="Stats">Ver estatísticas</option> -->
+            </select>
+        <br />
+    </form>
+	</div>
+	<div id="container" class ="container">
+		<h4>Será que é verdade?</h4>
+		<form action="{{ url_for('my_form_post') }}" method="POST">
+        <input type ="text" name="newsLink" placeholder="Cole aqui o link da notícia...">
+        <input type="submit" onclick="loading();" style="background-color: #F9E4B7">
+    </form>
+    <form action="{{ url_for('get_stats') }}" method="GET">
+        <input type="submit" value="Ver estatísticas" style="background-color: #F5F5DC">
+    </form>
+    <br>
+		<hr style="border: 0.3px solid grey;" />
+  </div>
+  <div id="container" class="container">
+    <h4><b>Comparação da base de dados do modelo</b></h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Atributo</th>
+            <th>Verdadeiras</th>
+            <th>Falsas</th>
+          </tr>
+        </thead>
+        <tbody id="result">
+          <tr>
+          <td>Sentimento</td>
+          <td>{{true_feeling }}</td>
+          <td>{{fake_feeling }}</td>
+          </tr>
+          <tr>
+          <td># Links</td>
+          <td>{{true_nr_links }}</td>
+          <td>{{fake_nr_links }}</td>
+          </tr>
+          <tr>
+          <td># Locais mencionados</td>
+          <td>{{true_nr_locations }}</td>
+          <td>{{fake_nr_locations }}</td>
+          </tr>
+          <tr>
+          <td># Verbos</td>
+          <td>{{true_verbos }}</td>
+          <td>{{fake_verbos }}</td>
+          </tr>
+          <tr>
+          <td># Substantivos</td>
+          <td>{{true_substantivos }}</td>
+          <td>{{fake_substantivos }}</td>
+          </tr>
+          <tr>
+          <td># Adverbios</td>
+          <td>{{true_adverbios }}</td>
+          <td>{{fake_adverbios }}</td>
+          </tr>
+          <tr>
+          <td># Pronomes</td>
+          <td>{{true_pronomes }}</td>
+          <td>{{fake_pronomes }}</td>
+          </tr>
+          <tr>
+          <td># Artigos</td>
+          <td>{{true_artigos }}</td>
+          <td>{{fake_artigos }}</td>
+          </tr>
+          <tr>
+          <td># Adjetivos</td>
+          <td>{{true_adjetivo }}</td>
+          <td>{{fake_adjetivo }}</td>
+          </tr>
+          <tr>
+          <td># Numerais</td>
+          <td>{{true_numerais }}</td>
+          <td>{{fake_numerais }}</td>
+          </tr>
+          <tr>
+          <td># Preposições</td>
+          <td>{{true_preposicoes }}</td>
+          <td>{{fake_preposicoes }}</td>
+          </tr>
+          <tr>
+          <td># Conjunções</td>
+          <td>{{true_conjuncoes }}</td>
+          <td>{{fake_conjuncoes }}</td>
+          </tr>
+          <tr>
+          <td># Pontuações</td>
+          <td>{{true_pontuacao }}</td>
+          <td>{{fake_pontuacao }}</td>
+          </tr>
+          <tr>
+          <td># Interjeições</td>
+          <td>{{true_interjeicoes }}</td>
+          <td>{{fake_interjeicoes }}</td>
+          </tr>
+          <tr>
+          <td># Verbos modais</td>
+          <td>{{true_verbos_modais }}</td>
+          <td>{{fake_verbos_modais }}</td>
+          </tr>
+          <tr>
+          <td># Palavras</td>
+          <td>{{true_n_palvaras }}</td>
+          <td>{{fake_n_palvaras }}</td>
+          </tr>
+          <tr>
+          <td>Proporção palavras erradas</td>
+          <td>{{true_prop_palavras_erradas }}</td>
+          <td>{{fake_prop_palavras_erradas }}</td>
+          </tr>
+          <tr>
+          <td># Palavras camal case</td>
+          <td>{{true_n_camel_case }}</td>
+          <td>{{fake_n_camel_case }}</td>
+          </tr>
+          <tr>
+          <td># Palavras upper case</td>
+          <td>{{true_n_upper_case }}</td>
+          <td>{{fake_n_upper_case }}</td>
+          </tr>
+          <tr>
+          <td># Pronomes em 1ª pessoa singular</td>
+          <td>{{true_n_pronome_1 }}</td>
+          <td>{{fake_n_pronome_1 }}</td>
+          </tr>
+          <tr>
+          <td># Pronomes em 1ª pessoa plural</td>
+          <td>{{true_n_pronome_1_plural }}</td>
+          <td>{{fake_n_pronome_1_plural }}</td>
+          </tr>
+          <tr>
+          <td># Pronomes em 2ª pessoa singular</td>
+          <td>{{true_n_pronome_2 }}</td>
+          <td>{{fake_n_pronome_2 }}</td>
+          </tr>
+          <tr>
+          <td># Caracteres</td>
+          <td>{{true_n_characteres }}</td>
+          <td>{{fake_n_characteres }}</td>
+          </tr>
+          <tr>
+          <td>Sentença média</td>
+          <td>{{true_avg_sentence }}</td>
+          <td>{{fake_avg_sentence }}</td>
+          </tr>
+          <tr>
+          <td>Palavra média</td>
+          <td>{{true_avg_word_length }}</td>
+          <td>{{fake_avg_word_length }}</td>
+          </tr>
+        </tbody>
+      </table>  
+  </div>
+</div>
+
+    <script type="text/javascript">
+      function loading(){
+            document.querySelector('#content').style.visibility = "hidden";       
+            document.querySelector('#loading').style.visibility = "visible";
+        }
+
+        function removeOptions(objSelect) {
+            while (objSelect.options.length > 0)
+                objSelect.options[0] = null;
+        }
+      
+      // element_ids -- sont les outputs des boutons - ce que je récupère quand on clique sur un boutton //
+      var element_ids = ["Country", "Region"];
+      // getValues est la fonction qui dénombre et donc récupère tous les couples possibles de choix //
+      function getValues() {
+        var values = {};
+        for (var i = 0; i < element_ids.length; i++) {
+          var element = document.getElementById(element_ids[i]);
+          if (element != null) {
+              values[element_ids[i]] = element.value;
+          }
+        }
+        console.log(values);
+        return values;
+      }
+      function run() {
+         // on récupère le choix des valeurs des bouttons //
+        var values = getValues();
+        // AJAX > to check //
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/filter", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            console.log(this.responseText);
+            var objects = JSON.parse(this.responseText);
+            console.log(objects);
+            var table = document.getElementById("result");
+            if (table != null) {
+              table.innerHTML = "";
+              for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                var tr = document.createElement("tr");
+                var td = null;
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['country']));
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['province']));
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.appendChild(document.createTextNode(object['description']));
+                tr.appendChild(td);
+                table.appendChild(tr);
+              }
+            }
+          }
+        }
+        var params = "_="+ Math.floor(Date.now() / 1000);
+        for (var key in values) {
+          params += "&"+ key +"="+ values[key];
+        }
+        xhr.send(params);
+      }
+      var submit = document.getElementById("submit");
+      if (submit != null) {
+        submit.addEventListener("click", run);
+      }
+      run();
+    </script>
+  </body>
+
+  <style>
+	  input[type=text], select {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+
+	input[type=submit] {
+	  width: 100%;
+	  background-color: #4CAF50;
+	  color: black;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	}
+
+	input[type=submit]:hover {
+	  background-color: #45a049;
+	}
+
+  div#loading {
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -35px;
+    margin-left: -35px;
+    display: block;
+    background: url(https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif);
+    cursor: wait;
+  }
+
+  body {
+    background: url("https://wallpaperaccess.com/full/279559.jpg") no-repeat center center;
+  }
+
+  div#container {
+    background-color: rgba(255,255,255, .8);
+  }
+
+</style>
+</html>

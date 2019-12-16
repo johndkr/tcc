@@ -8,6 +8,8 @@ if platform.system() == 'Windows':
 else:
 	sys.path.append('../../')
 from Microsservices.Linguistic import linguistic as Linguistic
+from Microsservices.Message import message as Message
+from Microsservices.NewsOrigin import source as NewsOrigin
 from sklearn import datasets, linear_model
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsRegressor
@@ -24,6 +26,7 @@ import matplotlib.axis as axis
 import matplotlib.dates as mdates
 from datetime import date, timedelta, datetime
 import seaborn as sn
+import pickle
 
 def get_df(path):
 	df = pd.read_excel(path, index_col=None)
@@ -273,28 +276,122 @@ def classify_export():
 		i += 1
 	df.to_excel(str(os.getcwd()) + '/db/results_'+str(i)+'.xls')
 
-def classify_news(text):
+def truncate(n, decimals=0):
+    multiplier = 10 ** decimals
+    return int(n * multiplier) / multiplier
+
+def make_statistics():
 	base = get_df('db/our_db_v2.xls')
+
+	base_fake = base.loc[base['fake_or_true'] == 'Falso']
+	results_fake_dict = {
+		'feeling': base_fake['feeling'].max(axis=0),
+		'nr_links': truncate(base_fake['nr_links'].mean(axis=0), 2),
+		'nr_locations': truncate(base_fake['nr_locations'].mean(axis=0), 2),
+		'verbos': truncate(base_fake['verbos'].mean(axis=0), 2),
+		'substantivos': truncate(base_fake['substantivos'].mean(axis=0), 2),
+		'adverbios': truncate(base_fake['adverbios'].mean(axis=0), 2),
+		'pronomes': truncate(base_fake['pronomes'].mean(axis=0), 2),
+		'artigos': truncate(base_fake['artigos'].mean(axis=0), 2),
+		'adjetivo': truncate(base_fake['adjetivo'].mean(axis=0), 2),
+		'numerais': truncate(base_fake['numerais'].mean(axis=0), 2),
+		'preposicoes': truncate(base_fake['preposicoes'].mean(axis=0), 2),
+		'conjuncoes': truncate(base_fake['conjuncoes'].mean(axis=0), 2),
+		'pontuacao': truncate(base_fake['pontuacao'].mean(axis=0), 2),
+		'interjeicoes': truncate(base_fake['interjeicoes'].mean(axis=0), 2),
+		'verbos_modais': truncate(base_fake['verbos_modais'].mean(axis=0), 2),
+		'n_palvaras': truncate(base_fake['n_palvaras'].mean(axis=0), 2),
+		'prop_palavras_erradas': truncate(base_fake['prop_palavras_erradas'].mean(axis=0), 2),
+		'n_camel_case': truncate(base_fake['n_camel_case'].mean(axis=0), 2),
+		'n_upper_case': truncate(base_fake['n_upper_case'].mean(axis=0), 2),
+		'n_pronome_1': truncate(base_fake['n_pronome_1'].mean(axis=0), 2),
+		'n_pronome_1_plural': truncate(base_fake['n_pronome_1_plural'].mean(axis=0), 2),
+		'n_pronome_2': truncate(base_fake['n_pronome_2'].mean(axis=0), 2),
+		'n_characteres': truncate(base_fake['n_characteres'].mean(axis=0), 2),
+		'avg_sentence': truncate(base_fake['avg_sentence'].mean(axis=0), 2),
+		'avg_word_length': truncate(base_fake['avg_word_length'].mean(axis=0), 2)
+	}
+
+	base_true = base.loc[base['fake_or_true'] == 'Verdadeiro']
+	results_true_dict = {
+		'feeling': base_true['feeling'].max(axis=0),
+		'nr_links': truncate(base_true['nr_links'].mean(axis=0), 2),
+		'nr_locations': truncate(base_true['nr_locations'].mean(axis=0), 2),
+		'verbos': truncate(base_true['verbos'].mean(axis=0), 2),
+		'substantivos': truncate(base_true['substantivos'].mean(axis=0), 2),
+		'adverbios': truncate(base_true['adverbios'].mean(axis=0), 2),
+		'pronomes': truncate(base_true['pronomes'].mean(axis=0), 2),
+		'artigos': truncate(base_true['artigos'].mean(axis=0), 2),
+		'adjetivo': truncate(base_true['adjetivo'].mean(axis=0), 2),
+		'numerais': truncate(base_true['numerais'].mean(axis=0), 2),
+		'preposicoes': truncate(base_true['preposicoes'].mean(axis=0), 2),
+		'conjuncoes': truncate(base_true['conjuncoes'].mean(axis=0), 2),
+		'pontuacao': truncate(base_true['pontuacao'].mean(axis=0), 2),
+		'interjeicoes': truncate(base_true['interjeicoes'].mean(axis=0), 2),
+		'verbos_modais': truncate(base_true['verbos_modais'].mean(axis=0), 2),
+		'n_palvaras': truncate(base_true['n_palvaras'].mean(axis=0), 2),
+		'prop_palavras_erradas': truncate(base_true['prop_palavras_erradas'].mean(axis=0), 2),
+		'n_camel_case': truncate(base_true['n_camel_case'].mean(axis=0), 2),
+		'n_upper_case': truncate(base_true['n_upper_case'].mean(axis=0), 2),
+		'n_pronome_1': truncate(base_true['n_pronome_1'].mean(axis=0), 2),
+		'n_pronome_1_plural': truncate(base_true['n_pronome_1_plural'].mean(axis=0), 2),
+		'n_pronome_2': truncate(base_true['n_pronome_2'].mean(axis=0), 2),
+		'n_characteres': truncate(base_true['n_characteres'].mean(axis=0), 2),
+		'avg_sentence': truncate(base_true['avg_sentence'].mean(axis=0), 2),
+		'avg_word_length': truncate(base_true['avg_word_length'].mean(axis=0), 2)
+	}
+	
+	return results_true_dict, results_fake_dict
+
+
+def classify_news(train, text):
 
 	labelencoder = LabelEncoder()
 	cols = ['verbos','substantivos','adverbios','pronomes','artigos','adjetivo','numerais','preposicoes','conjuncoes','pontuacao','interjeicoes','verbos_modais','n_palvaras','prop_palavras_erradas','n_camel_case','n_upper_case','n_pronome_1','n_pronome_1_plural','n_pronome_2','n_characteres','avg_sentence','avg_word_length']
+	
+	# df Linguistica
 	ling = Linguistic.LinguisticAnalyses()
 	news_data = ling.make_linguistic_analyses(text)
-	#print(list(news_data.items()))
 	df = pd.DataFrame.from_dict(list(news_data.items()))
 	ndf = pd.DataFrame(columns=cols)
 	ndf = ndf.append(pd.Series(df.T.values.tolist()[1], index=cols),ignore_index=True)
-	
-	#pred = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
-	pred = KNeighborsRegressor(n_neighbors=33)
-	#pred = RandomForestClassifier(n_estimators=100)
-	base['fake_or_true'] = labelencoder.fit_transform(base['fake_or_true'])
-	pred.fit(base.iloc[:,6:28], base['fake_or_true'])
+
+	#df Resto
+	origin = NewsOrigin.SourceAnalyses()
+	nr_links = origin.count_links(text)
+	message = Message.MessageAnalyses()
+	nr_locations = message.count_location_mentions(text)
+	feeling = message.get_txt_feeling(text)
+	ndf2 = pd.DataFrame([feeling,nr_links,nr_locations], index=['feeling','nr_links','nr_locations'])
+	ndf = ndf2.T.join(ndf)
+
+	if train:
+		base = get_df('db/our_db_v2.xls')
+		# pred = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
+		pred = KNeighborsRegressor(n_neighbors=33)
+		# pred = RandomForestClassifier(n_estimators=100)
+		base['fake_or_true'] = labelencoder.fit_transform(base['fake_or_true'])
+		pred.fit(base.iloc[:,3:28], base['fake_or_true'])
+
+	filename = 'modelo_25cols.sav'
+	if os.path.exists(filename):
+		# load the model from disk
+		pred = pickle.load(open(filename, 'rb'))
+	else:
+		# save the model to disk
+		pickle.dump(pred, open(filename, 'wb'))
+
 	prediction = pred.predict(ndf)
 	prediction = [int(i) for i in prediction]
-	fake_or_true = labelencoder.inverse_transform(prediction)
-	return fake_or_true[0]
 
-#classify_news('O novo governo da Argentina, comandado por Alberto Fernández, decidiu neste sábado (14) aumentar os impostos sobre as exportações agrícolas, uma medida justificada como "urgente" para enfrentar a "grave situação" das finanças públicas" do país, que é um dos maiores produtores e exportadores agrícolas do mundo.O aumento na taxação se junta a outra medida econômica anunciada neste sábado: o aumento no custo para a demissão de trabalhadores.')
+	if prediction[0] == 0:
+		fake_or_true = 'Falso'
+	else:
+		fake_or_true = 'Verdadeiro'
+	print("Resultado: " + fake_or_true)
+
+	return fake_or_true
+
+#classify_news(False,'O novo governo da Argentina, comandado por Alberto Fernández, decidiu neste sábado (14) aumentar os impostos sobre as exportações agrícolas, uma medida justificada como "urgente" para enfrentar a "grave situação" das finanças públicas" do país, que é um dos maiores produtores e exportadores agrícolas do mundo.O aumento na taxação se junta a outra medida econômica anunciada neste sábado: o aumento no custo para a demissão de trabalhadores.')
 #classify_export()
-
+make_statistics()
